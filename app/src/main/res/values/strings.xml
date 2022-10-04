@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Skieg</string>
+    <string name="events_button">Events</string>
+    <string name="planner_button">Planning</string>
+    <string name="calendar_button">Calendar</string>
+    <string name="personal_profile_button">Profile</string>
+    <string name="post_button">Create New Post</string>
+    <string name="budget_button">Budget</string>
+    <string name="checklist_button">Checklist</string>
+    <string name="itinerary_button">Itinerary</string>
+    <string name="journal_button">Journal</string>
 </resources>
