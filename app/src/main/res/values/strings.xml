@@ -29,4 +29,12 @@
     <string name="event3">Event 3</string>
     <string name="events">Events</string>
 
+
+    <string-array name="eventsString">
+        <item>Concert event</item>
+        <item>Tour event</item>
+        <item>Festival event</item>
+        <item>Meet up event</item>
+        <item>Another festival event</item>
+    </string-array>
 </resources>
