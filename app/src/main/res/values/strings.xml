@@ -9,4 +9,6 @@
     <string name="checklist_button">Checklist</string>
     <string name="itinerary_button">Itinerary</string>
     <string name="journal_button">Journal</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="maps_button">Maps</string>
 </resources>
