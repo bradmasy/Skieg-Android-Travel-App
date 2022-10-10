@@ -3,17 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_budget.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_calendar.xml" value="0.253125" />
-        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_checklist.xml" value="0.20854700854700856" />
-        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_events.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_itinerary.xml" value="0.253125" />
-        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_journal.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_personal_profile.xml" value="0.253125" />
-        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_planner.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_post.xml" value="0.253125" />
-        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_user_profile.xml" value="0.61" />
+        <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_calendar.xml" value="0.25" />
+        <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_events.xml" value="0.25" />
+        <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_itinerary.xml" value="0.25" />
+        <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_journal.xml" value="0.25" />
+        <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_personal_profile.xml" value="0.25" />
+        <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_user_profile.xml" value="0.25" />
       </map>
     </option>
   </component>

@@ -9,4 +9,21 @@
     <string name="checklist_button">Checklist</string>
     <string name="itinerary_button">Itinerary</string>
     <string name="journal_button">Journal</string>
+    <string name="back_button">Back</string>
+
+    <string name="day1">Day 1</string>
+    <string name="day2">Day 2</string>
+    <string name="day3">Day 3</string>
+    <string name="day4">Day 4</string>
+    <string name="day5">Day 5</string>
+    <string name="day6">Day 6</string>
+    <string name="day7">Day 7</string>
+    <string name="calendar">Calendar</string>
+
+    <string name="event1">Event 1</string>
+    <string name="event2">Event 2</string>
+    <string name="event3">Event 3</string>
+    <string name="events">Events</string>
+
+
 </resources>
