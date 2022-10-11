@@ -1,6 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="100"
+    android:layout_margin="10dp"
+    android:layout_gravity="bottom"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="100"
+        android:layout_weight="15"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/userInfo"
+            android:layout_width="match_parent"
+            android:layout_weight="30"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/teal_200">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:text="User Information\n More information\n More information"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/userPhoto"
+            android:layout_width="match_parent"
+            android:layout_weight="70"
+            android:layout_height="match_parent"
+            android:background="@color/purple_200"
+
+            >
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/googleg_standard_color_18"
+                android:layout_margin="20dp">
+
+            </ImageView>
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="100"
+        android:layout_weight="20"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="33.333"
+            android:orientation="horizontal"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+
+                android:src="@mipmap/ic_launcher"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="66.666"
+            android:weightSum="100"
+
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="33.333"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="33.333"/>
+
+           <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+               android:layout_weight="33.333"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:id="@+id/makePost"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Make Post"
+            android:layout_marginRight="10dp"
+
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/filler"/>
+    </LinearLayout>
+
+
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/ctnFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="65"
+        android:background="@color/purple_200"></androidx.fragment.app.FragmentContainerView>
+
+
+
+</LinearLayout>
