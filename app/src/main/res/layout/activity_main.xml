@@ -54,12 +54,20 @@
         android:text="@string/post_button"
         android:onClick="clickMainPostButton"/>
 
+<!--    <Button-->
+<!--        android:id="@+id/mainMapsActivityButton"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="60dp"-->
+<!--        android:onClick="clickMapsButton"-->
+<!--        android:text="@string/maps_button" />-->
+
     <Button
-        android:id="@+id/mainMapsActivityButton"
+        android:id="@+id/firebase_button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
-        android:onClick="clickMapsButton"
-        android:text="@string/maps_button" />
+        android:onClick="clickFireBaseButton"
+        android:text="Firebase" />
 
 </LinearLayout>

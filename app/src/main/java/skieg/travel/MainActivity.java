@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.FirebaseApp;
+
 import skieg.travel.planner.PlannerActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickMapsButton(View view){
         Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+    public void clickFireBaseButton(View view){
+        Intent intent = new Intent(this, FireApp.class);
         startActivity(intent);
     }
 }
