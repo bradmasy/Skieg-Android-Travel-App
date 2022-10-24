@@ -9,6 +9,7 @@ import android.view.View;
 import com.google.firebase.FirebaseApp;
 
 import skieg.travel.planner.PlannerActivity;
+import skieg.travel.planner.fragments.MainPlanner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickMainPlannerButton(View view) {
-        Intent intent = new Intent(this, PlannerActivity.class);
+        Intent intent = new Intent(this, MainPlanner.class);
         startActivity(intent);
     }
 
