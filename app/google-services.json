@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "393156427469",
+    "firebase_url": "https://skieg-364814-default-rtdb.firebaseio.com",
+    "project_id": "skieg-364814",
+    "storage_bucket": "skieg-364814.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393156427469:android:59344f1e258bac31a7f384",
+        "android_client_info": {
+          "package_name": "skieg.travel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "393156427469-jpf8hp2rb38mg3r4015t392d62cqsd4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsLtnNR0DSM9d--OlowuVHu-53qRH3Z0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "393156427469-jpf8hp2rb38mg3r4015t392d62cqsd4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

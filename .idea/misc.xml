@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_budget.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_calendar.xml" value="0.253125" />
+        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_checklist.xml" value="0.20854700854700856" />
+        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_events.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_itinerary.xml" value="0.253125" />
+        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_journal.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_personal_profile.xml" value="0.253125" />
+        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_planner.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_post.xml" value="0.253125" />
+        <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_user_profile.xml" value="0.61" />
+        <entry key="..\:/Users/bradl/AndroidStudioProjects/termProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1465" />
+        <entry key="..\:/Users/bradl/AndroidStudioProjects/termProject/app/src/main/res/layout/activity_events.xml" value="0.2203125" />
+        <entry key="..\:/Users/bradl/AndroidStudioProjects/termProject/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/Users/bradl/AndroidStudioProjects/termProject/app/src/main/res/layout/activity_main_firebase.xml" value="0.25" />
+        <entry key="..\:/Users/bradl/AndroidStudioProjects/termProject/app/src/main/res/layout/activity_personal_profile.xml" value="0.3625" />
+        <entry key="..\:/Users/bradl/AndroidStudioProjects/termProject/app/src/main/res/layout/activity_planner.xml" value="0.17798913043478262" />
+        <entry key="..\:/Users/bradl/AndroidStudioProjects/termProject/app/src/main/res/layout/activity_post.xml" value="0.4" />
+        <entry key="..\:/Users/bradl/AndroidStudioProjects/termProject/app/src/main/res/layout/fragment_events_layout.xml" value="0.36041666666666666" />
+        <entry key="..\:/Users/bradl/AndroidStudioProjects/termProject/app/src/main/res/layout/fragment_forum.xml" value="0.2" />
+        <entry key="..\:/Users/bradl/AndroidStudioProjects/termProject/app/src/main/res/layout/planner_view_pager.xml" value="0.3614583333333333" />
+        <entry key="..\:/Users/bradl/AndroidStudioProjects/termProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1465" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/android-term-project-dev/app/src/main/res/layout/activity_main.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/android-term-project-dev/app/src/main/res/layout/activity_maps.xml" value="0.264" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/android-term-project-dev/app/src/main/res/layout/activity_maps2.xml" value="0.3625" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/android-term-project-dev/app/src/main/res/layout/activity_planner.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/app/src/main/res/layout/activity_calendar.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/app/src/main/res/layout/activity_events.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/app/src/main/res/layout/activity_main_firebase.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/app/src/main/res/layout/activity_maps2.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/app/src/main/res/layout/activity_planner.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/app/src/main/res/layout/activity_post.xml" value="0.25" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/app/src/main/res/layout/fragment_events_layout.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/app/src/main/res/layout/planner_view_pager.xml" value="0.2033514492753623" />
+        <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/app/src/main/res/layout/post_page_activity.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

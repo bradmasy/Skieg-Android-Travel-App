@@ -1,0 +1,152 @@
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:shrinkColumns="*"
+    android:stretchColumns="*"
+    android:background="#ffffff">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="70dp">
+
+        <TextView
+            android:id="@+id/textViewEvents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calendar"
+            android:textSize="30sp"
+            android:gravity="center" />
+
+    </TableRow>
+
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="70dp">
+
+        <TextView
+            android:id="@+id/day1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/day1"
+            android:textSize="30sp"
+            android:gravity="center" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/day2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/day2"
+            android:textSize="30sp"
+            android:gravity="center" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/day3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/day3"
+            android:textSize="30sp"
+            android:gravity="center" />
+
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/day4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/day4"
+            android:textSize="30sp"
+            android:gravity="center" />
+
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/day5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/day5"
+            android:textSize="30sp"
+            android:gravity="center" />
+
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/day6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/day6"
+            android:textSize="30sp"
+            android:gravity="center" />
+
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/day7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/day7"
+            android:textSize="30sp"
+            android:gravity="center" />
+
+    </TableRow>
+
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/back_button"
+        android:onClick="clickMainButton"/>
+
+</TableLayout>

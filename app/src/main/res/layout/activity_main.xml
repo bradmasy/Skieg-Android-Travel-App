@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/mainTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="@string/app_name" />
+
+    <Button
+        android:id="@+id/mainEventsButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="@string/events_button"
+        android:onClick="clickMainEventsButton"/>
+
+    <Button
+        android:id="@+id/mainPlannerButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="@string/planner_button"
+        android:onClick="clickMainPlannerButton"/>
+
+    <Button
+        android:id="@+id/mainCalendarButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="@string/calendar_button"
+        android:onClick="clickMainCalendarButton"/>
+
+    <Button
+        android:id="@+id/mainPersonalProfileButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="@string/personal_profile_button"
+        android:onClick="clickMainPersonalProfileButton"/>
+
+    <Button
+        android:id="@+id/mainPostButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="@string/post_button"
+        android:onClick="clickMainPostButton"/>
+
+<!--    <Button-->
+<!--        android:id="@+id/mainMapsActivityButton"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="60dp"-->
+<!--        android:onClick="clickMapsButton"-->
+<!--        android:text="@string/maps_button" />-->
+
+    <Button
+        android:id="@+id/firebase_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:onClick="clickFireBaseButton"
+        android:text="Firebase" />
+
+</LinearLayout>
+</ScrollView>
