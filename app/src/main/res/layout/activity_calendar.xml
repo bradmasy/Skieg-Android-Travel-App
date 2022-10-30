@@ -170,6 +170,14 @@
         android:text="@string/back_button" />
 
     <Button
+        android:id="@+id/createEventBtn"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:onClick="clickCreateButton"
+        android:text="Create Event" />
+
+    <Button
         android:id="@+id/redirectCalendarEventsBtn"
         android:layout_marginLeft="82dp"
         android:layout_marginRight="82dp"

@@ -2,9 +2,6 @@ package skieg.travel;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +26,6 @@ public class CalendarEventActivity extends AppCompatActivity {
     ArrayList<String> locations = new ArrayList<>();
     ArrayList<String> dates = new ArrayList<>();
 
-    Button button;
     RecyclerViewCalendar recyclerViewCalendar;
 
     DatabaseReference databaseReference;
@@ -57,40 +53,13 @@ public class CalendarEventActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
 
-        // Once you can access DB, commit all of button click listener and just call this line
-//        getDataFromFirebase();
-
-        button = findViewById(R.id.button);
-        button.setOnClickListener(view -> {
-            titles.add("title");
-            descriptions.add("description");
-            locations.add("location");
-            dates.add("date");
-
-            titles.add("title2");
-            descriptions.add("description2");
-            locations.add("location2");
-            dates.add("date2");
-
-            titles.add("title3");
-            descriptions.add("description3");
-            locations.add("location3");
-            dates.add("date3");
-
-            // Do not need these lines to open the page, but removing them won't display the dummy data above
-            recyclerViewCalendar = new RecyclerViewCalendar(titles, descriptions, locations, dates);
-            calendarFragment.initializeAdapter(recyclerViewCalendar);
-        });
-
+        // Retrieve data from database and display in the frame layout
+        getDataFromFirebase();
     }
 
     private void getDataFromFirebase() {
-        Log.d("LOG", "IN FIREBASE METHOD");
+        databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("CalendarEvent");
 
-
-        Log.d("LOG", "BEFORE DB REF");
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
-        Log.d("LOG", "AFTER DB REF");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -101,18 +70,21 @@ public class CalendarEventActivity extends AppCompatActivity {
                     String[] dataValues = currSnapshot.split(",");
 
                     String date = parseDataValue(dataValues[0]);
-                    Log.d("TEST1:", date);
+                    Log.d("DATE:", date);
                     String description = parseDataValue(dataValues[1]);
-                    Log.d("TEST2:", description);
+                    Log.d("DESCRIBE:", description);
                     String location = parseDataValue(dataValues[2]);
-                    Log.d("TEST3:", location);
+                    Log.d("LOCATION:", location);
                     String title = parseLastDataValue(dataValues[3]);
-                    Log.d("TEST4:", title);
+                    Log.d("TITLE:", title);
 
-                    titles.add(title);
-                    descriptions.add(description);
-                    locations.add(location);
-                    dates.add(date);
+                    // Only display an event if the date matches the date selected by the user
+                    if (selectedDate.equals(date)) {
+                        titles.add(title);
+                        descriptions.add(description);
+                        locations.add(location);
+                        dates.add(date);
+                    }
 
                     Log.d("DATASNAP:", currSnapshot);
                 }

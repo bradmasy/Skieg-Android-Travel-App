@@ -1,12 +1,14 @@
 package skieg.travel;
 
 public class CalendarEvent {
+    String eventID;
     String title;
     String description;
     String location;
     String date;
 
-    CalendarEvent(String title, String description, String location, String date) {
+    CalendarEvent(String eventID, String title, String description, String location, String date) {
+        this.eventID = eventID;
         this.title = title;
         this.description = description;
         this.location = location;

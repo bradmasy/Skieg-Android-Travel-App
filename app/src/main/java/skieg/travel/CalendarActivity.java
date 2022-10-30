@@ -37,6 +37,11 @@ public class CalendarActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void clickCreateButton(View view) {
+        Intent intent = new Intent(this, CreateCalendarEventActivity.class);
+        startActivity(intent);
+    }
+
     public void clickCalendarEventsButton(View view) {
         Intent intent = new Intent(this, CalendarEventActivity.class);
 
