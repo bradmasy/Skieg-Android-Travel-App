@@ -21,6 +21,11 @@ public class CreateCalendarEventActivity extends AppCompatActivity {
 
     Button createEventBtn;
 
+    EditText titleInput;
+    EditText descriptionInput;
+    EditText locationInput;
+    EditText dateInput;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +33,10 @@ public class CreateCalendarEventActivity extends AppCompatActivity {
 
         createEventBtn = findViewById(R.id.createEventBtn);
         createEventBtn.setOnClickListener(view -> {
-            EditText titleInput = findViewById(R.id.title);
-            EditText descriptionInput = findViewById(R.id.description);
-            EditText locationInput = findViewById(R.id.location);
-            EditText dateInput = findViewById(R.id.date);
+            titleInput = findViewById(R.id.title);
+            descriptionInput = findViewById(R.id.description);
+            locationInput = findViewById(R.id.location);
+            dateInput = findViewById(R.id.date);
 
             String title = titleInput.getText().toString();
             String description = descriptionInput.getText().toString();
@@ -57,13 +62,18 @@ public class CreateCalendarEventActivity extends AppCompatActivity {
             public void onSuccess(Object o) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Event added!", Toast.LENGTH_SHORT);
                 toast.show();
+
+                titleInput.setText("");
+                descriptionInput.setText("");
+                locationInput.setText("");
+                dateInput.setText("");
             }
         });
     }
 
 
     public void backBtnClicked(View view) {
-        Intent mainIntent = new Intent(this, MainActivity.class);
+        Intent mainIntent = new Intent(this, CalendarActivity.class);
         startActivity(mainIntent);
     }
 }

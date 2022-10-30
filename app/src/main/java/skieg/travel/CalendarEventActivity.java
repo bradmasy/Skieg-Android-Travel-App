@@ -1,7 +1,9 @@
 package skieg.travel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -110,5 +112,11 @@ public class CalendarEventActivity extends AppCompatActivity {
         String[] data = value.split("=");
         // Remove last curly bracket
         return data[1].substring(0, data[1].length()-1);
+    }
+
+
+    public void backBtnClicked(View view) {
+        Intent mainIntent = new Intent(this, CalendarActivity.class);
+        startActivity(mainIntent);
     }
 }
