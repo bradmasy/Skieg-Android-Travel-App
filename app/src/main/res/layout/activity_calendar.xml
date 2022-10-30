@@ -49,7 +49,7 @@
         android:layout_marginLeft="82dp"
         android:layout_marginRight="82dp"
         android:layout_height="wrap_content"
-        android:text="@string/calendar_events"
+        android:text="@string/view_calendar_event"
         android:onClick="clickCalendarEventsButton"/>
 
 </TableLayout>

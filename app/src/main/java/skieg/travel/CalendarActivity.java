@@ -26,7 +26,8 @@ public class CalendarActivity extends AppCompatActivity {
         selectedDate = currentDate.toString();
 
         calendarView.setOnDateChangeListener((calendarView1, year, month, day) -> {
-            selectedDate = year + "-" + (month+1) + "-" + day;
+            selectedDate = year + "-" + InputValidation.makeValidDateValue((month+1)) + "-"
+                    + InputValidation.makeValidDateValue(day);
             Toast toast = Toast.makeText(getApplicationContext(), selectedDate, Toast.LENGTH_SHORT);
             toast.show();
         });

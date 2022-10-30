@@ -43,7 +43,19 @@ public class CreateCalendarEventActivity extends AppCompatActivity {
             String location = locationInput.getText().toString();
             String date = dateInput.getText().toString();
 
-            writeUserToFirebase(title, description, location, date);
+            // Make sure all input fields are filled
+            if (InputValidation.invalidStringInput(title) || InputValidation.invalidStringInput(description)
+                    || InputValidation.invalidStringInput(location) || InputValidation.invalidStringInput(date)) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Please fill in all fields", Toast.LENGTH_LONG);
+                toast.show();
+
+            } else if (InputValidation.invalidDateInput(date)) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Date must have the format: YYYY-MM-DD and be valid", Toast.LENGTH_LONG);
+                toast.show();
+
+            } else {
+                writeUserToFirebase(title, description, location, date);
+            }
         });
     }
 

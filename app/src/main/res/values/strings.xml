@@ -30,6 +30,7 @@
     <string name="create_event">Create Event</string>
     <string name="calendar_events">Calendar Events</string>
     <string name="create_calendar_event">Create Calendar Event</string>
+    <string name="view_calendar_event">View Calendar Events</string>
 
     <string name="event1">Event 1</string>
     <string name="event2">Event 2</string>
