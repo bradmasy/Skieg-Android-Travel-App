@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickMainPlannerButton(View view) {
-
         Intent intent = new Intent(this, MainPlanner.class);
         startActivity(intent);
     }

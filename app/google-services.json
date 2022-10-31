@@ -1,34 +1,57 @@
 {
   "project_info": {
+<<<<<<< HEAD
     "project_number": "393156427469",
     "firebase_url": "https://skieg-364814-default-rtdb.firebaseio.com",
     "project_id": "skieg-364814",
     "storage_bucket": "skieg-364814.appspot.com"
+=======
+    "project_number": "696852091688",
+    "firebase_url": "https://skieg-819a3-default-rtdb.firebaseio.com",
+    "project_id": "skieg-819a3",
+    "storage_bucket": "skieg-819a3.appspot.com"
+>>>>>>> origin/dev
   },
   "client": [
     {
       "client_info": {
+<<<<<<< HEAD
         "mobilesdk_app_id": "1:393156427469:android:59344f1e258bac31a7f384",
+=======
+        "mobilesdk_app_id": "1:696852091688:android:e9e258a1acc20787c9761d",
+>>>>>>> origin/dev
         "android_client_info": {
           "package_name": "skieg.travel"
         }
       },
       "oauth_client": [
         {
+<<<<<<< HEAD
           "client_id": "393156427469-jpf8hp2rb38mg3r4015t392d62cqsd4q.apps.googleusercontent.com",
+=======
+          "client_id": "696852091688-q23smiprffvdcceiujtjf0ar3utsrvqj.apps.googleusercontent.com",
+>>>>>>> origin/dev
           "client_type": 3
         }
       ],
       "api_key": [
         {
+<<<<<<< HEAD
           "current_key": "AIzaSyBsLtnNR0DSM9d--OlowuVHu-53qRH3Z0s"
+=======
+          "current_key": "AIzaSyCVaRolYUhzII2aZA67X2gPwiv6nvbwSx8"
+>>>>>>> origin/dev
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
+<<<<<<< HEAD
               "client_id": "393156427469-jpf8hp2rb38mg3r4015t392d62cqsd4q.apps.googleusercontent.com",
+=======
+              "client_id": "696852091688-q23smiprffvdcceiujtjf0ar3utsrvqj.apps.googleusercontent.com",
+>>>>>>> origin/dev
               "client_type": 3
             }
           ]

@@ -23,6 +23,7 @@
     </TableRow>
 
 
+<<<<<<< HEAD
 
     <TableRow
         android:layout_width="match_parent"
@@ -148,5 +149,35 @@
         android:layout_marginTop="10dp"
         android:text="@string/back_button"
         android:onClick="clickMainButton"/>
+=======
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:onClick="clickMainButton"
+        android:text="@string/back_button" />
+
+    <Button
+        android:id="@+id/createEventBtn"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:onClick="clickCreateButton"
+        android:text="@string/create_event" />
+
+    <Button
+        android:id="@+id/redirectCalendarEventsBtn"
+        android:layout_marginLeft="82dp"
+        android:layout_marginRight="82dp"
+        android:layout_height="wrap_content"
+        android:text="@string/view_calendar_event"
+        android:onClick="clickCalendarEventsButton"/>
+>>>>>>> origin/dev
 
 </TableLayout>

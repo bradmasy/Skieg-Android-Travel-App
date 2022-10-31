@@ -138,7 +138,10 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="Make Post"
+<<<<<<< HEAD
             android:onClick="makePost"
+=======
+>>>>>>> origin/dev
             android:layout_marginRight="10dp"/>
 
         <Button
