@@ -48,8 +48,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
-    public void clickFireBaseButton(View view){
-        Intent intent = new Intent(this, FireApp.class);
-        startActivity(intent);
-    }
+
 }

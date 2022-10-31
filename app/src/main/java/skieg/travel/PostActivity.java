@@ -1,9 +1,6 @@
 package skieg.travel;
 
-<<<<<<< HEAD
 import android.content.Intent;
-=======
->>>>>>> origin/dev
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;

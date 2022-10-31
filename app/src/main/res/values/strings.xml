@@ -23,8 +23,16 @@
     <string name="day6">Day 6</string>
     <string name="day7">Day 7</string>
     <string name="calendar">Calendar</string>
-<<<<<<< HEAD
-=======
+
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="location">Location</string>
@@ -33,13 +41,11 @@
     <string name="calendar_events">Calendar Events</string>
     <string name="create_calendar_event">Create Calendar Event</string>
     <string name="view_calendar_event">View Calendar Events</string>
->>>>>>> origin/dev
 
     <string name="event1">Event 1</string>
     <string name="event2">Event 2</string>
     <string name="event3">Event 3</string>
     <string name="events">Events</string>
-
 
     <string-array name="eventsString">
         <item>Concert event</item>

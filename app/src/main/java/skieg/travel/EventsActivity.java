@@ -19,22 +19,16 @@ public class EventsActivity extends AppCompatActivity {
 
         EventFragment eventFragment = new EventFragment();
 
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.eventsMain, eventFragment);
-        fragmentTransaction.commit(); 
-
-
-
+        fragmentTransaction.commit();
     }
 
     public void clickMainButton(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
-
 
 
 }
