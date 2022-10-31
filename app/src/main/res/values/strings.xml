@@ -177,9 +177,9 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="Firebase" />
-    <string name="username">username</string>
+    <string name="username2">username</string>
     <string name="enter_your_username">enterUserName</string>
-    <string name="password">password</string>
+    <string name="password2">password</string>
     <string name="enter_your_password">enter your password</string>
     <string name="sign_up">sign up</string>
     <string name="log_in">log in</string>
