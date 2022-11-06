@@ -5,14 +5,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.Toast;
+
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.time.LocalDate;
+
 
 public class CalendarActivity extends AppCompatActivity {
 
     CalendarView calendarView;
 
     String selectedDate = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,7 @@ public class CalendarActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(), selectedDate, Toast.LENGTH_SHORT);
             toast.show();
         });
+
     }
 
     public void clickMainButton(View view) {

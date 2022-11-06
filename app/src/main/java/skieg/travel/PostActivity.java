@@ -1,5 +1,6 @@
 package skieg.travel;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +20,8 @@ import androidx.fragment.app.ListFragment;
 
 
 import skieg.travel.forum.ForumBoardFragment;
+import skieg.travel.post.PostPage;
+
 
 public class PostActivity extends AppCompatActivity {
 
@@ -65,6 +68,16 @@ public class PostActivity extends AppCompatActivity {
 //        }
 
     }
+
+
+    public void makePost(View view){
+        Intent intent = new Intent(PostActivity.this, PostPage.class);
+        startActivity(intent);
+
+    }
+
+
+
 
 
 
