@@ -23,10 +23,7 @@ public class EventsActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.eventsMain, eventFragment);
-        fragmentTransaction.commit(); 
-
-
-
+        fragmentTransaction.commit();
     }
 
     public void clickMainButton(View view) {
