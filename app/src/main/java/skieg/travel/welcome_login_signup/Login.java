@@ -16,8 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,11 +25,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import skieg.travel.MainActivity;
+import skieg.*;
 import skieg.travel.R;
 
 public class Login extends AppCompatActivity {
 
-    private FirebaseAuth authentication;
+//    private FirebaseAuth authentication;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private DataSnapshot snapshot;
@@ -39,7 +40,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        authentication = FirebaseAuth.getInstance();
+//        authentication = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
 
@@ -82,7 +83,8 @@ public class Login extends AppCompatActivity {
                         match = true;
                         Toast.makeText(Login.this, "Access granted", Toast.LENGTH_LONG).show();
 
-                        redirectMainPage(user.getUsername(), user.getPassword());
+                        redirectMainPage(user.getId(), user.getUsername(), user.getPassword());
+
                     }
                 }
                 if (!match) {
@@ -100,16 +102,16 @@ public class Login extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        FirebaseUser user = authentication.getCurrentUser();
-
-        if (user != null) {
-            user.reload();
-        }
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//
+//        FirebaseUser user = authentication.getCurrentUser();
+//
+//        if (user != null) {
+//            user.reload();
+//        }
+//    }
 
 
     public void backBtnClicked(View view) {
@@ -118,17 +120,16 @@ public class Login extends AppCompatActivity {
     }
 
 
-
-    public void redirectMainPage(String username, String password) {
-        Intent intent = new Intent(this, skieg.travel.MainActivity.class);
+    public void redirectMainPage(String id, String username, String password) {
+        Intent intent = new Intent(Login.this, MainActivity.class);
 
         Bundle bundle = new Bundle();
+        bundle.putString("id", id);
         bundle.putString("username", username);
         bundle.putString("password", password);
         intent.putExtras(bundle);
 
         startActivity(intent);
     }
-
 
 }

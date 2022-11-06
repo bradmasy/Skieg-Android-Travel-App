@@ -12,6 +12,7 @@ public class User {
     private String password;
     private String id;
 
+    // For new user
     public User() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         this.id  = databaseReference.push().getKey();
@@ -25,6 +26,13 @@ public class User {
 //            }
 //        });
 
+    }
+
+    // Existing user
+    public User(String id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
     }
 
     public String getUsername() {
