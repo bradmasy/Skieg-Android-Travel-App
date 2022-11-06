@@ -23,130 +23,33 @@
     </TableRow>
 
 
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingTop="70dp">
-
-        <TextView
-            android:id="@+id/day1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/day1"
-            android:textSize="30sp"
-            android:gravity="center" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:id="@+id/day2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/day2"
-            android:textSize="30sp"
-            android:gravity="center" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:id="@+id/day3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/day3"
-            android:textSize="30sp"
-            android:gravity="center" />
-
-    </TableRow>
-
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:id="@+id/day4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/day4"
-            android:textSize="30sp"
-            android:gravity="center" />
-
-    </TableRow>
-
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:id="@+id/day5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/day5"
-            android:textSize="30sp"
-            android:gravity="center" />
-
-    </TableRow>
-
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:id="@+id/day6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/day6"
-            android:textSize="30sp"
-            android:gravity="center" />
-
-    </TableRow>
-
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:id="@+id/day7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/day7"
-            android:textSize="30sp"
-            android:gravity="center" />
-
-    </TableRow>
-
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/backButton"
-        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/back_button"
-        android:onClick="clickMainButton"/>
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:onClick="clickMainButton"
+        android:text="@string/back_button" />
+
+    <Button
+        android:id="@+id/createEventBtn"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:onClick="clickCreateButton"
+        android:text="@string/create_event" />
+
+    <Button
+        android:id="@+id/redirectCalendarEventsBtn"
+        android:layout_marginLeft="82dp"
+        android:layout_marginRight="82dp"
+        android:layout_height="wrap_content"
+        android:text="@string/view_calendar_event"
+        android:onClick="clickCalendarEventsButton"/>
 
 </TableLayout>

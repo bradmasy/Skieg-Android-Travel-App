@@ -2,86 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/textViewEvents"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/events"
-        android:textSize="30sp"
-        android:layout_marginTop="60dp"
-        android:layout_gravity="center" />
+    android:layout_height="match_parent"
+    android:id="@+id/eventsMain"
+    >
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:weightSum="40">
-        <TextView
-            android:id="@+id/event1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/event1"
-            android:textSize="30sp"
-            android:layout_marginTop="60dp"
-            android:layout_gravity="center" />
 
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:weightSum="40">
-        <TextView
-            android:id="@+id/event2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/event2"
-            android:textSize="30sp"
-            android:layout_marginTop="60dp"
-            android:layout_gravity="center" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:weightSum="40">
-        <TextView
-            android:id="@+id/event3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/event3"
-            android:textSize="30sp"
-            android:layout_marginTop="60dp"
-            android:layout_gravity="center" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:weightSum="40">
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:text="@string/back_button"
-            android:onClick="clickMainButton"/>
-
-    </LinearLayout>
-
+  
 
 </LinearLayout>
