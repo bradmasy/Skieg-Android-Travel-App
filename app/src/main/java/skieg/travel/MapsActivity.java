@@ -48,12 +48,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Location locationData;
 
 
-    private final LocationListener mLocationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(final Location location) {
-            //your code here
-        }
-    };
+//    private final LocationListener mLocationListener = new LocationListener() {
+//        @Override
+//        public void onLocationChanged(final Location location) {
+//            //your code here
+//        }
+//    };
 
 
     private LocationManager locationManager;

@@ -21,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class WeatherActivity extends AppCompatActivity {
 
@@ -53,7 +54,7 @@ public class WeatherActivity extends AppCompatActivity {
         });
     }
 
-    private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
+    class AsyncTaskRunner extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... strings) {
