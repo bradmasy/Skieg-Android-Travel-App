@@ -70,8 +70,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(bcit));
 
 
-        mMap.setOnMyLocationButtonClickListener(locationData);
-        mMap.setOnMyLocationClickListener(locationData);
+//        mMap.setOnMyLocationButtonClickListener(locationData);
+//        mMap.setOnMyLocationClickListener(locationData);
+
+        mMap.setOnMyLocationButtonClickListener(new OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                Toast.makeText(getApplicationContext(),
+                        "Example Message for Android",
+                        Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
 
     }
 
@@ -88,9 +98,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-//            SupportMapFragment mapFragment =
-//                    (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-//            mapFragment.getMapAsync(this);
+            SupportMapFragment mapFragment =
+                    (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
         }
 
         @Override
@@ -102,9 +112,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-        public void onMyLocationClick(@NonNull Location location) {
-            Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
-        }
+//        public void onMyLocationClick(@NonNull Location location) {
+//            Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
+//        }
 
         @Override
         public void onMyLocationClick(@NonNull android.location.Location location) {
@@ -113,9 +123,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         public void onMapReady(@NonNull GoogleMap googleMap) {
-//            mMap = googleMap;
-//            mMap.setOnMyLocationButtonClickListener(this);
-//            mMap.setOnMyLocationClickListener(this);
+            mMap = googleMap;
+            mMap.setOnMyLocationButtonClickListener(this);
+            mMap.setOnMyLocationClickListener(this);
             enableMyLocation();
         }
 
@@ -159,5 +169,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     }
-
 }
