@@ -70,4 +70,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void clickWeatherButton(View view){
+        Intent intent = new Intent(this, WeatherActivity.class);
+        startActivity(intent);
+    }
+
 }

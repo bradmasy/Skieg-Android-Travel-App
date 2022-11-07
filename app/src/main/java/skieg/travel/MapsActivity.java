@@ -45,7 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private ActivityMaps2Binding binding;
-   // private Location locationData;
+    private Location locationData;
 
 
     private final LocationListener mLocationListener = new LocationListener() {
@@ -71,7 +71,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMaps2Binding.inflate(getLayoutInflater());
-       // locationData = new Location();
+        locationData = new Location();
 
         setContentView(binding.getRoot());
 
@@ -110,94 +110,94 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(bcit));
 
 
-//        mMap.setOnMyLocationButtonClickListener(locationData);
-//        mMap.setOnMyLocationClickListener(locationData);
+        mMap.setOnMyLocationButtonClickListener(locationData);
+        mMap.setOnMyLocationClickListener(locationData);
 
     }
 
-//    private  class Location extends AppCompatActivity
-//            implements
-//            OnMyLocationButtonClickListener,
-//            OnMyLocationClickListener,
-//            OnMapReadyCallback,
-//            ActivityCompat.OnRequestPermissionsResultCallback {
-//
-//        private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-//        private boolean permissionDenied = false;
-//
-//        @Override
-//        protected void onCreate(Bundle savedInstanceState) {
-//            super.onCreate(savedInstanceState);
-////            SupportMapFragment mapFragment =
-////                    (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-////            mapFragment.getMapAsync(this);
-//        }
-//
-//        @Override
-//        public boolean onMyLocationButtonClick() {
-//            Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
-//            // Return false so that we don't consume the event and the default behavior still occurs
-//            // (the camera animates to the user's current position).
-//            return false;
-//        }
-//
-//
-//        public void onMyLocationClick(@NonNull Location location) {
-//            Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
-//        }
-//
-//        @Override
-//        public void onMyLocationClick(@NonNull android.location.Location location) {
-//            Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
-//        }
-//
-//        @Override
-//        public void onMapReady(@NonNull GoogleMap googleMap) {
-////            mMap = googleMap;
-////            mMap.setOnMyLocationButtonClickListener(this);
-////            mMap.setOnMyLocationClickListener(this);
-//            enableMyLocation();
-//        }
-//
-//        /**
-//         * Enables the My Location layer if the fine location permission has been granted.
-//         */
-//        @SuppressLint("MissingPermission")
-//        private void enableMyLocation() {
-//            // 1. Check if permissions are granted, if so, enable the my location layer
-//            if (ContextCompat.checkSelfPermission(this,
-//                    Manifest.permission.ACCESS_FINE_LOCATION)
-//                    == PackageManager.PERMISSION_GRANTED
-//                    || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-//                    == PackageManager.PERMISSION_GRANTED) {
-//                mMap.setMyLocationEnabled(true);
-//                return;
-//            }
-//            // Manifest.permission.
-//            // 2. Otherwise, request location permissions from the user.
-//           PermissionUtils.requestLocationPermissions(this, LOCATION_PERMISSION_REQUEST_CODE, true);
-//        }
-//
-//        @Override
-//        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-//                                               @NonNull int[] grantResults) {
-//            if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
-//                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//                return;
-//            }
-//
-//            if (PermissionUtils.isPermissionGranted(permissions, grantResults,
-//                    Manifest.permission.ACCESS_FINE_LOCATION) || PermissionUtils
-//                    .isPermissionGranted(permissions, grantResults,
-//                            Manifest.permission.ACCESS_COARSE_LOCATION)) {
-//                // Enable the my location layer if the permission has been granted.
-//                enableMyLocation();
-//            } else {
-//                // Permission was denied. Display an error message
-//                // Display the missing permission error dialog when the fragments resume.
-//                permissionDenied = true;
-//            }
-//        }
-//    }
+    private  class Location extends AppCompatActivity
+            implements
+            OnMyLocationButtonClickListener,
+            OnMyLocationClickListener,
+            OnMapReadyCallback,
+            ActivityCompat.OnRequestPermissionsResultCallback {
+
+        private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+        private boolean permissionDenied = false;
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+//            SupportMapFragment mapFragment =
+//                    (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+//            mapFragment.getMapAsync(this);
+        }
+
+        @Override
+        public boolean onMyLocationButtonClick() {
+            Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
+            // Return false so that we don't consume the event and the default behavior still occurs
+            // (the camera animates to the user's current position).
+            return false;
+        }
+
+
+        public void onMyLocationClick(@NonNull Location location) {
+            Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onMyLocationClick(@NonNull android.location.Location location) {
+            Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onMapReady(@NonNull GoogleMap googleMap) {
+//            mMap = googleMap;
+//            mMap.setOnMyLocationButtonClickListener(this);
+//            mMap.setOnMyLocationClickListener(this);
+            enableMyLocation();
+        }
+
+        /**
+         * Enables the My Location layer if the fine location permission has been granted.
+         */
+        @SuppressLint("MissingPermission")
+        private void enableMyLocation() {
+            // 1. Check if permissions are granted, if so, enable the my location layer
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED
+                    || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                mMap.setMyLocationEnabled(true);
+                return;
+            }
+            // Manifest.permission.
+            // 2. Otherwise, request location permissions from the user.
+           PermissionUtils.requestLocationPermissions(this, LOCATION_PERMISSION_REQUEST_CODE, true);
+        }
+
+        @Override
+        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                               @NonNull int[] grantResults) {
+            if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                return;
+            }
+
+            if (PermissionUtils.isPermissionGranted(permissions, grantResults,
+                    Manifest.permission.ACCESS_FINE_LOCATION) || PermissionUtils
+                    .isPermissionGranted(permissions, grantResults,
+                            Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                // Enable the my location layer if the permission has been granted.
+                enableMyLocation();
+            } else {
+                // Permission was denied. Display an error message
+                // Display the missing permission error dialog when the fragments resume.
+                permissionDenied = true;
+            }
+        }
+    }
 
 }

@@ -134,5 +134,14 @@
 
     </LinearLayout>
 
+
+    <Button
+        android:id="@+id/weatherActivityButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:onClick="clickWeatherButton"
+        android:text="Weather" />
+
 </LinearLayout>
 </ScrollView>
