@@ -4,10 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseAuth;
 
 import skieg.travel.planner.PlannerActivity;
 import skieg.travel.planner.fragments.MainPlanner;
@@ -15,7 +16,7 @@ import skieg.travel.user.User;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseAuth authentication;
+   //private FirebaseAuth authentication;
 
     public static User USER;
 
@@ -24,8 +25,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//   authentication = FirebaseAuth.getInstance();
+//        authentication = FirebaseAuth.getInstance();
+//        USER = savedInstanceState.get("");
 
-        authentication = FirebaseAuth.getInstance();
+        Bundle bundle = getIntent().getExtras();
+        String id = bundle.getString("id");
+        String username = bundle.getString("username");
+        String password = bundle.getString("password");
+
+        USER = new User(id, username, password);
+        Log.d("MAIN", USER.toString());
     }
 
 
@@ -55,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void clickMapsButton(View view){
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
 
 }

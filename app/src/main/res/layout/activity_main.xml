@@ -5,76 +5,134 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:weightSum="100">
 
-    <TextView
-        android:id="@+id/mainTitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="@string/app_name" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120sp"
+        android:background="@color/mainBlue"
+        android:id="@+id/weather"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:text="HELLO"
+        android:layout_weight="20">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:text="Current Weather and Location:"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CITY"
+            android:textStyle="bold"
+            android:id="@+id/city"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temperature"
+            android:id="@+id/temperature"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CITY"
+            android:id="@+id/feelslike"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CITY"
+            android:id="@+id/description"/>
 
-    <Button
-        android:id="@+id/mainEventsButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="@string/events_button"
-        android:onClick="clickMainEventsButton"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/mainPlannerButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="@string/planner_button"
-        android:onClick="clickMainPlannerButton"/>
 
-    <Button
-        android:id="@+id/mainCalendarButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="@string/calendar_button"
-        android:onClick="clickMainCalendarButton"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="80"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/mainPersonalProfileButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="@string/personal_profile_button"
-        android:onClick="clickMainPersonalProfileButton"/>
 
-    <Button
-        android:id="@+id/mainPostButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="@string/post_button"
-        android:onClick="clickMainPostButton"/>
+        <Button
+            android:id="@+id/mainEventsButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60sp"
+            android:backgroundTint="@color/mainBlue"
+            android:textColor="@color/black"
+            android:layout_marginBottom="60dp"
+            android:onClick="clickMainEventsButton"
+            android:text="@string/events_button" />
 
-    <Button
-        android:id="@+id/mainMapsActivityButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:onClick="clickMapsButton"
-        android:text="@string/maps_button" />
+        <Button
+            android:id="@+id/mainPlannerButton"
+            android:layout_width="200dp"
+            android:backgroundTint="@color/mainBlue"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:onClick="clickMainPlannerButton"
+            android:text="@string/planner_button" />
 
-    <Button
-        android:id="@+id/firebase_button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:onClick="clickFireBaseButton"
-        android:text="Firebase" />
+        <Button
+            android:id="@+id/mainCalendarButton"
+            android:layout_width="200dp"
+            android:backgroundTint="@color/mainBlue"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:onClick="clickMainCalendarButton"
+            android:text="@string/calendar_button" />
+
+        <Button
+            android:id="@+id/mainPersonalProfileButton"
+            android:layout_width="200dp"
+            android:backgroundTint="@color/mainBlue"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:onClick="clickMainPersonalProfileButton"
+            android:text="@string/personal_profile_button" />
+
+        <Button
+            android:id="@+id/mainPostButton"
+            android:layout_width="200dp"
+            android:backgroundTint="@color/mainBlue"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:onClick="clickMainPostButton"
+            android:text="@string/post_button" />
+
+        <Button
+            android:id="@+id/mainMapsActivityButton"
+            android:layout_width="200dp"
+            android:backgroundTint="@color/mainBlue"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:onClick="clickMapsButton"
+            android:text="@string/maps_button" />
+
+        <Button
+            android:id="@+id/firebase_button"
+            android:layout_width="200dp"
+            android:backgroundTint="@color/mainBlue"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:onClick="clickFireBaseButton"
+            android:text="Firebase" />
+
+    </LinearLayout>
 
 </LinearLayout>
 </ScrollView>

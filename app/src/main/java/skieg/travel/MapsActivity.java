@@ -5,7 +5,11 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,21 +30,46 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.util.Log;
 import android.widget.Toast;
 import android.Manifest.permission;
 
 import java.security.Permission;
 
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+    int LOCATION_REFRESH_TIME = 15000; // 15 seconds to update
+    int LOCATION_REFRESH_DISTANCE = 500;
 
     private GoogleMap mMap;
     private ActivityMaps2Binding binding;
    // private Location locationData;
 
+
+    private final LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(final Location location) {
+            //your code here
+        }
+    };
+
+
+    private LocationManager locationManager;
+    @Override
+    public String getSystemServiceName(Class<?> serviceClass) {
+        return super.getSystemServiceName(serviceClass);
+    }
+
+    @Override
+    public Object getSystemService(@NonNull String name) {
+        return super.getSystemService(name);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMaps2Binding.inflate(getLayoutInflater());
        // locationData = new Location();
 
@@ -51,6 +80,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
+
+
 
     /**
      * Manipulates the map once available.
@@ -63,9 +95,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
+        Log.d("LOCATION: ", android.Manifest.permission.ACCESS_COARSE_LOCATION);
         mMap = googleMap;
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_REFRESH_TIME, LOCATION_REFRESH_DISTANCE,mLocationListener);
+
 
         // Add a marker in BCIT and move the camera
+
+
         LatLng bcit = new LatLng(49.25010954461797, -123.00275621174804);
         mMap.addMarker(new MarkerOptions().position(bcit).title("BCIT"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(bcit));
