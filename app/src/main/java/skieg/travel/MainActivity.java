@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         authentication = FirebaseAuth.getInstance();
-        USER = savedInstanceState.get("");
     }
 
 
