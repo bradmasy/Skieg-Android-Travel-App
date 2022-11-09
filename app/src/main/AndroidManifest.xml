@@ -39,8 +39,11 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
+
             android:name=".welcome_login_signup.Welcome"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Design.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
