@@ -55,7 +55,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        }
 //    };
 
-
     private LocationManager locationManager;
     @Override
     public String getSystemServiceName(Class<?> serviceClass) {
@@ -128,9 +127,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-//            SupportMapFragment mapFragment =
-//                    (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-//            mapFragment.getMapAsync(this);
+            SupportMapFragment mapFragment =
+                    (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
         }
 
         @Override
@@ -153,9 +152,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         public void onMapReady(@NonNull GoogleMap googleMap) {
-//            mMap = googleMap;
-//            mMap.setOnMyLocationButtonClickListener(this);
-//            mMap.setOnMyLocationClickListener(this);
+            mMap = googleMap;
+            mMap.setOnMyLocationButtonClickListener(this);
+            mMap.setOnMyLocationClickListener(this);
             enableMyLocation();
         }
 
