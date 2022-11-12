@@ -71,13 +71,13 @@ public class CalendarEventActivity extends AppCompatActivity {
                     String currSnapshot = String.valueOf(dataSnapshot.getValue());
                     String[] dataValues = currSnapshot.split(",");
 
-                    String date = parseDataValue(dataValues[0]);
+                    String date = DatabaseParse.parseDataValue(dataValues[0]);
                     Log.d("DATE:", date);
-                    String description = parseDataValue(dataValues[1]);
+                    String description = DatabaseParse.parseDataValue(dataValues[1]);
                     Log.d("DESCRIBE:", description);
-                    String location = parseDataValue(dataValues[2]);
+                    String location = DatabaseParse.parseDataValue(dataValues[2]);
                     Log.d("LOCATION:", location);
-                    String title = parseLastDataValue(dataValues[3]);
+                    String title = DatabaseParse.parseLastDataValue(dataValues[3]);
                     Log.d("TITLE:", title);
 
                     // Only display an event if the date matches the date selected by the user
@@ -102,17 +102,16 @@ public class CalendarEventActivity extends AppCompatActivity {
         });
     }
 
-
-    private String parseDataValue(String value) {
-        String[] data = value.split("=");
-        return data[1];
-    }
-
-    private String parseLastDataValue(String value) {
-        String[] data = value.split("=");
-        // Remove last curly bracket
-        return data[1].substring(0, data[1].length()-1);
-    }
+//    private String parseDataValue(String value) {
+//        String[] data = value.split("=");
+//        return data[1];
+//    }
+//
+//    private String parseLastDataValue(String value) {
+//        String[] data = value.split("=");
+//        // Remove last curly bracket
+//        return data[1].substring(0, data[1].length()-1);
+//    }
 
 
     public void backBtnClicked(View view) {
