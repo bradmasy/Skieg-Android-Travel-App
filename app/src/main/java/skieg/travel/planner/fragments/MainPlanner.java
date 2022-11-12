@@ -2,6 +2,7 @@ package skieg.travel.planner.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import java.nio.charset.CharacterCodingException;
 import skieg.travel.MainActivity;
 import skieg.travel.R;
 import skieg.travel.planner.Utility.SlideAdapter;
+import skieg.travel.planner.transformers.ZoomOutTransformer;
 
 
 public class MainPlanner extends FragmentActivity {
@@ -27,14 +29,16 @@ public class MainPlanner extends FragmentActivity {
         setContentView(R.layout.planner_view_pager);
 
         pager = findViewById(R.id.pager);
-        FSA = new SlideAdapter(this);
+        FSA = new Slider(this);
         pager.setAdapter(FSA);
+        pager.setPageTransformer(new ZoomOutTransformer());
     }
 
     private class Slider extends FragmentStateAdapter{
 
         public Slider(MainPlanner thisActivity){
             super(thisActivity);
+            Log.d("SLIDER", "CREATER ");
         }
 
         @NonNull
