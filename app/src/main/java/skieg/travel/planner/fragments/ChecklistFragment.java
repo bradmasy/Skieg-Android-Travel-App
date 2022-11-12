@@ -64,6 +64,11 @@ public class ChecklistFragment extends PlannerFragment {
                 toast.show();
 
             } else {
+                // Clear arraylist values (all database items will be added in the firebase method)
+                itemsList = new ArrayList<>();
+                checkedList = new ArrayList<>();
+                idList = new ArrayList<>();
+
                 addItemToFirebase(checklistItemStr);
             }
         });
@@ -112,6 +117,16 @@ public class ChecklistFragment extends PlannerFragment {
                 toast.show();
 
                 checklistEditText.setText("");
+//
+//                for (String currVal: itemsList) {
+//                    itemsList.remove(currVal);
+//                }
+//                for (Boolean currVal: checkedList) {
+//                    checkedList.remove(currVal);
+//                }
+//                for (String currVal: idList) {
+//                    idList.remove(currVal);
+//                }
             }
         });
     }
@@ -120,6 +135,16 @@ public class ChecklistFragment extends PlannerFragment {
     public void getDataFromFirebase() {
         String id = MainActivity.USER.getId();
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(id).child("Planner").child("Checklist");
+
+        for (String currVal: itemsList) {
+            itemsList.remove(currVal);
+        }
+        for (Boolean currVal: checkedList) {
+            checkedList.remove(currVal);
+        }
+        for (String currVal: idList) {
+            idList.remove(currVal);
+        }
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

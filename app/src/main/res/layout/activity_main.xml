@@ -122,26 +122,28 @@
             android:onClick="clickMapsButton"
             android:text="@string/maps_button" />
 
-        <Button
-            android:id="@+id/firebase_button"
-            android:layout_width="200dp"
-            android:backgroundTint="@color/mainBlue"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            android:onClick="clickFireBaseButton"
-            android:text="Firebase" />
+<!--        <Button-->
+<!--            android:id="@+id/firebase_button"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:backgroundTint="@color/mainBlue"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="60dp"-->
+<!--            android:onClick="clickFireBaseButton"-->
+<!--            android:text="Firebase" />-->
 
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/weatherActivityButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:onClick="clickWeatherButton"
-        android:text="Weather" />
+<!--    <Button-->
+<!--        android:id="@+id/weatherActivityButton"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="60dp"-->
+<!--        android:onClick="clickWeatherButton"-->
+<!--        android:text="Weather"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:backgroundTint="@color/mainBlue"/>-->
 
 </LinearLayout>
 </ScrollView>

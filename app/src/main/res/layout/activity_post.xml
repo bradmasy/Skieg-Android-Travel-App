@@ -96,8 +96,8 @@
             android:background="@color/white">
 
             <Button
+                android:id="@+id/profileBtn"
                 android:layout_marginTop="5dp"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="30.333"
@@ -106,6 +106,7 @@
                 android:background="@color/mainBlue"/>
 
             <Button
+                android:id="@+id/eventsBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="30.333"
