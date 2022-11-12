@@ -29,7 +29,7 @@ public class MainPlanner extends FragmentActivity {
         setContentView(R.layout.planner_view_pager);
 
         pager = findViewById(R.id.pager);
-        FSA = new Slider(this);
+        FSA = new SlideAdapter(this);
         pager.setAdapter(FSA);
         pager.setPageTransformer(new ZoomOutTransformer());
     }
@@ -56,7 +56,7 @@ public class MainPlanner extends FragmentActivity {
 
         @Override
         public int getItemCount() {
-            return 0;
+            return amountOfFragments;
         }
     }
 }
