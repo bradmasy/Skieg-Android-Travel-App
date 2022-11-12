@@ -102,17 +102,6 @@ public class CalendarEventActivity extends AppCompatActivity {
         });
     }
 
-//    private String parseDataValue(String value) {
-//        String[] data = value.split("=");
-//        return data[1];
-//    }
-//
-//    private String parseLastDataValue(String value) {
-//        String[] data = value.split("=");
-//        // Remove last curly bracket
-//        return data[1].substring(0, data[1].length()-1);
-//    }
-
 
     public void backBtnClicked(View view) {
         Intent mainIntent = new Intent(this, CalendarActivity.class);

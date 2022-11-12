@@ -16,11 +16,13 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
 
     ArrayList<String> items;
     ArrayList<Boolean> checked;
+    ArrayList<String> IDs;
 
 
-    public RecyclerViewChecklist(ArrayList<String> items, ArrayList<Boolean> checked) {
+    public RecyclerViewChecklist(ArrayList<String> items, ArrayList<Boolean> checked, ArrayList<String> IDs) {
         this.items = items;
         this.checked = checked;
+        this.IDs = IDs;
     }
 
     @NonNull

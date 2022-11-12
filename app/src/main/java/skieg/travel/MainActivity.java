@@ -1,25 +1,13 @@
 package skieg.travel;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,48 +15,28 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.Task;
-//import com.google.firebase.FirebaseApp;
-//import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-//import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 
-//import skieg.travel.planner.PlannerActivity;
 import skieg.travel.planner.fragments.MainPlanner;
 import skieg.travel.user.User;
 
 public class MainActivity extends AppCompatActivity {
 
-   //private FirebaseAuth authentication;
-
     public static User USER;
-//    private WeatherActivity weather;
-//    EditText etCity;
-//    TextView tvResult;
-//    Button btnGetData;
+
     private final String url = "https://api.openweathermap.org/data/2.5/weather";
     private final String appid = "fa211ad253385ab5e5f303af6dfebb44";
     DecimalFormat df = new DecimalFormat("#.##");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//   authentication = FirebaseAuth.getInstance();
-//        authentication = FirebaseAuth.getInstance();
-//        USER = savedInstanceState.get("");
-
-
-
 
         String cityName = "Vancouver";
         String tempUrl = url + "?q=" + cityName + "&appid=" + appid;
@@ -77,11 +45,15 @@ public class MainActivity extends AppCompatActivity {
         runner.execute(tempUrl);
 
         Bundle bundle = getIntent().getExtras();
-        String id = bundle.getString("id");
-        String username = bundle.getString("username");
-        String password = bundle.getString("password");
-        USER = new User(id, username, password);
-        Log.d("MAIN", USER.toString());
+        // Only set the current user when directed to main page from the login/signup pages
+        if (bundle != null) {
+            String id = bundle.getString("id");
+            String username = bundle.getString("username");
+            String password = bundle.getString("password");
+            USER = new User(id, username, password);
+            Log.d("MAIN", USER.toString());
+        }
+
     }
 
     private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
@@ -165,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickMapsButton(View view){
-        Intent intent = new Intent(this, MyLocation.class);
+        Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 }

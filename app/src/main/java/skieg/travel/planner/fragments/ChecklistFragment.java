@@ -8,11 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,12 +24,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import skieg.travel.CalendarActivity;
 import skieg.travel.DatabaseParse;
 import skieg.travel.InputValidation;
 import skieg.travel.MainActivity;
 import skieg.travel.R;
-import skieg.travel.RecyclerViewCalendar;
 
 public class ChecklistFragment extends PlannerFragment {
 
@@ -56,6 +52,7 @@ public class ChecklistFragment extends PlannerFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_checklist, container, false);
+
 
         checklistEditText = (EditText) view.findViewById(R.id.checklistEditText);
 
@@ -82,15 +79,8 @@ public class ChecklistFragment extends PlannerFragment {
         });
 
 
-//        getDataFromFirebase();
-
-
-
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
-//        recyclerViewChecklist = new RecyclerViewChecklist(itemsList, checkedList);
-//        recyclerView.setAdapter(recyclerViewChecklist);
 
         getDataFromFirebase();
 
@@ -98,29 +88,10 @@ public class ChecklistFragment extends PlannerFragment {
     }
 
 
-
     // Sets a RecyclerViewProduct adapter to this fragment's recycler view
     public void initializeAdapter(RecyclerView.Adapter<RecyclerViewChecklist.MyViewHolder> adapter) {
         recyclerView.setAdapter(adapter);
     }
-
-
-//    @Override
-//    public void onClick(View view) {
-//        switch (view.getId()) {
-//            case R.id.addItemBtn:
-//                Log.d("LOG", "CHECKLIST");
-//                Toast toast = Toast.makeText(getActivity().getBaseContext(), "Checklist item added!", Toast.LENGTH_SHORT);
-//                toast.show();
-////                switchFragment(HelpFragment.TAG);
-//                break;
-//            case R.id.clearItemBtn:
-////                switchFragment(SettingsFragment.TAG);
-//                break;
-//            case R.id.backBtn:
-//                break;
-//        }
-//    }
 
 
     public void addItemToFirebase(String checklistItem) {
@@ -144,7 +115,6 @@ public class ChecklistFragment extends PlannerFragment {
             }
         });
     }
-
 
 
     public void getDataFromFirebase() {
@@ -177,8 +147,7 @@ public class ChecklistFragment extends PlannerFragment {
                     Log.d("DATASNAP:", currSnapshot);
                 }
 
-                // TEST THIS NEXT
-                recyclerViewChecklist = new RecyclerViewChecklist(itemsList, checkedList);
+                recyclerViewChecklist = new RecyclerViewChecklist(itemsList, checkedList, idList);
                 initializeAdapter(recyclerViewChecklist);
             }
 

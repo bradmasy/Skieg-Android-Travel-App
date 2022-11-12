@@ -4,40 +4,25 @@
     android:layout_height="match_parent"
     android:background="@color/mainBlue"
     android:weightSum="100"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0sp"
-        android:layout_weight="25">
+        android:layout_weight="25"
+        android:gravity="center">
 
-        <EditText
+        <TextView
             android:id="@+id/postContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Checklist" />
+            android:text="@string/checklist"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:gravity="center" />
 
     </LinearLayout>
 
-
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0sp"-->
-<!--        android:layout_weight="75"-->
-<!--        android:background="@color/white"-->
-<!--        >-->
-<!--&lt;!&ndash;        <EditText&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/postContent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:text="Checklist" />&ndash;&gt;-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recyclerView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content" />-->
-
-<!--    </ScrollView>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,23 +38,6 @@
 
     </LinearLayout>
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical">-->
-
-<!--        &lt;!&ndash; Layout where database events are shown &ndash;&gt;-->
-<!--&lt;!&ndash;        <FrameLayout&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/fragmentContainer"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="match_parent" />&ndash;&gt;-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recyclerView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent" />-->
-
-<!--    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,11 +49,10 @@
         android:layout_height="60dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="Add a checklist item"
+        android:hint="@string/add_checklist_item"
         android:inputType="text"
         android:textColorHint="#757575" />
     </LinearLayout>
-
 
 
     <LinearLayout
@@ -104,14 +71,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:text="Add"
+            android:text="@string/add"
             android:layout_marginRight="10sp"/>
         <Button
             android:id="@+id/clearItemBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:text="Clear"
+            android:text="@string/clear"
             android:layout_marginRight="10sp"/>
 <!--        <Button-->
 <!--            android:id="@+id/saveBtn"-->
@@ -124,7 +91,7 @@
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back"
+            android:text="@string/back_button"
             android:layout_weight="50"/>
     </LinearLayout>
 
