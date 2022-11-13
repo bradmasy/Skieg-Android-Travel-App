@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="buttons" parent="TextAppearance.AppCompat">
+        <item name="android:background">@color/mainBlue</item>
+        <item name="android:backgroundTint">#BEDEFC</item>
+        <item name="android:padding">2sp</item>
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+    <style name="normalButtons" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/mainBlue</item>
+        <item name="android:backgroundTint">@color/mainBlue</item>
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+</resources>
