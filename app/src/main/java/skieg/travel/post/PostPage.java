@@ -3,6 +3,7 @@ package skieg.travel.post;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,10 +23,11 @@ import java.time.LocalDateTime;
 
 public class PostPage extends AppCompatActivity {
 
-    public DatabaseReference databaseReference;
-    public FirebaseDatabase firebaseDatabase;
-    public User user;
-    public EditText infoBlock;
+    private DatabaseReference databaseReference;
+    private FirebaseDatabase firebaseDatabase;
+    private User user;
+    private EditText infoBlock;
+    private Button postButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,15 +35,23 @@ public class PostPage extends AppCompatActivity {
         setContentView(R.layout.post_page_activity);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference();
+        postButton = findViewById(R.id.post);
+
+
+        postButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                post(view);
+            }
+        });
     }
 
 
     private void postToDatabase(View view, Post post){
 
-         String id = MainActivity.USER.getId();
          String postID = databaseReference.push().getKey();
 
-         Task setValueTask = databaseReference.child("Forum").child("posts").child(id).setValue(post);
+         Task setValueTask = databaseReference.child("Forum").child("posts").child(postID).setValue(post);
 
          setValueTask.addOnSuccessListener(new OnSuccessListener(){
 
@@ -63,7 +73,7 @@ public class PostPage extends AppCompatActivity {
         String info = infoBlock.getText().toString();
         String date = CurrentDateTime.date();
         System.out.println("DATE: " + date);
-        Post post = new Post(user, date, info);
+        Post post = new Post(MainActivity.USER, date, info);
         postToDatabase(view,post);
     }
 
