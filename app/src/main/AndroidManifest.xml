@@ -4,7 +4,7 @@
     package="skieg.travel">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />  <!--location permissions-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- location permissions -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -20,13 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skieg"
         tools:targetApi="31">
-   
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
              To get one, follow the directions here:
 
-                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
 
              Once you have your API key (it starts with "AIza"), define a new property in your
              project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
@@ -34,19 +33,26 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" /> <!--API KEY-->
+            android:value="${MAPS_API_KEY}" /> <!-- API KEY -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <activity
-            android:name=".welcome_login_signup.Welcome"
+            android:name=".activity_splashscreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".welcome_login_signup.Welcome"
+            android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".CalendarActivity"
@@ -138,7 +144,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".CalendarEventActivity"
             android:exported="true">
@@ -157,7 +162,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".welcome_login_signup.Login"
             android:exported="true">
@@ -167,7 +171,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".welcome_login_signup.Signup"
             android:exported="true">
@@ -177,7 +180,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -187,7 +189,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MapsActivity"
             android:exported="true">
@@ -197,7 +198,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".WeatherActivity"
             android:exported="true">
@@ -207,7 +207,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MyLocation"
             android:exported="true">
@@ -217,7 +216,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".planner.fragments.MainPlanner"
             android:exported="true">
@@ -227,7 +225,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
