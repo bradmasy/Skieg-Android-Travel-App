@@ -6,6 +6,14 @@ import skieg.travel.user.User;
 
 public class Post implements Serializable {
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     private String information;
     private String date;
     private String userID;

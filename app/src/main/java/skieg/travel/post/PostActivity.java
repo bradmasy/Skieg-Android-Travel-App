@@ -75,9 +75,9 @@ public class PostActivity extends AppCompatActivity {
                     String[] dataValues = currSnapshot.split(",");
                     String date = DatabaseParse.parseDataValue(dataValues[0]);
                     Log.d("DATE:", date);
-                    String name = DatabaseParse.parseDataValue(dataValues[1]);
-                    Log.d("DESCRIBE:", name);
-                    String content = DatabaseParse.parseLastDataValue(dataValues[2]);
+                    String content = DatabaseParse.parseDataValue(dataValues[1]);
+                    String id = DatabaseParse.parseDataValue(dataValues[2]);
+                    String name = DatabaseParse.parseLastDataValue(dataValues[3]);
                     Log.d("Content:", content);
                     names.add(name);
                     dates.add(date);

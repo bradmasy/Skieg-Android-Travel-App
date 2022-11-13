@@ -25,7 +25,6 @@ public class PostPage extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
-    private User user;
     private EditText infoBlock;
     private Button postButton;
 
@@ -36,8 +35,6 @@ public class PostPage extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference();
         postButton = findViewById(R.id.post);
-
-
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,9 +45,7 @@ public class PostPage extends AppCompatActivity {
 
 
     private void postToDatabase(View view, Post post){
-
          String postID = databaseReference.push().getKey();
-
          Task setValueTask = databaseReference.child("Forum").child("posts").child(postID).setValue(post);
 
          setValueTask.addOnSuccessListener(new OnSuccessListener(){
@@ -62,9 +57,6 @@ public class PostPage extends AppCompatActivity {
                  infoBlock.setText("");
              }
          });
-
-//        Intent intent = new Intent(PostPage.this, PostActivity.class);
-//        startActivity(intent);
     }
 
     public void post(View view){
