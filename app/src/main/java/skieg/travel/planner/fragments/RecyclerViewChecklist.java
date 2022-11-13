@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +28,8 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
     public ArrayList<String> items;
     public ArrayList<Boolean> checked;
     public ArrayList<String> IDs;
+
+    private ChecklistClickListener clickListener;
 
     public RecyclerViewChecklist(ArrayList<String> items, ArrayList<Boolean> checked, ArrayList<String> IDs) {
         this.items = items;
@@ -63,10 +64,15 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
     }
 
 
+    public void setClickListener(ChecklistClickListener checklistClickListener) {
+        this.clickListener = checklistClickListener;
+    }
+
+
 
 
     // Inner class to initialize variables for a Calendar Event object
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         CheckBox checkBoxItem;
 
@@ -84,6 +90,8 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
                     boolean isChecked = ((CheckBox) v).isChecked();
                     // Check if checkbox was clicked
                     if (isChecked){
+//                        int index = items.indexOf(currCheckbox.getText().toString());
+//                        checked.set(index, true);
                         // Do your coding
                         System.out.println("CHECKED");
 //                        setItemFromFirebase(true, currCheckbox.getText().toString());
@@ -97,6 +105,11 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
                 }
             });
         }
+
+//        public void onClick(View itemView) {
+//            System.out.println("ON CLICK RECYCLER VIEW");
+//            if (clickListener != null) clickListener.onClick(itemView, getAdapterPosition());
+//        }
 
 
 

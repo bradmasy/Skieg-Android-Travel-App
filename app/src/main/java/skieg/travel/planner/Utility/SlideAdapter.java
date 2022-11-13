@@ -18,7 +18,8 @@ public class SlideAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        PlannerFragment plannerFragment;
+        // PlannerFragment
+        Fragment plannerFragment;
         switch(position){
             case 0:
                 plannerFragment =  new BudgetFragment();

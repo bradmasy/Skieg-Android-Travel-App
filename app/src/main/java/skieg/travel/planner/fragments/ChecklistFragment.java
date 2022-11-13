@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.ListFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +47,9 @@ public class ChecklistFragment extends PlannerFragment {
     ArrayList<Boolean> checkedList = new ArrayList<>();
     ArrayList<String> idList = new ArrayList<>();
 
+//    ArrayAdapter<String> adapter;
+//    ListView listView;
+
 
     public ChecklistFragment(){
         super(R.layout.activity_checklist);
@@ -76,14 +80,14 @@ public class ChecklistFragment extends PlannerFragment {
             }
         });
 
-        Button clearItemBtn = (Button) view.findViewById(R.id.clearItemBtn);
+        Button clearItemBtn = view.findViewById(R.id.clearItemBtn);
         clearItemBtn.setOnClickListener(viewClear -> {
             checklistEditText.setText("");
         });
 
         Button saveBtn = (Button) view.findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(viewClear -> {
-            saveChecklistToFirebase();
+//            saveChecklistToFirebase();
         });
 
         Button backBtn = (Button) view.findViewById(R.id.backBtn);
@@ -95,19 +99,35 @@ public class ChecklistFragment extends PlannerFragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
+
+
+        itemsList.add("TEST");
+
+//        adapter = new ArrayAdapter<>(getActivity(),R.layout.activity_checklist, itemsList);
+//        listView = view.findViewById(R.id.list);
+//        listView.setAdapter(adapter);
+
+
+
+
         getDataFromFirebase();
 
 
 //        getAllCheckBoxes(view);
 
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),R.layout.activity_checklist, itemsList);
-//        ListView listView = view.findViewById(R.id.list);
-//        listView.setAdapter(adapter);
+
 
 
 
         return view;
     }
+
+
+
+//    @Override
+//    public void onListItemClick(ListView l, View v, int position, long id) {
+//        Toast.makeText(getActivity().getBaseContext(), itemsList.get(position) + " position " + position + " id " + id, Toast.LENGTH_SHORT).show();
+//    }
 
 
     // Sets a RecyclerViewProduct adapter to this fragment's recycler view
@@ -171,6 +191,10 @@ public class ChecklistFragment extends PlannerFragment {
 
                 recyclerViewChecklist = new RecyclerViewChecklist(itemsList, checkedList, idList);
                 initializeAdapter(recyclerViewChecklist);
+
+//                adapter = new ArrayAdapter<>(getActivity(),R.layout.activity_checklist, itemsList);
+////                ListView listView = view.findViewById(R.id.list);
+//                listView.setAdapter(adapter);
             }
 
             @Override
@@ -185,6 +209,29 @@ public class ChecklistFragment extends PlannerFragment {
         Intent mainIntent = new Intent(getActivity(), MainActivity.class);
         startActivity(mainIntent);
     }
+
+
+
+
+
+
+
+//    @Override
+//    public void onClick(View view, int position) {
+//        System.out.println("ON CLICK FRAGMENT");
+//        System.out.println("CLICKED " + view + "; " + position);
+//    }
+
+
+
+
+
+
+
+
+
+
+
 
 
     public void saveChecklistToFirebase() {
