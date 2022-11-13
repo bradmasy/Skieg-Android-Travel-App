@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:shrinkColumns="*"
     android:stretchColumns="*"
-    android:background="#ffffff">
+    android:background="@color/mainBlue">
 
     <TableRow
         android:layout_width="match_parent"
@@ -18,38 +18,64 @@
             android:layout_height="wrap_content"
             android:text="@string/calendar"
             android:textSize="30sp"
+            android:textColor="@color/black"
             android:gravity="center" />
 
     </TableRow>
 
 
-    <CalendarView
-        android:id="@+id/calendarView"
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="70dp">
+
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
+
+    </TableRow>
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/backButton"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:onClick="clickMainButton"
-        android:text="@string/back_button" />
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="10sp"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
+        android:layout_gravity="center"
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/createEventBtn"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:onClick="clickCreateButton"
-        android:text="@string/create_event" />
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back_button"
+            android:layout_weight="30"
+            android:layout_marginRight="10sp"
+            android:onClick="clickMainButton"/>
 
-    <Button
-        android:id="@+id/redirectCalendarEventsBtn"
-        android:layout_marginLeft="82dp"
-        android:layout_marginRight="82dp"
-        android:layout_height="wrap_content"
-        android:text="@string/view_calendar_event"
-        android:onClick="clickCalendarEventsButton"/>
+        <Button
+            android:id="@+id/createEventBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:text="@string/create_event"
+            android:layout_marginRight="10sp"
+            android:onClick="clickCreateButton"/>
 
+        <Button
+            android:id="@+id/redirectCalendarEventsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/view_calendar_event"
+            android:layout_weight="30"
+            android:onClick="clickCalendarEventsButton" />
+
+    </LinearLayout>
 </TableLayout>
