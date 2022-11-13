@@ -17,15 +17,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import skieg.travel.forum.ForumBoardFragment;
+import skieg.travel.post.PostAdapter;
 import skieg.travel.post.PostPage;
 
 
 public class PostActivity extends AppCompatActivity {
 
-    String[] posts;
+
+
     final public static int MARGIN_BOTTOM = 5;
     final public static int MARGIN_TOP = 5;
     final public static int MARGIN_LEFT = 5;
@@ -40,13 +43,17 @@ public class PostActivity extends AppCompatActivity {
         LinearLayout userImageContainer = findViewById(R.id.userPhoto);
         Button filler = findViewById(R.id.filler);
         // setting colors
+
         postButton.setBackgroundColor(Color.parseColor("#BEDEFC"));
         userInfo.setBackgroundColor(Color.parseColor("#BEDEFC"));
         userImageContainer.setBackgroundColor(Color.parseColor("#BEDEFC"));
         filler.setBackgroundColor(Color.parseColor("#BEDEFC"));
 
 
+
+
         Fragment forum = new ForumFragment();
+
         //FragmentManager fragmentManager = getSupportFragmentManager();
 
 

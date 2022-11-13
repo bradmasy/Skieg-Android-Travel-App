@@ -58,6 +58,5 @@ public class RecyclerViewCalendar extends RecyclerView.Adapter<RecyclerViewCalen
             textViewLocation = itemView.findViewById(R.id.location);
             textViewDate = itemView.findViewById(R.id.date);
         }
-
     }
 }
