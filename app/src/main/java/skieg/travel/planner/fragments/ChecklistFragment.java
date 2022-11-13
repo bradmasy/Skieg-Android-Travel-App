@@ -6,8 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -78,6 +81,11 @@ public class ChecklistFragment extends PlannerFragment {
             checklistEditText.setText("");
         });
 
+        Button saveBtn = (Button) view.findViewById(R.id.saveBtn);
+        saveBtn.setOnClickListener(viewClear -> {
+            saveChecklistToFirebase();
+        });
+
         Button backBtn = (Button) view.findViewById(R.id.backBtn);
         backBtn.setOnClickListener(viewBack -> {
             backBtnClicked();
@@ -88,6 +96,15 @@ public class ChecklistFragment extends PlannerFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         getDataFromFirebase();
+
+
+//        getAllCheckBoxes(view);
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),R.layout.activity_checklist, itemsList);
+//        ListView listView = view.findViewById(R.id.list);
+//        listView.setAdapter(adapter);
+
+
 
         return view;
     }
@@ -117,16 +134,6 @@ public class ChecklistFragment extends PlannerFragment {
                 toast.show();
 
                 checklistEditText.setText("");
-//
-//                for (String currVal: itemsList) {
-//                    itemsList.remove(currVal);
-//                }
-//                for (Boolean currVal: checkedList) {
-//                    checkedList.remove(currVal);
-//                }
-//                for (String currVal: idList) {
-//                    idList.remove(currVal);
-//                }
             }
         });
     }
@@ -135,16 +142,6 @@ public class ChecklistFragment extends PlannerFragment {
     public void getDataFromFirebase() {
         String id = MainActivity.USER.getId();
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(id).child("Planner").child("Checklist");
-
-        for (String currVal: itemsList) {
-            itemsList.remove(currVal);
-        }
-        for (Boolean currVal: checkedList) {
-            checkedList.remove(currVal);
-        }
-        for (String currVal: idList) {
-            idList.remove(currVal);
-        }
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -188,5 +185,108 @@ public class ChecklistFragment extends PlannerFragment {
         Intent mainIntent = new Intent(getActivity(), MainActivity.class);
         startActivity(mainIntent);
     }
+
+
+    public void saveChecklistToFirebase() {
+
+
+        //recyclerView.getAdapter().getItemCount()
+//        for (int i = 0; i < itemsList.size(); i++)
+//        {
+//            View currItem = recyclerView.getChildAt(i);
+//            System.out.println(currItem.getId() + ", " + currItem.isSelected());
+//            System.out.println(currItem.getTag() + ", " + currItem.isSelected());
+//
+//            System.out.println(checkedList.get(i));
+//        }
+
+
+//
+//        for (int i = 0; i < itemsList.size(); i++)
+//        {
+//            CheckBox cBox = (CheckBox)recyclerView.findViewById(R.id.checkBox);
+//            Log.d("TAG","isChecked " + cBox.getText() + ", " + cBox.isChecked());
+//
+//
+//            System.out.println("R VIEW: " + recyclerView.getFocusable());
+//            System.out.println("R VIEW: " + recyclerView.getAdapter());
+//        }
+
+
+//        CheckBox cBox = (CheckBox)recyclerView.findViewById(R.id.checkBox);
+//        Log.d("TAG","isChecked " + cBox.getText());
+//        Log.d("TAG","isChecked " + cBox.getTag());
+
+
+
+
+//        System.out.println(itemsList);
+//
+//        for (int i = 0; i < itemsList.size(); i++) {
+//            System.out.println("TAG VIEW: " + recyclerView.getTag(i));
+//        }
+
+
+
+
+////        cBox.setChecked(((CheckBox) ).isChecked());
+
+//        Log.d("TAG","isChecked2 " + cBox.isChecked());
+////        cBox.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                if(((CheckBox) v).isChecked()) {
+////                    checkboxAll.setChecked(false);
+////                }
+////            }
+////        });
+
+
+//
+//            ArrayList<View> views = new ArrayList<View>();
+//
+//            for (int i = 0; i < recyclerView.getFocusables(View.FOCUS_FORWARD).size(); i++) {
+//
+//                View actualView = recyclerView.getFocusables(View.FOCUS_FORWARD).get(i);
+//                System.out.println("VIEW: " + actualView);
+//                System.out.println("VIEW: " + actualView.toString());
+//
+//
+//                if(actualView instanceof EditText) {
+//                    views.add((EditText) actualView);
+//                }
+//                if(actualView instanceof CheckBox) {
+//                    views.add((CheckBox) actualView);
+//                }
+//
+//            }
+
+
+    }
+
+
+
+
+
+    public void getAllCheckBoxes(View view) {
+
+        ArrayList<View> returnViews = new ArrayList<>();
+
+        ArrayList<View> focusableViews = recyclerView.getFocusables(View.FOCUS_FORWARD);
+
+        for (int i = 0; i < focusableViews.size(); i++) {
+
+            View actualView = focusableViews.get(i);
+
+            System.out.println("VIEW: " + actualView.toString());
+
+            if (actualView instanceof CheckBox) {
+                returnViews.add((CheckBox) actualView);
+            }
+        }
+
+        System.out.println("RETURN: " + returnViews);
+    }
+
 
 }
