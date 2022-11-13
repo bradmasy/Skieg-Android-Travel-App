@@ -6,11 +6,12 @@ public class Post {
 
     private String information;
     private String date;
-    private User user;
+    private String userID;
 
-    public Post(User user){
-        information = null;
-        this.user = user;
+    public Post(User user, String date, String content){
+        this.userID = user.getId();
+        this.date = date;
+        this.information = content;
     }
 
     public Post(String information){

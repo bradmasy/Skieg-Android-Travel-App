@@ -20,11 +20,19 @@
         android:layout_height="0sp"
         android:layout_weight="75"
         android:background="@color/white"
+
+
         >
         <EditText
             android:id="@+id/postContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+           android:layout_marginTop="20sp"
+            android:hint="Write your post here!"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+
             />
     </ScrollView>
 
@@ -44,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Post"
+            android:onClick="post"
             android:layout_weight="50"
             android:layout_marginRight="10sp"/>
 

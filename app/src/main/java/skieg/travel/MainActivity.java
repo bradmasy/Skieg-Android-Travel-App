@@ -23,6 +23,7 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 
 import skieg.travel.planner.fragments.MainPlanner;
+import skieg.travel.post.PostActivity;
 import skieg.travel.user.User;
 
 public class MainActivity extends AppCompatActivity {

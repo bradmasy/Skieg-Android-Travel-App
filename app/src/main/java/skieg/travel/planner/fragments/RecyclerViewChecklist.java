@@ -40,7 +40,6 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
         if (checked.get(position)) {
             holder.checkBoxItem.setChecked(true);
         }
-
     }
 
 
@@ -59,6 +58,5 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
             super(itemView);
             checkBoxItem = itemView.findViewById(R.id.checkBox);
         }
-
     }
 }
