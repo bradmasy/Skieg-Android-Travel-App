@@ -38,21 +38,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String cityName = "Vancouver";
-        String tempUrl = url + "?q=" + cityName + "&appid=" + appid;
-
-        AsyncTaskRunner runner = new AsyncTaskRunner();
-        runner.execute(tempUrl);
-
         Bundle bundle = getIntent().getExtras();
         // Only set the current user when directed to main page from the login/signup pages
         if (bundle != null) {
             String id = bundle.getString("id");
             String username = bundle.getString("username");
             String password = bundle.getString("password");
-            USER = new User(id, username, password);
+
+            String firstName = bundle.getString("firstName");
+            String lastName = bundle.getString("lastName");
+            String city = bundle.getString("city");
+            String email = bundle.getString("email");
+
+            USER = new User(id, firstName, lastName, city, username, email, password);
             Log.d("MAIN", USER.toString());
         }
+
+        String cityName = USER.getCity();
+        System.out.println(cityName);
+        String tempUrl = url + "?q=" + cityName + "&appid=" + appid;
+
+        AsyncTaskRunner runner = new AsyncTaskRunner();
+        runner.execute(tempUrl);
 
     }
 
