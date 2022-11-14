@@ -84,7 +84,17 @@ public class ChecklistFragment extends PlannerFragment implements ChecklistClick
 
         Button saveBtn = view.findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(viewClear -> {
-//            saveChecklistToFirebase();
+            System.out.println("BEFORE" + checkedList);
+
+            ArrayList<String> tempItemsList = itemsList;
+            ArrayList<Boolean> tempCheckedList = checkedList;
+            ArrayList<String> tempIdList = idList;
+
+//            itemsList = new ArrayList<>();
+//            checkedList = new ArrayList<>();
+//            idList = new ArrayList<>();
+            saveChecklistToFirebase(tempItemsList, tempCheckedList, tempIdList);
+            System.out.println("AFTER" + checkedList);
         });
 
         Button backBtn = view.findViewById(R.id.backBtn);
@@ -97,8 +107,21 @@ public class ChecklistFragment extends PlannerFragment implements ChecklistClick
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         recyclerViewChecklist = new RecyclerViewChecklist(itemsList, checkedList, idList);
-        recyclerViewChecklist.setClickListener(this);
+//        recyclerViewChecklist.setClickListener(this);
 
+//        recyclerViewChecklist.setCallback(new RecyclerViewChecklist.Callback() {
+//            @Override
+//            public void onCheckedChanged(String item, boolean isChecked) {
+//                // Do what you want :)
+//                System.out.println("ON CHECK CALLBACK: " + item + "   " + isChecked);
+//            }
+//        });
+//        recyclerViewChecklist.notifyDataSetChanged();
+
+
+//        itemsList = new ArrayList<>();
+//        checkedList = new ArrayList<>();
+//        idList = new ArrayList<>();
         getDataFromFirebase();
 
         return view;
@@ -135,12 +158,20 @@ public class ChecklistFragment extends PlannerFragment implements ChecklistClick
 
 
     public void getDataFromFirebase() {
+//        itemsList = new ArrayList<>();
+//        checkedList = new ArrayList<>();
+//        idList = new ArrayList<>();
+
         String id = MainActivity.USER.getId();
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(id).child("Planner").child("Checklist");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                itemsList = new ArrayList<>();
+                checkedList = new ArrayList<>();
+                idList = new ArrayList<>();
+
                 Log.d("LOG", "IN DATA SNAPSHOT METHOD");
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -151,9 +182,9 @@ public class ChecklistFragment extends PlannerFragment implements ChecklistClick
                     String item = DatabaseParse.parseDataValue(dataValues[0]);
                     String checked = DatabaseParse.parseDataValue(dataValues[1]);
                     String id = DatabaseParse.parseLastDataValue(dataValues[2]);
-                    Log.d("ITEM:", item);
-                    Log.d("CHECKED:", checked);
-                    Log.d("ID:", id);
+//                    Log.d("ITEM:", item);
+//                    Log.d("CHECKED:", checked);
+//                    Log.d("ID:", id);
 
                     itemsList.add(item);
                     Boolean isChecked = Boolean.parseBoolean(checked);
@@ -161,7 +192,7 @@ public class ChecklistFragment extends PlannerFragment implements ChecklistClick
                     idList.add(id);
 
 
-                    Log.d("DATASNAP:", currSnapshot);
+//                    Log.d("DATASNAP:", currSnapshot);
                 }
 
                 recyclerViewChecklist = new RecyclerViewChecklist(itemsList, checkedList, idList);
@@ -185,5 +216,32 @@ public class ChecklistFragment extends PlannerFragment implements ChecklistClick
     @Override
     public void onClick(View view, int position) {
         System.out.println("CLICK METHOD: " + view + " ; " + position);
+    }
+
+
+
+    public void saveChecklistToFirebase(ArrayList<String> tempItemsList, ArrayList<Boolean> tempCheckedList, ArrayList<String> tempIdList) {
+//        ArrayList<String> tempItemsList = itemsList;
+//        ArrayList<Boolean> tempCheckedList = checkedList;
+//        ArrayList<String> tempIdList = idList;
+//
+//        itemsList = new ArrayList<>();
+//        checkedList = new ArrayList<>();
+//        idList = new ArrayList<>();
+
+        System.out.println("IN METHOD" + checkedList);
+
+        String id = MainActivity.USER.getId();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(id).child("Planner").child("Checklist");
+
+        for (int index = 0; index < tempCheckedList.size(); index++) {
+            String currID = tempIdList.get(index);
+
+            Checklist checklist = new Checklist(tempItemsList.get(index), currID, tempCheckedList.get(index));
+
+            databaseReference.child(currID).setValue(checklist);
+        }
+
     }
 }

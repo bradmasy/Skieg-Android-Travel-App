@@ -19,6 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import javax.security.auth.callback.Callback;
+
 import skieg.travel.DatabaseParse;
 import skieg.travel.MainActivity;
 import skieg.travel.R;
@@ -30,6 +32,8 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
     public ArrayList<String> IDs;
 
     private ChecklistClickListener clickListener;
+
+    private Callback callback;
 
     public RecyclerViewChecklist(ArrayList<String> items, ArrayList<Boolean> checked, ArrayList<String> IDs) {
         this.items = items;
@@ -69,6 +73,15 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
     }
 
 
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+    }
+
+    public interface Callback {
+        void onCheckedChanged(String item, boolean isChecked);
+    }
+
+
 
     // Inner class to initialize variables for a Calendar Event object
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
@@ -88,16 +101,19 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
                     boolean isChecked = ((CheckBox) v).isChecked();
                     // Check if checkbox was clicked
                     if (isChecked){
-//                        int index = items.indexOf(currCheckbox.getText().toString());
-//                        checked.set(index, true);
+                        int index = items.indexOf(currCheckbox.getText().toString());
+                        checked.set(index, true);
                         // Do your coding
                         System.out.println("CHECKED");
-                        setItemFromFirebase(true, currCheckbox.getText().toString());
-                    }
-                    else{
+                        System.out.println(checked.get(index));
+//                        setItemFromFirebase(true, currCheckbox.getText().toString());
+                    } else{
                         // Do your coding
+                        int index = items.indexOf(currCheckbox.getText().toString());
+                        checked.set(index, false);
                         System.out.println("NOT CHECKED");
-                        setItemFromFirebase(false, currCheckbox.getText().toString());
+                        System.out.println(checked.get(index));
+//                        setItemFromFirebase(false, currCheckbox.getText().toString());
                     }
 
                 }
@@ -121,7 +137,7 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Log.d("LOG", "IN DATA SNAPSHOT METHOD");
+//                    Log.d("LOG", "IN DATA SNAPSHOT METHOD");
 
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         String currSnapshot = String.valueOf(dataSnapshot.getValue());
@@ -137,11 +153,11 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
 
                         if (item.equals(checklistItem)) {
                             Log.d("ITEM EQUAL:", item);
-                            Log.d("ITEM:", item);
-                            Log.d("CHECKED:", checked);
-                            Log.d("ID:", id);
+//                            Log.d("ITEM:", item);
+//                            Log.d("CHECKED:", checked);
+//                            Log.d("ID:", id);
 
-                            String userID = MainActivity.USER.getId();
+//                            String userID = MainActivity.USER.getId();
                             Checklist checklist = new Checklist(item, id, checkedValue);
 
                             // child("Users").child(userID).child("Planner").child("Checklist").child(id)
@@ -157,7 +173,7 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
 
 
 
-                        Log.d("DATASNAP:", currSnapshot);
+//                        Log.d("DATASNAP:", currSnapshot);
                     }
                 }
 

@@ -39,7 +39,7 @@ public class MainPlanner extends FragmentActivity {
 
         @NonNull
         @Override
-        public Fragment createFragment(int position) {
+        public PlannerFragment createFragment(int position) {
             switch(position){
                 case 0:
                     return new BudgetFragment();
