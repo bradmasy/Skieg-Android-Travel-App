@@ -80,13 +80,13 @@
             android:layout_weight="50"
             android:text="@string/clear"
             android:layout_marginRight="10sp"/>
-<!--        <Button-->
-<!--            android:id="@+id/saveBtn"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="50"-->
-<!--            android:text="Save"-->
-<!--            android:layout_marginRight="10sp"/>-->
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="@string/save"
+            android:layout_marginRight="10sp"/>
         <Button
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"

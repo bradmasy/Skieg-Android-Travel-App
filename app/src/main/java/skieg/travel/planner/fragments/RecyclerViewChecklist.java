@@ -14,9 +14,9 @@ import skieg.travel.R;
 
 public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChecklist.MyViewHolder> {
 
-    ArrayList<String> items;
-    ArrayList<Boolean> checked;
-    ArrayList<String> IDs;
+    public ArrayList<String> items;
+    public ArrayList<Boolean> checked;
+    public ArrayList<String> IDs;
 
 
     public RecyclerViewChecklist(ArrayList<String> items, ArrayList<Boolean> checked, ArrayList<String> IDs) {
@@ -25,12 +25,14 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
         this.IDs = IDs;
     }
 
+
     @NonNull
     @Override
     public RecyclerViewChecklist.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.checklist_item, parent, false);
         return new RecyclerViewChecklist.MyViewHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
@@ -40,6 +42,8 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
         if (checked.get(position)) {
             holder.checkBoxItem.setChecked(true);
         }
+        holder.checkBoxItem.setTag(position);
+        holder.checkBoxItem.setId(position);
 
     }
 
@@ -51,14 +55,30 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
 
 
     // Inner class to initialize variables for a Calendar Event object
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         CheckBox checkBoxItem;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             checkBoxItem = itemView.findViewById(R.id.checkBox);
-        }
 
+            checkBoxItem.setOnClickListener(view -> {
+                CheckBox currCheckbox = (CheckBox) view;
+                System.out.println(currCheckbox.getId());
+                System.out.println(currCheckbox.getText());
+                boolean isChecked = ((CheckBox) view).isChecked();
+                // Check if checkbox was clicked
+                if (isChecked) {
+                    // Set the checkbox clicked to true
+                    int index = items.indexOf(currCheckbox.getText().toString());
+                    checked.set(index, true);
+                } else {
+                    // Set the checkbox clicked to false
+                    int index = items.indexOf(currCheckbox.getText().toString());
+                    checked.set(index, false);
+                }
+            });
+        }
     }
 }

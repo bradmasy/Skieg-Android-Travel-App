@@ -46,7 +46,6 @@ public class ChecklistFragment extends PlannerFragment {
 
     public ChecklistFragment(){
         super(R.layout.activity_checklist);
-        Log.d("LOG", "CHECKLIST");
     }
 
     @Override
@@ -54,9 +53,10 @@ public class ChecklistFragment extends PlannerFragment {
         View view = inflater.inflate(R.layout.activity_checklist, container, false);
 
 
-        checklistEditText = (EditText) view.findViewById(R.id.checklistEditText);
+        checklistEditText = view.findViewById(R.id.checklistEditText);
 
-        Button addItemBtn = (Button) view.findViewById(R.id.addItemBtn);
+        // Add a checkbox item to the checklist
+        Button addItemBtn = view.findViewById(R.id.addItemBtn);
         addItemBtn.setOnClickListener(viewAdd -> {
             String checklistItemStr = checklistEditText.getText().toString();
             if (InputValidation.invalidStringInput(checklistItemStr)) {
@@ -73,12 +73,24 @@ public class ChecklistFragment extends PlannerFragment {
             }
         });
 
-        Button clearItemBtn = (Button) view.findViewById(R.id.clearItemBtn);
+        // Clear edit text field
+        Button clearItemBtn = view.findViewById(R.id.clearItemBtn);
         clearItemBtn.setOnClickListener(viewClear -> {
             checklistEditText.setText("");
         });
 
-        Button backBtn = (Button) view.findViewById(R.id.backBtn);
+        // Save all checklist checked/unchecked values
+        Button saveBtn = view.findViewById(R.id.saveBtn);
+        saveBtn.setOnClickListener(viewClear -> {
+            ArrayList<String> tempItemsList = itemsList;
+            ArrayList<Boolean> tempCheckedList = checkedList;
+            ArrayList<String> tempIdList = idList;
+
+            saveChecklistToFirebase(tempItemsList, tempCheckedList, tempIdList);
+        });
+
+        // Redirect back to main page
+        Button backBtn = view.findViewById(R.id.backBtn);
         backBtn.setOnClickListener(viewBack -> {
             backBtnClicked();
         });
@@ -87,6 +99,9 @@ public class ChecklistFragment extends PlannerFragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
+        recyclerViewChecklist = new RecyclerViewChecklist(itemsList, checkedList, idList);
+
+        // Display all checkbox items from the database on the page in the recyclerview
         getDataFromFirebase();
 
         return view;
@@ -109,24 +124,12 @@ public class ChecklistFragment extends PlannerFragment {
         Checklist checklist = new Checklist(checklistItem, itemID, false);
 
         Task setValueTask = databaseReference.child("Users").child(userID).child("Planner").child("Checklist").child(itemID).setValue(checklist);
-
         setValueTask.addOnSuccessListener(new OnSuccessListener() {
             @Override
             public void onSuccess(Object o) {
                 Toast toast = Toast.makeText(getActivity().getBaseContext(), "Checklist item added!", Toast.LENGTH_SHORT);
                 toast.show();
-
                 checklistEditText.setText("");
-//
-//                for (String currVal: itemsList) {
-//                    itemsList.remove(currVal);
-//                }
-//                for (Boolean currVal: checkedList) {
-//                    checkedList.remove(currVal);
-//                }
-//                for (String currVal: idList) {
-//                    idList.remove(currVal);
-//                }
             }
         });
     }
@@ -136,40 +139,26 @@ public class ChecklistFragment extends PlannerFragment {
         String id = MainActivity.USER.getId();
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(id).child("Planner").child("Checklist");
 
-        for (String currVal: itemsList) {
-            itemsList.remove(currVal);
-        }
-        for (Boolean currVal: checkedList) {
-            checkedList.remove(currVal);
-        }
-        for (String currVal: idList) {
-            idList.remove(currVal);
-        }
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d("LOG", "IN DATA SNAPSHOT METHOD");
+                itemsList = new ArrayList<>();
+                checkedList = new ArrayList<>();
+                idList = new ArrayList<>();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String currSnapshot = String.valueOf(dataSnapshot.getValue());
 
-                    // {item=item1, checked=false, id=-NGeksyGKISPKaSYAnuO}
+                    // FORMAT: {item=item1, checked=false, id=-NGeksyGKISPKaSYAnuO}
                     String[] dataValues = currSnapshot.split(",");
                     String item = DatabaseParse.parseDataValue(dataValues[0]);
                     String checked = DatabaseParse.parseDataValue(dataValues[1]);
                     String id = DatabaseParse.parseLastDataValue(dataValues[2]);
-                    Log.d("ITEM:", item);
-                    Log.d("CHECKED:", checked);
-                    Log.d("ID:", id);
 
                     itemsList.add(item);
                     Boolean isChecked = Boolean.parseBoolean(checked);
                     checkedList.add(isChecked);
                     idList.add(id);
-
-
-                    Log.d("DATASNAP:", currSnapshot);
                 }
 
                 recyclerViewChecklist = new RecyclerViewChecklist(itemsList, checkedList, idList);
@@ -189,4 +178,17 @@ public class ChecklistFragment extends PlannerFragment {
         startActivity(mainIntent);
     }
 
+
+    public void saveChecklistToFirebase(ArrayList<String> tempItemsList, ArrayList<Boolean> tempCheckedList, ArrayList<String> tempIdList) {
+        String id = MainActivity.USER.getId();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(id).child("Planner").child("Checklist");
+
+        for (int index = 0; index < tempCheckedList.size(); index++) {
+            String currID = tempIdList.get(index);
+            Checklist checklist = new Checklist(tempItemsList.get(index), currID, tempCheckedList.get(index));
+            databaseReference.child(currID).setValue(checklist);
+        }
+
+    }
 }
