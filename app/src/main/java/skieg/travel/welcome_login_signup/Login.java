@@ -108,7 +108,7 @@ public class Login extends AppCompatActivity {
                         match = true;
                         Toast.makeText(Login.this, "Access granted", Toast.LENGTH_LONG).show();
 
-                        redirectMainPage(user.getId(), user.getUsername(), user.getPassword());
+                        redirectMainPage(user.getId(), user.getFirstName(), user.getLastName(), user.getCity(), user.getUsername(), user.getEmail(), user.getPassword());
 
                     }
                 }
@@ -145,13 +145,17 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public void redirectMainPage(String id, String username, String password) {
+    public void redirectMainPage(String id, String firstName, String lastName, String city, String username, String email, String password) {
         Intent intent = new Intent(Login.this, MainActivity.class);
 
         Bundle bundle = new Bundle();
         bundle.putString("id", id);
         bundle.putString("username", username);
         bundle.putString("password", password);
+        bundle.putString("firstName", firstName);
+        bundle.putString("lastName", lastName);
+        bundle.putString("city", city);
+        bundle.putString("email", email);
         intent.putExtras(bundle);
 
         startActivity(intent);

@@ -8,7 +8,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class User {
+    private String firstName;
+    private String lastName;
+    private String city;
     private String username;
+    private String email;
     private String password;
     private String id;
 
@@ -33,6 +37,49 @@ public class User {
         this.id = id;
         this.username = username;
         this.password = password;
+    }
+
+
+    public User(String id, String firstName, String lastName, String city, String username, String email, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {
