@@ -3,11 +3,13 @@ package skieg.travel.welcome_login_signup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import skieg.travel.activity_splashscreen;
 import skieg.travel.user.User;
 
 import androidx.annotation.NonNull;
@@ -35,6 +37,8 @@ public class Login extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private DataSnapshot snapshot;
 
+    float y1;
+    float y2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +54,27 @@ public class Login extends AppCompatActivity {
 
         backButton.setOnClickListener(this::backBtnClicked);
         loginButton.setOnClickListener(this::logUserIn);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch(event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                y1 = event.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                y2 = event.getY();
+                if (y1 < y2){
+                    // User Swiped Down
+                    Intent intent = new Intent(this, Welcome.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.animation_slideout_reverse,R.anim.animation_slidein_reverse);
+                }
+                break;
+
+        }
+        // Does not fit any above requirements.
+        return false;
     }
 
     private void logUserIn(View view) {

@@ -58,84 +58,170 @@
         android:layout_height="match_parent"
         android:layout_weight="80"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-
-        <Button
-            android:id="@+id/mainEventsButton"
-            android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60sp"
-            android:backgroundTint="@color/mainBlue"
-            android:textColor="@color/black"
-            android:layout_marginBottom="60dp"
-            android:onClick="clickMainEventsButton"
-            android:text="@string/events_button" />
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_people_24"/>
+                <Button
+                    android:id="@+id/mainEventsButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60sp"
+                    android:layout_marginBottom="60dp"
+                    android:backgroundTint="@color/mainBlue"
+                    android:onClick="clickMainEventsButton"
+                    android:text="@string/events_button"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/black" />
+            </FrameLayout>
 
-        <Button
-            android:id="@+id/mainPlannerButton"
-            android:layout_width="200dp"
-            android:backgroundTint="@color/mainBlue"
-            android:textColor="@color/black"
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_book_24"/>
+                <Button
+                    android:id="@+id/mainPlannerButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60sp"
+                    android:layout_marginBottom="60dp"
+                    android:backgroundTint="@color/mainBlue"
+                    android:onClick="clickMainPlannerButton"
+                    android:text="@string/planner_button"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/black" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_calendar_month_24"/>
+                <Button
+                    android:id="@+id/mainCalendarButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60sp"
+                    android:layout_marginBottom="60dp"
+                    android:background="@android:color/transparent"
+                    android:backgroundTint="@color/mainBlue"
+                    android:onClick="clickMainCalendarButton"
+                    android:text="@string/calendar_button"
+                    android:textColor="@color/black" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            android:onClick="clickMainPlannerButton"
-            android:text="@string/planner_button" />
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_person_24"/>
+                <Button
+                    android:id="@+id/mainPersonalProfileButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60sp"
+                    android:layout_marginBottom="60dp"
+                    android:backgroundTint="@color/mainBlue"
+                    android:onClick="clickMainPersonalProfileButton"
+                    android:text="@string/personal_profile_button"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/black" />
+            </FrameLayout>
 
-        <Button
-            android:id="@+id/mainCalendarButton"
-            android:layout_width="200dp"
-            android:backgroundTint="@color/mainBlue"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            android:onClick="clickMainCalendarButton"
-            android:text="@string/calendar_button" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_add_comment_24"/>
+                <Button
+                    android:id="@+id/mainPostButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60sp"
+                    android:layout_marginBottom="60dp"
+                    android:backgroundTint="@color/mainBlue"
+                    android:onClick="clickMainPostButton"
+                    android:text="@string/post_button"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/black" />
+            </FrameLayout>
 
-        <Button
-            android:id="@+id/mainPersonalProfileButton"
-            android:layout_width="200dp"
-            android:backgroundTint="@color/mainBlue"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            android:onClick="clickMainPersonalProfileButton"
-            android:text="@string/personal_profile_button" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_map_24"/>
+                <Button
+                    android:id="@+id/mainMapsActivityButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60sp"
+                    android:layout_marginBottom="60dp"
+                    android:background="@android:color/transparent"
+                    android:backgroundTint="@color/mainBlue"
+                    android:onClick="clickMapsButton"
+                    android:text="@string/maps_button"
+                    android:textColor="@color/black" />
+            </FrameLayout>
 
-        <Button
-            android:id="@+id/mainPostButton"
-            android:layout_width="200dp"
-            android:backgroundTint="@color/mainBlue"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            android:onClick="clickMainPostButton"
-            android:text="@string/post_button" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/mainMapsActivityButton"
-            android:layout_width="200dp"
-            android:backgroundTint="@color/mainBlue"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            android:onClick="clickMapsButton"
-            android:text="@string/maps_button" />
-
-<!--        <Button-->
-<!--            android:id="@+id/firebase_button"-->
-<!--            android:layout_width="200dp"-->
-<!--            android:backgroundTint="@color/mainBlue"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="60dp"-->
-<!--            android:onClick="clickFireBaseButton"-->
-<!--            android:text="Firebase" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/firebase_button"-->
+        <!--            android:layout_width="200dp"-->
+        <!--            android:backgroundTint="@color/mainBlue"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginBottom="60dp"-->
+        <!--            android:onClick="clickFireBaseButton"-->
+        <!--            android:text="Firebase" />-->
 
     </LinearLayout>
 
 
-<!--    <Button-->
+    <!--    <Button-->
 <!--        android:id="@+id/weatherActivityButton"-->
 <!--        android:layout_width="200dp"-->
 <!--        android:layout_height="wrap_content"-->
