@@ -33,7 +33,7 @@ import skieg.travel.InputValidation;
 import skieg.travel.MainActivity;
 import skieg.travel.R;
 
-public class ChecklistFragment extends PlannerFragment {
+public class ChecklistFragment extends PlannerFragment implements ChecklistClickListener {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -47,9 +47,6 @@ public class ChecklistFragment extends PlannerFragment {
     ArrayList<Boolean> checkedList = new ArrayList<>();
     ArrayList<String> idList = new ArrayList<>();
 
-//    ArrayAdapter<String> adapter;
-//    ListView listView;
-
 
     public ChecklistFragment(){
         super(R.layout.activity_checklist);
@@ -61,9 +58,9 @@ public class ChecklistFragment extends PlannerFragment {
         View view = inflater.inflate(R.layout.activity_checklist, container, false);
 
 
-        checklistEditText = (EditText) view.findViewById(R.id.checklistEditText);
+        checklistEditText = view.findViewById(R.id.checklistEditText);
 
-        Button addItemBtn = (Button) view.findViewById(R.id.addItemBtn);
+        Button addItemBtn = view.findViewById(R.id.addItemBtn);
         addItemBtn.setOnClickListener(viewAdd -> {
             String checklistItemStr = checklistEditText.getText().toString();
             if (InputValidation.invalidStringInput(checklistItemStr)) {
@@ -85,12 +82,12 @@ public class ChecklistFragment extends PlannerFragment {
             checklistEditText.setText("");
         });
 
-        Button saveBtn = (Button) view.findViewById(R.id.saveBtn);
+        Button saveBtn = view.findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(viewClear -> {
 //            saveChecklistToFirebase();
         });
 
-        Button backBtn = (Button) view.findViewById(R.id.backBtn);
+        Button backBtn = view.findViewById(R.id.backBtn);
         backBtn.setOnClickListener(viewBack -> {
             backBtnClicked();
         });
@@ -99,35 +96,13 @@ public class ChecklistFragment extends PlannerFragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-
-
-        itemsList.add("TEST");
-
-//        adapter = new ArrayAdapter<>(getActivity(),R.layout.activity_checklist, itemsList);
-//        listView = view.findViewById(R.id.list);
-//        listView.setAdapter(adapter);
-
-
-
+        recyclerViewChecklist = new RecyclerViewChecklist(itemsList, checkedList, idList);
+        recyclerViewChecklist.setClickListener(this);
 
         getDataFromFirebase();
 
-
-//        getAllCheckBoxes(view);
-
-
-
-
-
         return view;
     }
-
-
-
-//    @Override
-//    public void onListItemClick(ListView l, View v, int position, long id) {
-//        Toast.makeText(getActivity().getBaseContext(), itemsList.get(position) + " position " + position + " id " + id, Toast.LENGTH_SHORT).show();
-//    }
 
 
     // Sets a RecyclerViewProduct adapter to this fragment's recycler view
@@ -191,10 +166,7 @@ public class ChecklistFragment extends PlannerFragment {
 
                 recyclerViewChecklist = new RecyclerViewChecklist(itemsList, checkedList, idList);
                 initializeAdapter(recyclerViewChecklist);
-
-//                adapter = new ArrayAdapter<>(getActivity(),R.layout.activity_checklist, itemsList);
-////                ListView listView = view.findViewById(R.id.list);
-//                listView.setAdapter(adapter);
+//                recyclerView.setAdapter(recyclerViewChecklist);
             }
 
             @Override
@@ -210,130 +182,8 @@ public class ChecklistFragment extends PlannerFragment {
         startActivity(mainIntent);
     }
 
-
-
-
-
-
-
-//    @Override
-//    public void onClick(View view, int position) {
-//        System.out.println("ON CLICK FRAGMENT");
-//        System.out.println("CLICKED " + view + "; " + position);
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void saveChecklistToFirebase() {
-
-
-        //recyclerView.getAdapter().getItemCount()
-//        for (int i = 0; i < itemsList.size(); i++)
-//        {
-//            View currItem = recyclerView.getChildAt(i);
-//            System.out.println(currItem.getId() + ", " + currItem.isSelected());
-//            System.out.println(currItem.getTag() + ", " + currItem.isSelected());
-//
-//            System.out.println(checkedList.get(i));
-//        }
-
-
-//
-//        for (int i = 0; i < itemsList.size(); i++)
-//        {
-//            CheckBox cBox = (CheckBox)recyclerView.findViewById(R.id.checkBox);
-//            Log.d("TAG","isChecked " + cBox.getText() + ", " + cBox.isChecked());
-//
-//
-//            System.out.println("R VIEW: " + recyclerView.getFocusable());
-//            System.out.println("R VIEW: " + recyclerView.getAdapter());
-//        }
-
-
-//        CheckBox cBox = (CheckBox)recyclerView.findViewById(R.id.checkBox);
-//        Log.d("TAG","isChecked " + cBox.getText());
-//        Log.d("TAG","isChecked " + cBox.getTag());
-
-
-
-
-//        System.out.println(itemsList);
-//
-//        for (int i = 0; i < itemsList.size(); i++) {
-//            System.out.println("TAG VIEW: " + recyclerView.getTag(i));
-//        }
-
-
-
-
-////        cBox.setChecked(((CheckBox) ).isChecked());
-
-//        Log.d("TAG","isChecked2 " + cBox.isChecked());
-////        cBox.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View v) {
-////                if(((CheckBox) v).isChecked()) {
-////                    checkboxAll.setChecked(false);
-////                }
-////            }
-////        });
-
-
-//
-//            ArrayList<View> views = new ArrayList<View>();
-//
-//            for (int i = 0; i < recyclerView.getFocusables(View.FOCUS_FORWARD).size(); i++) {
-//
-//                View actualView = recyclerView.getFocusables(View.FOCUS_FORWARD).get(i);
-//                System.out.println("VIEW: " + actualView);
-//                System.out.println("VIEW: " + actualView.toString());
-//
-//
-//                if(actualView instanceof EditText) {
-//                    views.add((EditText) actualView);
-//                }
-//                if(actualView instanceof CheckBox) {
-//                    views.add((CheckBox) actualView);
-//                }
-//
-//            }
-
-
+    @Override
+    public void onClick(View view, int position) {
+        System.out.println("CLICK METHOD: " + view + " ; " + position);
     }
-
-
-
-
-
-    public void getAllCheckBoxes(View view) {
-
-        ArrayList<View> returnViews = new ArrayList<>();
-
-        ArrayList<View> focusableViews = recyclerView.getFocusables(View.FOCUS_FORWARD);
-
-        for (int i = 0; i < focusableViews.size(); i++) {
-
-            View actualView = focusableViews.get(i);
-
-            System.out.println("VIEW: " + actualView.toString());
-
-            if (actualView instanceof CheckBox) {
-                returnViews.add((CheckBox) actualView);
-            }
-        }
-
-        System.out.println("RETURN: " + returnViews);
-    }
-
-
 }

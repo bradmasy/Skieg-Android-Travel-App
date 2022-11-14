@@ -64,22 +64,20 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
     }
 
 
-    public void setClickListener(ChecklistClickListener checklistClickListener) {
-        this.clickListener = checklistClickListener;
+    public void setClickListener(ChecklistClickListener itemClickListener) {
+        this.clickListener = itemClickListener;
     }
 
 
 
-
     // Inner class to initialize variables for a Calendar Event object
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
         CheckBox checkBoxItem;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             checkBoxItem = itemView.findViewById(R.id.checkBox);
-//            checkBoxItem.setTag(checkBoxItem.getText());
 
             checkBoxItem.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -94,22 +92,22 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
 //                        checked.set(index, true);
                         // Do your coding
                         System.out.println("CHECKED");
-//                        setItemFromFirebase(true, currCheckbox.getText().toString());
+                        setItemFromFirebase(true, currCheckbox.getText().toString());
                     }
                     else{
                         // Do your coding
                         System.out.println("NOT CHECKED");
-//                        setItemFromFirebase(false, currCheckbox.getText().toString());
+                        setItemFromFirebase(false, currCheckbox.getText().toString());
                     }
 
                 }
             });
         }
 
-//        public void onClick(View itemView) {
-//            System.out.println("ON CLICK RECYCLER VIEW");
-//            if (clickListener != null) clickListener.onClick(itemView, getAdapterPosition());
-//        }
+
+        public void onClick(View itemView) {
+            if (clickListener != null) clickListener.onClick(itemView, getAdapterPosition());
+        }
 
 
 
@@ -117,6 +115,7 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
 
         public void setItemFromFirebase(boolean checkedValue, String checklistItem) {
             String id = MainActivity.USER.getId();
+            // .child("Users").child(id).child("Planner").child("Checklist")
             DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(id).child("Planner").child("Checklist");
 
             databaseReference.addValueEventListener(new ValueEventListener() {
@@ -134,17 +133,19 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
                         String item = DatabaseParse.parseDataValue(dataValues[0]);
                         String checked = DatabaseParse.parseDataValue(dataValues[1]);
                         String id = DatabaseParse.parseLastDataValue(dataValues[2]);
-                        Log.d("ITEM:", item);
-                        Log.d("CHECKED:", checked);
-                        Log.d("ID:", id);
+
 
                         if (item.equals(checklistItem)) {
                             Log.d("ITEM EQUAL:", item);
+                            Log.d("ITEM:", item);
+                            Log.d("CHECKED:", checked);
+                            Log.d("ID:", id);
 
                             String userID = MainActivity.USER.getId();
                             Checklist checklist = new Checklist(item, id, checkedValue);
 
-                            Task setValueTask = databaseReference.child("Users").child(userID).child("Planner").child("Checklist").child(id).setValue(checklist);
+                            // child("Users").child(userID).child("Planner").child("Checklist").child(id)
+                            Task setValueTask = databaseReference.child(id).setValue(checklist);
 
                             setValueTask.addOnSuccessListener(new OnSuccessListener() {
                                 @Override
