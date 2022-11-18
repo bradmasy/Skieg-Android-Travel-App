@@ -33,6 +33,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import skieg.travel.InputValidation;
 import skieg.travel.MainActivity;
 import skieg.travel.R;
@@ -48,11 +53,17 @@ public class Signup extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference databaseReference;
 
+    EditText firstNameInput;
+    EditText lastNameInput;
+    EditText usernameInput;
+    EditText emailInput;
+    EditText passwordInput;
+    EditText cityInput;
+
     float y1;
     float y2;
 
-    private boolean validCity = false;
-
+//    private boolean validCity = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,20 +113,18 @@ public class Signup extends AppCompatActivity {
 
 
     public void signUp(){
-
-        EditText firstNameInput = findViewById(R.id.firstName);
-        EditText lastNameInput = findViewById(R.id.lastName);
-        EditText usernameInput = findViewById(R.id.username);
-        EditText emailInput = findViewById(R.id.userEmail);
-        EditText passwordInput = findViewById(R.id.userPassword);
+        firstNameInput = findViewById(R.id.firstName);
+        lastNameInput = findViewById(R.id.lastName);
+        usernameInput = findViewById(R.id.username);
+        emailInput = findViewById(R.id.userEmail);
+        passwordInput = findViewById(R.id.userPassword);
+        cityInput = findViewById(R.id.city);
 
         String firstName = firstNameInput.getText().toString();
         String lastName = lastNameInput.getText().toString();
         String username = usernameInput.getText().toString();
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
-
-        EditText cityInput = findViewById(R.id.city);
         String city = cityInput.getText().toString();
 
         if (InputValidation.invalidStringInput(firstName) || InputValidation.invalidStringInput(lastName) || InputValidation.invalidStringInput(username)
@@ -131,27 +140,6 @@ public class Signup extends AppCompatActivity {
 
         Signup.AsyncTaskRunner runner = new Signup.AsyncTaskRunner();
         runner.execute(tempUrl);
-
-
-        if (!validCity) {
-            Toast.makeText(Signup.this, "Invalid city entered.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        User user = new User(databaseReference.push().getKey(), firstName, lastName, city, username, email, password);
-
-        // create a task to set the value of the node as the new user
-        Task setValueTask = databaseReference.child("Users").child(user.getId()).setValue(user);
-
-        // add a success listener to the task
-        setValueTask.addOnSuccessListener(new OnSuccessListener() {
-            @Override
-            public void onSuccess(Object o) {
-                Toast.makeText(Signup.this, "Account created", Toast.LENGTH_LONG).show();
-
-                redirectMainPage(user.getId(), user.getFirstName(), user.getLastName(), user.getCity(), user.getUsername(), user.getEmail(), user.getPassword());
-            }
-        });
     }
 
 
@@ -172,6 +160,24 @@ public class Signup extends AppCompatActivity {
     }
 
 
+    public void addUserToDatabase(String firstName, String lastName, String city, String username, String email, String password) {
+        User user = new User(databaseReference.push().getKey(), firstName, lastName, city, username, email, password);
+
+        // create a task to set the value of the node as the new user
+        Task setValueTask = databaseReference.child("Users").child(user.getId()).setValue(user);
+
+        // add a success listener to the task
+        setValueTask.addOnSuccessListener(new OnSuccessListener() {
+            @Override
+            public void onSuccess(Object o) {
+                Toast.makeText(Signup.this, "Account created", Toast.LENGTH_LONG).show();
+
+                redirectMainPage(user.getId(), user.getFirstName(), user.getLastName(), user.getCity(), user.getUsername(), user.getEmail(), user.getPassword());
+            }
+        });
+    }
+
+
     class AsyncTaskRunner extends AsyncTask<String, Void, String> {
 
         @Override
@@ -183,20 +189,26 @@ public class Signup extends AppCompatActivity {
 
                     try {
                         response.getJSONObject("main");
-                        validCity = true;
-                        System.out.println("VALID CITY = " + validCity);
-//                        Log.e("MESSAGE", jsonObjectMain.toString());
+
+                        String firstName = firstNameInput.getText().toString();
+                        String lastName = lastNameInput.getText().toString();
+                        String username = usernameInput.getText().toString();
+                        String email = emailInput.getText().toString();
+                        String password = passwordInput.getText().toString();
+                        String city = cityInput.getText().toString();
+
+                        addUserToDatabase(firstName, lastName, city, username, email, password);
+
                     } catch (JSONException e) {
-                        validCity = false;
                         e.printStackTrace();
+                        Toast.makeText(Signup.this, "Invalid city entered.", Toast.LENGTH_SHORT).show();
                     }
 
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    validCity = false;
-                    System.out.println("VALID CITY = " + validCity);
+                    Toast.makeText(Signup.this, "Invalid city entered.", Toast.LENGTH_SHORT).show();
                 }
             });
             queue.add(request);
