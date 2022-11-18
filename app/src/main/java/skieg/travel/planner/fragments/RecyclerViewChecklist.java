@@ -79,6 +79,7 @@ public class RecyclerViewChecklist extends RecyclerView.Adapter<RecyclerViewChec
                     checked.set(index, false);
                 }
             });
+
         }
     }
 }

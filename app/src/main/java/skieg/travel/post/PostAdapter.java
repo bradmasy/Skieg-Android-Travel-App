@@ -9,22 +9,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 import skieg.travel.R;
 import skieg.travel.RecyclerViewCalendar;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     Context c;
     int postCount; // get the user in the database and how many posts the have
-    String[] names;
-    String[] content;
-    String[] dates;
+    ArrayList<String>names;
+    ArrayList<String> content ;
+    ArrayList<String> dates ;
 
 
-    public PostAdapter( String[] names, String[] content, String[] dates){
+    public PostAdapter(ArrayList<String> names, ArrayList<String>content, ArrayList<String> dates){
         this.names = names;
         this.content = content;
         this.dates = dates;
-        postCount = this.content.length;
+        postCount = names.size();//this.content.length;
     }
 
 
@@ -38,15 +40,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText(names[position]);
-        holder.content.setText(content[position]);
-        holder.date.setText(names[position]);
+        System.out.println("position: " + position);
+        holder.name.setText(names.get(position));
+        holder.content.setText(content.get(position));
+        holder.date.setText(dates.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return postCount;
+        return names.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
