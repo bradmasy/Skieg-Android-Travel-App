@@ -3,14 +3,11 @@ package skieg.travel.welcome_login_signup;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,35 +17,20 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-//import com.google.firebase.auth.AuthResult;
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import skieg.travel.InputValidation;
 import skieg.travel.MainActivity;
 import skieg.travel.R;
-
-import skieg.travel.activity_splashscreen;
-
 import skieg.travel.user.User;
 
 public class Signup extends AppCompatActivity {
-
-//    private FirebaseAuth authentication;
 
     FirebaseDatabase database;
     DatabaseReference databaseReference;
@@ -63,8 +45,6 @@ public class Signup extends AppCompatActivity {
     float y1;
     float y2;
 
-//    private boolean validCity = false;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +52,6 @@ public class Signup extends AppCompatActivity {
 
         Button backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(this::backBtnClicked);
-//        authentication = FirebaseAuth.getInstance();
 
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
@@ -134,6 +113,7 @@ public class Signup extends AppCompatActivity {
         }
 
 
+        // Check that the city entered is valid for the weather API
         String url = "https://api.openweathermap.org/data/2.5/weather";
         String appid = "fa211ad253385ab5e5f303af6dfebb44";
         String tempUrl = url + "?q=" + city + "&appid=" + appid;
@@ -188,8 +168,10 @@ public class Signup extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
 
                     try {
+                        // If there is a response with no error, the city passed to the URL is valid
                         response.getJSONObject("main");
 
+                        // Get user's input from the text fields
                         String firstName = firstNameInput.getText().toString();
                         String lastName = lastNameInput.getText().toString();
                         String username = usernameInput.getText().toString();
