@@ -73,11 +73,11 @@ public class CalendarEventActivity extends AppCompatActivity {
 
                     String date = DatabaseParse.parseDataValue(dataValues[0]);
                     Log.d("DATE:", date);
-                    String description = DatabaseParse.parseDataValue(dataValues[1]);
+                    String description = DatabaseParse.parseDataValue(dataValues[2]);
                     Log.d("DESCRIBE:", description);
-                    String location = DatabaseParse.parseDataValue(dataValues[2]);
+                    String location = DatabaseParse.parseDataValue(dataValues[3]);
                     Log.d("LOCATION:", location);
-                    String title = DatabaseParse.parseLastDataValue(dataValues[3]);
+                    String title = DatabaseParse.parseDataValue(dataValues[4]);
                     Log.d("TITLE:", title);
 
                     // Only display an event if the date matches the date selected by the user

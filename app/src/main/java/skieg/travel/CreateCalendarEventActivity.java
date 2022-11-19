@@ -65,7 +65,7 @@ public class CreateCalendarEventActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference();
 
         String id = databaseReference.push().getKey();
-        CalendarEvent calendarEvent = new CalendarEvent(id, title, description, location, date);
+        CalendarEvent calendarEvent = new CalendarEvent(id, title, description, location, date, MainActivity.USER.getId());
 
         Task setValueTask = databaseReference.child("CalendarEvent").child(id).setValue(calendarEvent);
 

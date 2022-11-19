@@ -6,13 +6,15 @@ public class CalendarEvent {
     String description;
     String location;
     String date;
+    String userID;
 
-    CalendarEvent(String eventID, String title, String description, String location, String date) {
+    CalendarEvent(String eventID, String title, String description, String location, String date, String userID) {
         this.eventID = eventID;
         this.title = title;
         this.description = description;
         this.location = location;
         this.date = date;
+        this.userID = userID;
     }
 
     public String getTitle() {
@@ -45,5 +47,21 @@ public class CalendarEvent {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getEventID() {
+        return eventID;
+    }
+
+    public void setEventID(String eventID) {
+        this.eventID = eventID;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 }
