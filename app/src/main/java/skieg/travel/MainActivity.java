@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d("MAIN", USER.toString());
         }
 
-        Log.d("MAIN", USER.toString());
         String cityName = USER.getCity();
         System.out.println(cityName);
         String tempUrl = url + "?q=" + cityName + "&appid=" + appid;
