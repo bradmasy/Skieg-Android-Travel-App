@@ -7,7 +7,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import skieg.travel.planner.fragments.BudgetFragment;
 import skieg.travel.planner.fragments.ChecklistFragment;
 import skieg.travel.planner.fragments.MainPlanner;
-import skieg.travel.planner.fragments.PlannerFragment;
 
 public class SlideAdapter extends FragmentStateAdapter {
 

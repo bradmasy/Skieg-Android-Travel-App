@@ -23,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import skieg.travel.DatabaseParse;
-import skieg.travel.MainActivity;
 import skieg.travel.R;
 
 

@@ -1,9 +1,5 @@
 package skieg.travel.user;
 
-import android.util.Log;
-
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -20,16 +16,6 @@ public class User {
     public User() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         this.id  = databaseReference.push().getKey();
-//        Task setValueTask = databaseReference.child("Users").child(id).setValue(this);
-//
-//        setValueTask.addOnSuccessListener(new OnSuccessListener(){
-//
-//            @Override
-//            public void onSuccess(Object o) {
-//                Log.d("Success: ", "user: " + id + " has been created.");
-//            }
-//        });
-
     }
 
     // Existing user

@@ -40,7 +40,6 @@ public class CalendarEventActivity extends AppCompatActivity {
         // Get selected date from other calendar activity
         Bundle bundle = getIntent().getExtras();
         selectedDate = bundle.getString("selectedDate");
-        Log.d("LOG", selectedDate);
 
         TextView textViewEventsDay = findViewById(R.id.textViewEventsDay);
         String eventsDayText = "Calendar events for " + selectedDate;
@@ -65,8 +64,6 @@ public class CalendarEventActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d("LOG", "IN DATA SNAPSHOT METHOD");
-
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String currSnapshot = String.valueOf(dataSnapshot.getValue());
                     String[] dataValues = currSnapshot.split(",");

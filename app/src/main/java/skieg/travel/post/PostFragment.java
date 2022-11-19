@@ -10,9 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.database.DatabaseReference;
-
 import java.util.ArrayList;
 
 import skieg.travel.R;
@@ -21,11 +18,10 @@ public class PostFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
-    DatabaseReference db;
     PostAdapter postAdapter;
 
     // GRAB FROM DATA BASE FOR THIS.
-    String[] posts;
+//    String[] posts;
     ArrayList<String> names = new ArrayList<>();
     ArrayList<String> content = new ArrayList<>();
     ArrayList<String> dates = new ArrayList<>();

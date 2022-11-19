@@ -1,6 +1,5 @@
 package skieg.travel.post;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
@@ -12,10 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import skieg.travel.R;
-import skieg.travel.RecyclerViewCalendar;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
-    Context c;
     int postCount; // get the user in the database and how many posts the have
     ArrayList<String>names;
     ArrayList<String> content ;

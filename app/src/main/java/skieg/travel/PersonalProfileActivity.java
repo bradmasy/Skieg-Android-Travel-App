@@ -97,8 +97,6 @@ public class PersonalProfileActivity extends AppCompatActivity {
         MainActivity.USER.setFirstName(firstName);
         MainActivity.USER.setLastName(lastName);
         MainActivity.USER.setCity(city);
-
-        System.out.println("CITY: " + MainActivity.USER.getCity());
         MainActivity.USER.setUsername(username);
         MainActivity.USER.setEmail(email);
         MainActivity.USER.setPassword(password);

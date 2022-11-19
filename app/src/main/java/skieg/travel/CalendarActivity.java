@@ -5,17 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.Toast;
-
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.time.LocalDate;
 
 
 public class CalendarActivity extends AppCompatActivity {
 
     CalendarView calendarView;
-
     String selectedDate = "";
 
 

@@ -6,7 +6,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -76,19 +76,10 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject jsonObjectMain = response.getJSONObject("main");
                         double temp = jsonObjectMain.getDouble("temp") - 273.15;
                         double feelslike = jsonObjectMain.getDouble("feels_like") - 273.15;
-                        int pressure = jsonObjectMain.getInt("pressure");
-                        int humidity = jsonObjectMain.getInt("humidity");
 
                         JSONArray weather = response.getJSONArray("weather");
                         JSONObject jsonObjectWeather = weather.getJSONObject(0);
                         String description = jsonObjectWeather.getString("description");
-
-                        JSONObject jsonObjectWind = response.getJSONObject("wind");
-                        double speed = jsonObjectWind.getDouble("speed");
-                        int degree = jsonObjectWind.getInt("deg");
-
-                        JSONObject jsonObjectClouds = response.getJSONObject("clouds");
-                        int cloud = jsonObjectClouds.getInt("all");
 
                         JSONObject jsonObjectSys = response.getJSONObject("sys");
                         String currentCountry = jsonObjectSys.getString("country");
@@ -99,9 +90,12 @@ public class MainActivity extends AppCompatActivity {
                         TextView feels = findViewById(R.id.feelslike);
                         TextView weatherDescription = findViewById(R.id.description);
 
-                        city.setText(currentCity);
-                        temperature.setText(df.format(temp));
-                        feels.setText(df.format(feelslike));
+                        String cityAndCountry = currentCity + ", " + currentCountry;
+                        String temperatureValue = df.format(temp) + " \u2103";
+                        String feelsLikeValue = df.format(feelslike) + " \u2103";
+                        city.setText(cityAndCountry);
+                        temperature.setText(temperatureValue);
+                        feels.setText(feelsLikeValue);
                         weatherDescription.setText(description);
 
                     } catch (JSONException e) {
@@ -111,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Error getting the weather", Toast.LENGTH_SHORT).show();
                 }
             });
             queue.add(request);
