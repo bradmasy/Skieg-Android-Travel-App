@@ -56,8 +56,25 @@ public class PersonalProfileActivity extends AppCompatActivity {
         backBtn.setOnClickListener(view -> {
             backBtnClicked();
         });
+
+        Button logoutBtn = findViewById(R.id.LogoutButton);
+        logoutBtn.setOnClickListener(view ->{
+            logoutBtnClicked();
+        });
     }
 
+    public void logoutBtnClicked(){
+        Toast.makeText(this,"Logging out: " + MainActivity.USER.getUsername(), Toast.LENGTH_SHORT).show();
+        // Clear User so technically not 'logged in' when we get to splashscreen
+        Intent intent = new Intent(this, activity_splashscreen.class);
+        MainActivity.USER.setFirstName(null);
+        MainActivity.USER.setLastName(null);
+        MainActivity.USER.setCity(null);
+        MainActivity.USER.setUsername(null);
+        MainActivity.USER.setEmail(null);
+        MainActivity.USER.setPassword(null);
+        startActivity(intent);
+    }
 
     private void fillUserInfo() {
         User currentUser = MainActivity.USER;
