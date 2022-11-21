@@ -18,9 +18,6 @@ import skieg.travel.R;
 
 
 
-interface OnItemListener{
-    void onItemClick(int position);
-}
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     int postCount; // get the user in the database and how many posts the have
@@ -30,6 +27,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     ArrayList<String> dates ;
     ArrayList<String> userID;
     ViewHolder viewHolder;
+    RecyclerViewClickListener itemListener;
     int currentPosition;
 
     public PostAdapter(ArrayList<String> names, ArrayList<String>content, ArrayList<String> dates,ArrayList<String> ids){
@@ -37,6 +35,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         this.content = content;
         this.dates   = dates;
         this.userID  = ids;
+        this.itemListener = new RecyclerViewClickListener() {
+            @Override
+            public void recyclerViewListClicked(View v, int position) {
+                System.out.println("POSITION: " + position);
+            }
+        };
         postCount    = names.size();//this.content.length;
     }
 
@@ -73,15 +77,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             content      = postView.findViewById(R.id.contentPost);
             date         = postView.findViewById(R.id.datePost);
 
-
+            postView.setOnClickListener(this);
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     System.out.println("IDS: " + userID);
                     System.out.println("HERE");
                     Drawable deleteButton = view.getResources().getDrawable(R.drawable.delete);
-                    System.out.println("VIEW POSITION:" + viewHolder.getAdapterPosition());
-                    String postID = userID.get(viewHolder.getAdapterPosition());
+                    System.out.println("VIEW POSITION:" + currentPosition);
+                    System.out.println("ID: " + viewHolder);
+                    String postID = userID.get(currentPosition);
                     System.out.println("POST ID: " + postID);
                     System.out.println("USER ID: " + MainActivity.USER.getId());
                     if(MainActivity.USER.getId().equals(postID)){
@@ -98,8 +104,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         @Override
         public void onClick(View view) {
-            System.out.println("VIEW POSITION ONLCI:" + viewHolder.getAdapterPosition());
-
+            itemListener.recyclerViewListClicked(view,this.getAdapterPosition());
         }
     }
 }

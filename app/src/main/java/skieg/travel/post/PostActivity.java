@@ -34,6 +34,7 @@ public class PostActivity extends AppCompatActivity {
     ArrayList<String> names= new ArrayList<>();
     ArrayList<String> posts= new ArrayList<>();
     ArrayList<String> dates = new ArrayList<>();
+    ArrayList<String> ids = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,9 +82,10 @@ public class PostActivity extends AppCompatActivity {
                     names.add(name);
                     dates.add(date);
                     posts.add(content);
+                    ids.add(id);
                 }
 
-                PDAdapter = new PostAdapter(names, posts, dates);
+                PDAdapter = new PostAdapter(names, posts, dates,ids);
                 postFragment.initializeAdapter(PDAdapter);
             }
 
