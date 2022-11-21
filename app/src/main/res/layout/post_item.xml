@@ -1,29 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:layout_marginLeft="10sp"
+android:layout_marginRight="10sp"
+android:layout_marginBottom="10sp"
+android:background="@drawable/rounded_edges">
+
+
+<TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_marginTop="5sp"
+    android:text="placeholder"
     android:layout_marginLeft="10sp"
-    android:layout_marginRight="10sp">
+    android:layout_marginRight="10sp"
+    android:textStyle="bold"
+    android:layout_marginBottom="5sp"
+    android:id="@+id/usernamePost"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="placeholder"
-        android:layout_marginBottom="5sp"
-        android:id="@+id/usernamePost"/>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_marginLeft="20sp"
+    android:layout_marginRight="20sp"
+    android:layout_height="wrap_content"
+    android:text="content"
+    android:id="@+id/contentPost"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="content"
-        android:id="@+id/contentPost"/>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="right"
+    android:textStyle="italic"
+    android:textSize="10sp"
+    android:layout_marginLeft="10sp"
+    android:layout_marginRight="10sp"
+    android:text="date"
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:text="date"
-        android:id="@+id/datePost"
+    android:id="@+id/datePost"
+    />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10sp"
+    android:layout_marginRight="10sp"
+    android:layout_marginBottom="5sp">
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="15sp"
+        android:layout_height="15sp"
+        android:background="@drawable/delete"
         />
+</LinearLayout>
 </LinearLayout>

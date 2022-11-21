@@ -21,10 +21,10 @@ public class PostFragment extends Fragment {
     PostAdapter postAdapter;
 
     // GRAB FROM DATA BASE FOR THIS.
-//    String[] posts;
     ArrayList<String> names = new ArrayList<>();
     ArrayList<String> content = new ArrayList<>();
     ArrayList<String> dates = new ArrayList<>();
+    ArrayList<String> userID = new ArrayList<>();
 
     public PostFragment(){
 
@@ -37,7 +37,7 @@ public class PostFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager((view.getContext())));
 
-        postAdapter = new PostAdapter(names,content,dates);
+        postAdapter = new PostAdapter(names,content,dates,userID);
         recyclerView.setAdapter(postAdapter);
 
         return view;
@@ -46,6 +46,4 @@ public class PostFragment extends Fragment {
     public void initializeAdapter(RecyclerView.Adapter<PostAdapter.ViewHolder> adapter){
         recyclerView.setAdapter(adapter);
     }
-
-
 }
