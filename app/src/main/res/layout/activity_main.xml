@@ -58,15 +58,18 @@
         android:layout_height="match_parent"
         android:layout_weight="80"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginEnd="20dp">
             <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -75,10 +78,11 @@
                     android:src="@drawable/ic_baseline_people_24"/>
                 <Button
                     android:id="@+id/mainEventsButton"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60sp"
+                    android:layout_marginTop="30sp"
                     android:layout_marginBottom="60dp"
+                    android:paddingTop="50dp"
                     android:backgroundTint="@color/mainBlue"
                     android:onClick="clickMainEventsButton"
                     android:text="@string/events_button"
@@ -89,7 +93,8 @@
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -98,10 +103,11 @@
                     android:src="@drawable/ic_baseline_book_24"/>
                 <Button
                     android:id="@+id/mainPlannerButton"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60sp"
+                    android:layout_marginTop="30sp"
                     android:layout_marginBottom="60dp"
+                    android:paddingTop="50dp"
                     android:backgroundTint="@color/mainBlue"
                     android:onClick="clickMainPlannerButton"
                     android:text="@string/planner_button"
@@ -112,22 +118,25 @@
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginBottom="30dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_baseline_calendar_month_24"/>
+
                 <Button
                     android:id="@+id/mainCalendarButton"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60sp"
+                    android:layout_marginTop="30sp"
                     android:layout_marginBottom="60dp"
                     android:background="@android:color/transparent"
                     android:backgroundTint="@color/mainBlue"
                     android:onClick="clickMainCalendarButton"
+                    android:paddingTop="50dp"
                     android:text="@string/calendar_button"
                     android:textColor="@color/black" />
             </FrameLayout>
@@ -137,10 +146,13 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="-25dp">
             <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -149,10 +161,11 @@
                     android:src="@drawable/ic_baseline_person_24"/>
                 <Button
                     android:id="@+id/mainPersonalProfileButton"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60sp"
+                    android:layout_marginTop="30sp"
                     android:layout_marginBottom="60dp"
+                    android:paddingTop="50dp"
                     android:backgroundTint="@color/mainBlue"
                     android:onClick="clickMainPersonalProfileButton"
                     android:text="@string/personal_profile_button"
@@ -163,7 +176,8 @@
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -172,10 +186,11 @@
                     android:src="@drawable/ic_baseline_add_comment_24"/>
                 <Button
                     android:id="@+id/mainPostButton"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60sp"
+                    android:layout_marginTop="30sp"
                     android:layout_marginBottom="60dp"
+                    android:paddingTop="50dp"
                     android:backgroundTint="@color/mainBlue"
                     android:onClick="clickMainPostButton"
                     android:text="@string/post_button"
@@ -186,7 +201,8 @@
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -195,10 +211,11 @@
                     android:src="@drawable/ic_baseline_map_24"/>
                 <Button
                     android:id="@+id/mainMapsActivityButton"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60sp"
+                    android:layout_marginTop="30sp"
                     android:layout_marginBottom="60dp"
+                    android:paddingTop="50dp"
                     android:background="@android:color/transparent"
                     android:backgroundTint="@color/mainBlue"
                     android:onClick="clickMapsButton"

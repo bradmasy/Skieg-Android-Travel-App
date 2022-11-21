@@ -115,31 +115,73 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickMainEventsButton(View view) {
        Intent intent = new Intent(this, EventsActivity.class);
+
+       // Set background initially invisible
+       view.getBackground().setAlpha(0);
+
+       // Set Background
+       view.setBackgroundResource(R.drawable.drawable_button_ripple);
+
        startActivity(intent);
     }
 
     public void clickMainPlannerButton(View view) {
         Intent intent = new Intent(this, MainPlanner.class);
+
+        // Set background initially invisible
+        view.getBackground().setAlpha(0);
+
+        // Set Background
+        view.setBackgroundResource(R.drawable.drawable_button_ripple);
+
         startActivity(intent);
     }
 
     public void clickMainCalendarButton(View view) {
         Intent intent = new Intent(this, CalendarActivity.class);
+
+        // Set background initially invisible
+        view.getBackground().setAlpha(0);
+
+        // Set Background
+        view.setBackgroundResource(R.drawable.drawable_button_ripple);
+
         startActivity(intent);
     }
 
     public void clickMainPersonalProfileButton(View view) {
         Intent intent = new Intent(this, PersonalProfileActivity.class);
+
+        // Set background initially invisible
+        view.getBackground().setAlpha(0);
+
+        // Set Background
+        view.setBackgroundResource(R.drawable.drawable_button_ripple);
+
         startActivity(intent);
     }
 
     public void clickMainPostButton(View view) {
         Intent intent = new Intent(this, PostActivity.class);
+
+        // Set background initially invisible
+        view.getBackground().setAlpha(0);
+
+        // Set Background
+        view.setBackgroundResource(R.drawable.drawable_button_ripple);
+
         startActivity(intent);
     }
 
     public void clickMapsButton(View view){
         Intent intent = new Intent(this, MapsActivity.class);
+
+        // Set background initially invisible
+        view.getBackground().setAlpha(0);
+
+        // Set Background
+        view.setBackgroundResource(R.drawable.drawable_button_ripple);
+
         startActivity(intent);
     }
 }
