@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -85,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
                         String currentCountry = jsonObjectSys.getString("country");
                         String currentCity = response.getString("name");
 
+                        // Get Icon
+                        String currentIcon = jsonObjectWeather.getString("icon");
+                        ImageView imageView = findViewById(R.id.weatherIcon);
+
                         TextView city = findViewById(R.id.city);
                         TextView temperature = findViewById(R.id.temperature);
                         TextView feels = findViewById(R.id.feelslike);
@@ -97,6 +102,38 @@ public class MainActivity extends AppCompatActivity {
                         temperature.setText(temperatureValue);
                         feels.setText(feelsLikeValue);
                         weatherDescription.setText(description);
+
+                        Toast.makeText(MainActivity.this, currentIcon, Toast.LENGTH_SHORT).show();
+
+                        // Determine which Icon to use
+                        if (currentIcon.equalsIgnoreCase("01d") || currentIcon.equalsIgnoreCase("01n")){
+                            imageView.setImageResource(R.drawable.drawable_weather_sunny_01d);
+                        }
+                        if (currentIcon.equalsIgnoreCase("02d")|| currentIcon.equalsIgnoreCase("02n")){
+                            imageView.setImageResource(R.drawable.drawable_weather_fewclouds_02d);
+                        }
+                        if (currentIcon.equalsIgnoreCase("03d")|| currentIcon.equalsIgnoreCase("03n")){
+                            imageView.setImageResource(R.drawable.drawable_weather_scatteredclouds_03d);
+                        }
+                        if (currentIcon.equalsIgnoreCase("04d")|| currentIcon.equalsIgnoreCase("04n")){
+                            imageView.setImageResource(R.drawable.drawable_weather_brokenclouds_04d);
+                        }
+                        if (currentIcon.equalsIgnoreCase("09d")|| currentIcon.equalsIgnoreCase("09n")){
+                            imageView.setImageResource(R.drawable.drawable_weather_showerrain_09d);
+                        }
+                        if (currentIcon.equalsIgnoreCase("10d")|| currentIcon.equalsIgnoreCase("10n")){
+                            // Same as Rain, 09d
+                            imageView.setImageResource(R.drawable.drawable_weather_showerrain_09d);
+                        }
+                        if (currentIcon.equalsIgnoreCase("11d")|| currentIcon.equalsIgnoreCase("11n")){
+                            imageView.setImageResource(R.drawable.drawable_weather_thunderstorm_11d);
+                        }
+                        if (currentIcon.equalsIgnoreCase("13d")|| currentIcon.equalsIgnoreCase("13n")){
+                            imageView.setImageResource(R.drawable.drawable_weather_snow_13d);
+                        }
+                        if (currentIcon.equalsIgnoreCase("50d")|| currentIcon.equalsIgnoreCase("50n")){
+                            imageView.setImageResource(R.drawable.drawable_weather_mist_50d);
+                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -183,5 +220,11 @@ public class MainActivity extends AppCompatActivity {
         view.setBackgroundResource(R.drawable.drawable_button_ripple);
 
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Override the default behaviour to disable going back from this page.
+        // Do nothing...
     }
 }
