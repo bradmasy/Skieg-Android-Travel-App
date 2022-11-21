@@ -15,26 +15,39 @@
     android:weightSum="100">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="120sp"
-        android:background="@color/mainBlue"
         android:id="@+id/weather"
+        android:layout_width="match_parent"
+        android:layout_height="149dp"
+        android:layout_weight="20"
+        android:background="@drawable/gradient_drawable_reverse"
         android:gravity="center"
         android:orientation="vertical"
-        android:text="HELLO"
-        android:layout_weight="20">
+        android:text="HELLO">
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView8"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Current Weather and Location:"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.976"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.0" />-->
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/feelslike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Current Weather and Location:"
-            android:textStyle="bold"
+            android:text="Feels like: "
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.277" />
+            app:layout_constraintVertical_bias="0.723" />
 
         <TextView
             android:id="@+id/city"
@@ -44,32 +57,35 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.107" />
 
         <TextView
             android:id="@+id/temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Temperature"
+            android:text="temp"
+            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.274"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.042"
+            app:layout_constraintStart_toEndOf="@+id/weatherIcon"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.683" />
+            app:layout_constraintVertical_bias="0.385" />
 
-        <TextView
-            android:id="@+id/feelslike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="FEELSLIKE"
+        <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_width="61dp"
+            android:layout_height="64dp"
+            android:src="@drawable/drawable_weather_sunny_01d"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.328"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.841" />
+            app:layout_constraintVertical_bias="0.364" />
 
         <TextView
             android:id="@+id/description"
@@ -78,22 +94,10 @@
             android:text="DESC"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.691"
+            app:layout_constraintHorizontal_bias="0.486"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.653" />
-
-        <ImageView
-            android:id="@+id/weatherIcon"
-            android:layout_width="61dp"
-            android:layout_height="64dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.428"
-            android:src="@drawable/drawable_weather_sunny_01d"/>
+            app:layout_constraintVertical_bias="0.876" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

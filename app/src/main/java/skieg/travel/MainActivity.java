@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         String feelsLikeValue = df.format(feelslike) + " \u2103";
                         city.setText(cityAndCountry);
                         temperature.setText(temperatureValue);
-                        feels.setText(feelsLikeValue);
+                        feels.append(feelsLikeValue);
                         weatherDescription.setText(description);
 
                         Toast.makeText(MainActivity.this, currentIcon, Toast.LENGTH_SHORT).show();
