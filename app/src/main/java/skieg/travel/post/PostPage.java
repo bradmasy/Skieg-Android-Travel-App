@@ -42,8 +42,8 @@ public class PostPage extends AppCompatActivity {
 
 
     private void postToDatabase(View view, Post post){
-         String postID = databaseReference.push().getKey();
-         Task setValueTask = databaseReference.child("Forum").child("posts").child(postID).setValue(post);
+
+         Task setValueTask = databaseReference.child("Forum").child("posts").child(post.getPostID()).setValue(post);
 
          setValueTask.addOnSuccessListener(new OnSuccessListener(){
 
@@ -57,12 +57,13 @@ public class PostPage extends AppCompatActivity {
     }
 
     public void post(View view){
+        String postID = databaseReference.push().getKey();
 
         infoBlock = findViewById(R.id.postContent);
         String info = infoBlock.getText().toString();
         String date = CurrentDateTime.date();
         System.out.println("DATE: " + date);
-        Post post = new Post(MainActivity.USER, date, info);
+        Post post = new Post(MainActivity.USER, date, info,postID);
         postToDatabase(view,post);
     }
 

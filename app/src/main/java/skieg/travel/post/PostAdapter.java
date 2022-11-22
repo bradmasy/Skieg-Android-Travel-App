@@ -1,6 +1,7 @@
 package skieg.travel.post;
 
 import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
@@ -10,6 +11,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -26,15 +31,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     ArrayList<String> content ;
     ArrayList<String> dates ;
     ArrayList<String> userID;
+    ArrayList<String> postID;
     ViewHolder viewHolder;
     RecyclerViewClickListener itemListener;
-    int currentPosition;
+    int currentPosition = 0;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-    public PostAdapter(ArrayList<String> names, ArrayList<String>content, ArrayList<String> dates,ArrayList<String> ids){
+    public PostAdapter(ArrayList<String> names, ArrayList<String>content, ArrayList<String> dates,ArrayList<String> ids,ArrayList<String>postIDS){
         this.names   = names;
         this.content = content;
         this.dates   = dates;
         this.userID  = ids;
+        this.postID = postIDS;
         this.itemListener = new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
@@ -72,31 +80,29 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         TextView name, date, content;
         public ViewHolder(@NonNull View postView){
             super(postView);
+            Drawable deleteButtonImg = postView.getResources().getDrawable(R.drawable.delete);
             deleteButton = postView.findViewById(R.id.deleteButton);
             name         = postView.findViewById(R.id.usernamePost);
             content      = postView.findViewById(R.id.contentPost);
             date         = postView.findViewById(R.id.datePost);
 
-            postView.setOnClickListener(this);
-            deleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            System.out.println("ADAPTER POS: " + currentPosition);
+            if(MainActivity.USER.getId().equals(userID.get(currentPosition))){
+                deleteButton.setBackground(deleteButtonImg);
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Task setValueTask = databaseReference.child("Forum").child("posts").setValue(postID.get(currentPosition));
 
-                    System.out.println("IDS: " + userID);
-                    System.out.println("HERE");
-                    Drawable deleteButton = view.getResources().getDrawable(R.drawable.delete);
-                    System.out.println("VIEW POSITION:" + currentPosition);
-                    System.out.println("ID: " + viewHolder);
-                    String postID = userID.get(currentPosition);
-                    System.out.println("POST ID: " + postID);
-                    System.out.println("USER ID: " + MainActivity.USER.getId());
-                    if(MainActivity.USER.getId().equals(postID)){
-                        System.out.println("THIS WORKED");
-                    };
-                    // if the users id matches give them the option to delete the post.
-                    // Toast.makeText(,"Post Deleted",Toast.LENGTH_SHORT,false);
-                }
-            });
+                    }
+                });
+            } else{
+                deleteButton.setVisibility(View.GONE);
+
+            }
+
+            postView.setOnClickListener(this);
+            currentPosition++;
         }
 
 
@@ -105,6 +111,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         @Override
         public void onClick(View view) {
             itemListener.recyclerViewListClicked(view,this.getAdapterPosition());
+
         }
     }
 }

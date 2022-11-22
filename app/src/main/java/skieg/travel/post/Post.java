@@ -18,6 +18,7 @@ public class Post implements Serializable {
     private String date;
     private String userID;
     private String username;
+    private String postID;
 
     public String getInformation() {
         return information;
@@ -43,16 +44,26 @@ public class Post implements Serializable {
         this.userID = userID;
     }
 
-    public Post(User user, String date, String content){
+    public Post(User user, String date, String content, String postID){
         this.userID = user.getId();
         this.username = user.getUsername();
         this.date = date;
         this.information = content;
+        this.postID = postID;
+
+    }
+
+    public void setPostID(String id){
+        this.postID = id;
     }
 
     public void addInformation(String info){
         this.information = info;
 
+    }
+
+    public String getPostID(){
+        return this.postID;
     }
 
 

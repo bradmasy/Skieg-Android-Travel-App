@@ -25,6 +25,7 @@ public class PostFragment extends Fragment {
     ArrayList<String> content = new ArrayList<>();
     ArrayList<String> dates = new ArrayList<>();
     ArrayList<String> userID = new ArrayList<>();
+    ArrayList<String> PostID = new ArrayList<>();
 
     public PostFragment(){
 
@@ -37,7 +38,7 @@ public class PostFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager((view.getContext())));
 
-        postAdapter = new PostAdapter(names,content,dates,userID);
+        postAdapter = new PostAdapter(names,content,dates,userID,PostID);
         recyclerView.setAdapter(postAdapter);
 
         return view;

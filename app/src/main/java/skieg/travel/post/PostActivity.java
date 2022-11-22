@@ -35,6 +35,7 @@ public class PostActivity extends AppCompatActivity {
     ArrayList<String> posts= new ArrayList<>();
     ArrayList<String> dates = new ArrayList<>();
     ArrayList<String> ids = new ArrayList<>();
+    ArrayList<String> postIds = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,22 +71,29 @@ public class PostActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     Log.d("Data Snap: ", dataSnapshot.getValue().toString());
-
                     String currSnapshot = String.valueOf(dataSnapshot.getValue());
                     String[] dataValues = currSnapshot.split(",");
                     String date = DatabaseParse.parseDataValue(dataValues[0]);
                     Log.d("DATE:", date);
+
                     String content = DatabaseParse.parseDataValue(dataValues[1]);
-                    String id = DatabaseParse.parseDataValue(dataValues[2]);
-                    String name = DatabaseParse.parseLastDataValue(dataValues[3]);
+
+                    String postID = DatabaseParse.parseDataValue(dataValues[2]);
+
+                    String userID = DatabaseParse.parseDataValue(dataValues[3]);
+
+                    String username = DatabaseParse.parseLastDataValue(dataValues[4]);
+
                     Log.d("Content:", content);
-                    names.add(name);
+
+                    names.add(username);
                     dates.add(date);
                     posts.add(content);
-                    ids.add(id);
+                    ids.add(userID);
+                    postIds.add(postID);
                 }
 
-                PDAdapter = new PostAdapter(names, posts, dates,ids);
+                PDAdapter = new PostAdapter(names, posts, dates,ids,postIds);
                 postFragment.initializeAdapter(PDAdapter);
             }
 

@@ -50,7 +50,6 @@ android:background="@drawable/rounded_edges">
         android:id="@+id/deleteButton"
         android:layout_width="15sp"
         android:layout_height="15sp"
-        android:background="@drawable/delete"
         />
 </LinearLayout>
 </LinearLayout>
