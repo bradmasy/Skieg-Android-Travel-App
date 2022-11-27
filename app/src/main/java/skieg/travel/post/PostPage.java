@@ -1,5 +1,6 @@
 package skieg.travel.post;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ public class PostPage extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private EditText infoBlock;
     private Button postButton;
+    private String currentCountry;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,6 +34,9 @@ public class PostPage extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference();
         postButton = findViewById(R.id.post);
+        Intent intent = getIntent();
+        currentCountry = intent.getStringExtra("country");
+        System.out.println("CURRENT COUNTRY: " + currentCountry);
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,7 +46,10 @@ public class PostPage extends AppCompatActivity {
     }
 
 
-
+    public void back(View view){
+        Intent intent = new Intent(PostPage.this,MainActivity.class);
+        startActivity(intent);
+    }
 
 
     private void postToDatabase(View view, Post post){
@@ -61,12 +69,12 @@ public class PostPage extends AppCompatActivity {
 
     public void post(View view){
         String postID = databaseReference.push().getKey();
-
-        infoBlock = findViewById(R.id.postContent);
+        infoBlock  = findViewById(R.id.postContent);
         String info = infoBlock.getText().toString();
         String date = CurrentDateTime.date();
         System.out.println("DATE: " + date);
-        Post post = new Post(MainActivity.USER, date, info,postID);
+        System.out.println("CURRENT: " + currentCountry);
+        Post post = new Post(MainActivity.USER, date, info,postID, currentCountry);
         postToDatabase(view,post);
     }
 
