@@ -1,12 +1,15 @@
 package skieg.travel.post;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -49,6 +52,7 @@ import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import skieg.travel.DatabaseParse;
 import skieg.travel.MainActivity;
@@ -66,7 +70,8 @@ public class PostActivity extends AppCompatActivity {
     ArrayList<String> ids = new ArrayList<>();
     ArrayList<String> postIds = new ArrayList<>();
     ImageView currentCountryFlag;
-    private final String countryFlagsAPI = "https://countryflagsapi.com/png/canada"; // the country name has to follow the final "/"
+    Drawable current;
+    private final String countryFlagsAPI = "https://countryflagsapi.com/png/"; // the country name has to follow the final "/"
     String endURL = ":filetype/:code";
     Spinner countrySpin;
     private final String countriesAPI = "https://restcountries.com/v2/all?fields=name";
@@ -95,29 +100,106 @@ public class PostActivity extends AppCompatActivity {
         countrySpin = findViewById(R.id.countries);
         currentCountryFlag = findViewById(R.id.flag);
 
-        readCountryAPI();
 
+
+
+        readCountryAPI();
         canadaFlag();
+        // Create a listener every time a spinner item is selected
+        countrySpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            // Override the onItemSelected method defined in AdapterView.OnItemSelectedListener
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Store the selected item's value in a string
+                String selectedSpinnerItem = parent.getItemAtPosition(position).toString();
+               // chooseCountry(selectedSpinnerItem);
+                DownloadImageTask dtsk = new DownloadImageTask(currentCountryFlag);
+                dtsk.execute(countryFlagsAPI + selectedSpinnerItem);
+            }
+            // Override the onNothingSelected method defined in AdapterView.OnItemSelectedListener
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 
     private void canadaFlag(){
-        AsyncTaskRunnerFlag flagRunner = new AsyncTaskRunnerFlag();
+        DownloadImageTask flagRunner = new DownloadImageTask(currentCountryFlag);
         flagRunner.execute(countryFlagsAPI);
-
     }
+
     private void setFirstCountryFlag() throws IOException {
-        URL url = new URL(countryFlagsAPI);
+        URL url = new URL(countryFlagsAPI + "canada");
         System.out.println("URL: " + url);
         InputStream is = (InputStream) url.getContent();
-        Drawable flag = Drawable.createFromStream(is, "canada");
-        currentCountryFlag.setImageUR(url);
-        currentCountryFlag.setImageDrawable(flag);
+        current  = Drawable.createFromStream(is, "canada");
+        System.out.println(current);
     }
 
-    private void chooseCountry(View view) {
-
+    private void chooseCountry(String item) throws MalformedURLException {
+        URL url = new URL(countryFlagsAPI + item);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+    }
+
+
+
+
+
+
+
+
+
 
 
     private void readCountryAPI() {
@@ -130,12 +212,12 @@ public class PostActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
 
+            System.out.println(Arrays.toString(strings));
             try {
                 setFirstCountryFlag();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
 
             return null;
         }
@@ -176,7 +258,6 @@ public class PostActivity extends AppCompatActivity {
         }
     }
 
-
     private void getDataFromFirebase() {
         // all the posts in line 1
         names = new ArrayList<>();
@@ -188,25 +269,14 @@ public class PostActivity extends AppCompatActivity {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d("LOG", "IN DATA SNAPSHOT METHOD");
-
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                    Log.d("Data Snap: ", dataSnapshot.getValue().toString());
                     String currSnapshot = String.valueOf(dataSnapshot.getValue());
                     String[] dataValues = currSnapshot.split(",");
                     String date = DatabaseParse.parseDataValue(dataValues[0]);
-                    Log.d("DATE:", date);
-
                     String content = DatabaseParse.parseDataValue(dataValues[1]);
-
                     String postID = DatabaseParse.parseDataValue(dataValues[2]);
-
                     String userID = DatabaseParse.parseDataValue(dataValues[3]);
-
                     String username = DatabaseParse.parseLastDataValue(dataValues[4]);
-
-                    Log.d("Content:", content);
 
                     names.add(username);
                     dates.add(date);
