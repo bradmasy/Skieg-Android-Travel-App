@@ -105,9 +105,6 @@ public class PostActivity extends AppCompatActivity {
 
                     getDataFromFirebase(selectedSpinnerItem);
 
-
-
-
                     PDAdapter = new PostAdapter(names, posts, dates, ids, postIds, countries);
 
                     postFragment.initializeAdapter(PDAdapter);
