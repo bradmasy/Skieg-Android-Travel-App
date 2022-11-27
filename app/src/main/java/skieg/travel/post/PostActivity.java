@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +21,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
+import skieg.travel.CalendarEventActivity;
 import skieg.travel.DatabaseParse;
+import skieg.travel.InputValidation;
+import skieg.travel.MapsActivity;
+import skieg.travel.PersonalProfileActivity;
 import skieg.travel.R;
 
 
@@ -58,6 +64,32 @@ public class PostActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.recyclerPosts ,postFragment);
         fragmentTransaction.commit();
         getDataFromFirebase();
+
+
+
+
+        Button profileBtn = findViewById(R.id.profileBtn);
+        profileBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, PersonalProfileActivity.class);
+            startActivity(intent);
+        });
+
+        Button eventsBtn = findViewById(R.id.eventsBtn);
+        eventsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CalendarEventActivity.class);
+
+            // Set default date to today
+            LocalDate currentDate = LocalDate.now();
+            String selectedDate = currentDate.getYear() + "-" + InputValidation.makeValidDateValue(currentDate.getMonthValue()) + "-" + InputValidation.makeValidDateValue(currentDate.getDayOfMonth());
+
+            System.out.println("DATE: " + selectedDate);
+
+            Bundle bundle = new Bundle();
+            bundle.putString("selectedDate", selectedDate);
+            intent.putExtras(bundle);
+
+            startActivity(intent);
+        });
     }
 
     private void getDataFromFirebase() {
