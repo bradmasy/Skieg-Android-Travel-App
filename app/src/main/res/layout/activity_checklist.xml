@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="0sp"
         android:layout_weight="25"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="@drawable/gradient_drawable_reverse">
 
         <TextView
             android:id="@+id/postContent"
@@ -41,7 +42,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_drawable">
 
     <EditText
         android:id="@+id/checklistEditText"
@@ -72,27 +74,35 @@
             android:layout_height="wrap_content"
             android:layout_weight="50"
             android:text="@string/add"
-            android:layout_marginRight="10sp"/>
+            android:layout_marginRight="10sp"
+            android:backgroundTint="@color/tertiaryBlue"
+            android:textColor="@color/white"/>
         <Button
             android:id="@+id/clearItemBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="50"
             android:text="@string/clear"
-            android:layout_marginRight="10sp"/>
+            android:layout_marginRight="10sp"
+            android:backgroundTint="@color/tertiaryBlue"
+            android:textColor="@color/white"/>
         <Button
             android:id="@+id/saveBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="50"
             android:text="@string/save"
-            android:layout_marginRight="10sp"/>
+            android:layout_marginRight="10sp"
+            android:backgroundTint="@color/tertiaryBlue"
+            android:textColor="@color/white"/>
         <Button
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/back_button"
-            android:layout_weight="50"/>
+            android:layout_weight="50"
+            android:backgroundTint="@color/tertiaryBlue"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 </LinearLayout>

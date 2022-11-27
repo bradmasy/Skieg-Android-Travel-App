@@ -111,7 +111,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                         System.out.println("CURRENT POS: " + pos);
                         databaseReference.child("Forum").child("posts").child(postID.get(pos)).setValue(null);
                         System.out.println("DELETED POST");
-                        // update page here
                     }
                 });
             } else{

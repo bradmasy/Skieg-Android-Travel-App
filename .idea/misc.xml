@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1905" />
+        <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/drawable/drawable_button_ripple.xml" value="0.3125" />
+        <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/drawable/drawable_button_ripple_recyclerView.xml" value="0.3125" />
+        <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/drawable/drawable_button_ripple_recyclerview.xml" value="0.308" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/drawable/drawable_splashscreen_circles.xml" value="0.2345" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/drawable/graddient_drawable.xml" value="0.2115" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/drawable/gradient_drawable.xml" value="0.2065" />
@@ -22,7 +25,7 @@
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_itinerary.xml" value="0.30344202898550726" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_journal.xml" value="0.30344202898550726" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_main_firebase.xml" value="0.30344202898550726" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_maps.xml" value="0.30344202898550726" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_maps2.xml" value="0.30344202898550726" />
@@ -34,12 +37,14 @@
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_splashscreen.xml" value="0.33" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_user_profile.xml" value="0.30344202898550726" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_weather.xml" value="0.30344202898550726" />
+        <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/budget_item.xml" value="0.36666666666666664" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/calendar_event_item.xml" value="0.30344202898550726" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/checklist_item.xml" value="0.30344202898550726" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/create_calendar_event.xml" value="0.30344202898550726" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/fragment_events_layout.xml" value="0.30344202898550726" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/fragment_forum.xml" value="0.30344202898550726" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/login_signup.xml" value="0.33" />
+        <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/post_item.xml" value="0.36666666666666664" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/mipmap-anydpi-v26/Stieg_launcher.xml" value="0.1855" />
         <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_budget.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/alexa/AndroidStudioProjects/android-term-project/app/src/main/res/layout/activity_calendar.xml" value="0.253125" />

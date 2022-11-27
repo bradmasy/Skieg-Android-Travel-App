@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         feels.append(feelsLikeValue);
                         weatherDescription.setText(description);
 
-                        Toast.makeText(MainActivity.this, currentIcon, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, currentIcon, Toast.LENGTH_SHORT).show();
 
                         // Determine which Icon to use
                         if (currentIcon.equalsIgnoreCase("01d") || currentIcon.equalsIgnoreCase("01n")){

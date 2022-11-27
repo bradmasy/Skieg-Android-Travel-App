@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import skieg.travel.R;
+import skieg.travel.post.RecyclerViewClickListener;
 
 public class RecyclerViewBudget extends RecyclerView.Adapter<RecyclerViewBudget.MyViewHolder> {
 
     public ArrayList<String> items;
     public ArrayList<Double> amounts;
     public ArrayList<String> IDs;
-
 
     public RecyclerViewBudget(ArrayList<String> items, ArrayList<Double> amounts, ArrayList<String> IDs) {
         this.items = items;
@@ -47,7 +47,7 @@ public class RecyclerViewBudget extends RecyclerView.Adapter<RecyclerViewBudget.
 
 
     // Inner class to initialize variables for a Calendar Event object
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView item, amount;
 
@@ -56,5 +56,6 @@ public class RecyclerViewBudget extends RecyclerView.Adapter<RecyclerViewBudget.
             item = itemView.findViewById(R.id.item);
             amount = itemView.findViewById(R.id.amount);
         }
+
     }
 }
