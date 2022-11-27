@@ -87,7 +87,7 @@
             android:layout_weight="50"
             android:text="@string/add"
             android:layout_marginRight="10sp"
-            android:backgroundTint="@color/tertiaryBlue"
+            android:backgroundTint="@color/secondaryBlue"
             android:textColor="@color/white"/>
         <Button
             android:id="@+id/clearItemBtn"
@@ -96,7 +96,7 @@
             android:layout_weight="50"
             android:text="@string/clear"
             android:layout_marginRight="10sp"
-            android:backgroundTint="@color/tertiaryBlue"
+            android:backgroundTint="@color/secondaryBlue"
             android:textColor="@color/white"/>
 
         <Button
@@ -106,7 +106,7 @@
             android:text="@string/back_button"
             android:layout_weight="50"
             android:layout_marginRight="10sp"
-            android:backgroundTint="@color/tertiaryBlue"
+            android:backgroundTint="@color/secondaryBlue"
             android:textColor="@color/white"/>
 
         <Button
@@ -115,7 +115,7 @@
             android:layout_height="wrap_content"
             android:text="Remove"
             android:layout_weight="50"
-            android:backgroundTint="@color/tertiaryBlue"
+            android:backgroundTint="@color/secondaryBlue"
             android:textColor="@color/white"/>
 
     </LinearLayout>

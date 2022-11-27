@@ -73,6 +73,7 @@ public class BudgetFragment extends PlannerFragment {
         // Add a checkbox item to the checklist
         Button addItemBtn = view.findViewById(R.id.addItemBtn);
         addItemBtn.setOnClickListener(viewAdd -> {
+
             String itemStr = budgetItem.getText().toString();
             String amountStr = budgetAmount.getText().toString();
 
