@@ -19,6 +19,7 @@ public class Post implements Serializable {
     private String userID;
     private String username;
     private String postID;
+    private String country;
 
     public String getInformation() {
         return information;
@@ -44,12 +45,13 @@ public class Post implements Serializable {
         this.userID = userID;
     }
 
-    public Post(User user, String date, String content, String postID){
+    public Post(User user, String date, String content, String postID, String country){
         this.userID = user.getId();
         this.username = user.getUsername();
         this.date = date;
         this.information = content;
         this.postID = postID;
+        this.country = country;
 
     }
 
@@ -66,5 +68,11 @@ public class Post implements Serializable {
         return this.postID;
     }
 
+    public String getCountry() {
+        return country;
+    }
 
+    public void setCountry(String country) {
+        this.country = country;
+    }
 }

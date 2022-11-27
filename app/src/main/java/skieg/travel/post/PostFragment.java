@@ -18,7 +18,7 @@ public class PostFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
-    PostAdapter postAdapter;
+    public PostAdapter postAdapter;
 
     // GRAB FROM DATA BASE FOR THIS.
     ArrayList<String> names = new ArrayList<>();
@@ -26,6 +26,7 @@ public class PostFragment extends Fragment {
     ArrayList<String> dates = new ArrayList<>();
     ArrayList<String> userID = new ArrayList<>();
     ArrayList<String> PostID = new ArrayList<>();
+    ArrayList<String> countries = new ArrayList<>();
 
     public PostFragment(){
 
@@ -38,7 +39,7 @@ public class PostFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager((view.getContext())));
 
-        postAdapter = new PostAdapter(names,content,dates,userID,PostID);
+        postAdapter = new PostAdapter(names,content,dates,userID,PostID, countries);
         recyclerView.setAdapter(postAdapter);
 
         return view;
