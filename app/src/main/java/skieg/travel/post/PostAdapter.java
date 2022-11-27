@@ -110,7 +110,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     public void onClick(View view) {
                         databaseReference.child("Forum").child("posts").child(postID.get(pos)).setValue(null);
                         // update page here
+                        System.out.println("DELETED POST");
                     }
+
+
                 });
             } else{
                 deleteButton.setVisibility(View.GONE);

@@ -33,19 +33,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 
+import skieg.travel.CalendarEventActivity;
 import skieg.travel.DatabaseParse;
+import skieg.travel.InputValidation;
+import skieg.travel.PersonalProfileActivity;
 import skieg.travel.R;
 
 public class PostActivity extends AppCompatActivity {
@@ -61,13 +62,16 @@ public class PostActivity extends AppCompatActivity {
     ArrayList<String> countries = new ArrayList<>();
     String currentCountry = null;
     ImageView currentCountryFlag;
-    Drawable current;
     private final String countryFlagsAPI = "https://countryflagsapi.com/png/"; // the country name has to follow the final "/"
-    String endURL = ":filetype/:code";
     Spinner countrySpin;
     private final String countriesAPI = "https://restcountries.com/v2/all?fields=name";
     ArrayAdapter<String> countryAdapter;
 
+    /**
+     * On create method for when the activity is first created.
+     *
+     * @param savedInstanceState a bundle holding the saved instance data from the previous activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,21 +91,30 @@ public class PostActivity extends AppCompatActivity {
         fragmentTransaction.commit();
         getDataFromFirebase();
 
-        db = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Forum").child("posts");
+        DatabaseReference db2 = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Forum").child("posts");
 
-        countryAdapter     = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
-        countrySpin        = findViewById(R.id.countries);
+        countryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
+        countrySpin = findViewById(R.id.countries);
         currentCountryFlag = findViewById(R.id.flag);
         readCountryAPI();
         canadaFlag();
 
         // listener for when a new country is selected.
         countrySpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            /**
+             * Event listener for when an item is selected in the country spinner.
+             *
+             * @param parent an adapter view parent.
+             * @param view a view.
+             * @param position the position in the adapter.
+             * @param id the id of the item.
+             */
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedSpinnerItem = parent.getItemAtPosition(position).toString();
-                currentCountry             = selectedSpinnerItem;
-                DownloadImageTask dtsk     = new DownloadImageTask(currentCountryFlag);
+                currentCountry = selectedSpinnerItem;
+                DownloadImageTask dtsk = new DownloadImageTask(currentCountryFlag);
 
                 dtsk.execute(countryFlagsAPI + selectedSpinnerItem);
                 if (!selectedSpinnerItem.equals("Choose Country")) {
@@ -111,32 +124,90 @@ public class PostActivity extends AppCompatActivity {
                 }
             }
 
-
-            // Override the onNothingSelected method defined in AdapterView.OnItemSelectedListener
+            /**
+             * for when nothing is selected in the adapter.
+             *
+             * @param adapterView an adapter view.
+             */
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
-
-
         });
 
-        // listener for when data is deleted.
         db.addValueEventListener(new ValueEventListener() {
+            /**
+             * listener for when data changes in the our database.
+             *
+             * @param snapshot a snapshot of our database reference.
+             */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 System.out.println("DATA HAS BEEN CHANGED");
                 PDAdapter = null;
 
+                names = new ArrayList<>();
+                posts = new ArrayList<>();
+                dates = new ArrayList<>();
+                ids = new ArrayList<>();
+                postIds = new ArrayList<>();
+                countries = new ArrayList<>();
+
                 countrySpin.setSelection(0);
-                getDataFromFirebase();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    try {
+                        Gson gson = new Gson();
+                        String json = gson.toJson(dataSnapshot.getValue());
+                        JSONObject ob = new JSONObject(json);
+                        String date = ob.getString("date");
+                        String country = ob.getString("country");
+                        String content = ob.getString("information");
+                        String postID = ob.getString("postID");
+                        String userID = ob.getString("userID");
+                        String username = ob.getString("username");
+                        names.add(username);
+                        dates.add(date);
+                        posts.add(content);
+                        ids.add(userID);
+                        postIds.add(postID);
+                        countries.add(country);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 PDAdapter = new PostAdapter(names, posts, dates, ids, postIds, countries);
                 postFragment.initializeAdapter(PDAdapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
+        });
+
+
+        Button profileBtn = findViewById(R.id.profileBtn);
+        profileBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, PersonalProfileActivity.class);
+            startActivity(intent);
+        });
+
+        Button eventsBtn = findViewById(R.id.eventsBtn);
+        eventsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CalendarEventActivity.class);
+
+            // Set default date to today
+            LocalDate currentDate = LocalDate.now();
+            String selectedDate = currentDate.getYear() + "-" + InputValidation.makeValidDateValue(currentDate.getMonthValue()) + "-" + InputValidation.makeValidDateValue(currentDate.getDayOfMonth());
+
+            System.out.println("DATE: " + selectedDate);
+
+            Bundle bundle = new Bundle();
+            bundle.putString("selectedDate", selectedDate);
+            intent.putExtras(bundle);
+
+            startActivity(intent);
         });
     }
 
@@ -224,24 +295,30 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String currSnapshot = String.valueOf(dataSnapshot.getValue());
-                    System.out.println("SNAP: " + currSnapshot);
-                    String[] dataValues = currSnapshot.split(",");
-                    String date = DatabaseParse.parseDataValue(dataValues[0]);
-                    String country = DatabaseParse.parseDataValue(dataValues[1]);
-                    String content = DatabaseParse.parseDataValue(dataValues[2]);
-                    String postID = DatabaseParse.parseDataValue(dataValues[3]);
-                    String userID = DatabaseParse.parseDataValue(dataValues[4]);
-                    String username = DatabaseParse.parseLastDataValue(dataValues[5]);
+                    try {
+                        Gson gson = new Gson();
+                        String json = gson.toJson(dataSnapshot.getValue());
+                        JSONObject ob = new JSONObject(json);
+                        String date = ob.getString("date");
+                        String country = ob.getString("country");
+                        String content = ob.getString("information");
+                        String postID = ob.getString("postID");
+                        String userID = ob.getString("userID");
+                        String username = ob.getString("username");
 
-                    if (country.equals(countryVal)) {
-                        names.add(username);
-                        dates.add(date);
-                        posts.add(content);
-                        ids.add(userID);
-                        postIds.add(postID);
-                        countries.add(country);
+                        if (country.equals(countryVal)) {
+                            names.add(username);
+                            dates.add(date);
+                            posts.add(content);
+                            ids.add(userID);
+                            postIds.add(postID);
+                            countries.add(country);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+
+
                 }
 
                 PDAdapter = new PostAdapter(names, posts, dates, ids, postIds, countries);
@@ -274,23 +351,26 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String currSnapshot = String.valueOf(dataSnapshot.getValue());
-                    System.out.println("SNAP: " + currSnapshot);
-                    String[] dataValues = currSnapshot.split(",");
-                    String date = DatabaseParse.parseDataValue(dataValues[0]);
-                    String country = DatabaseParse.parseDataValue(dataValues[1]);
-                    String content = DatabaseParse.parseDataValue(dataValues[2]);
-                    String postID = DatabaseParse.parseDataValue(dataValues[3]);
-                    String userID = DatabaseParse.parseDataValue(dataValues[4]);
-                    String username = DatabaseParse.parseLastDataValue(dataValues[5]);
 
-
-                    names.add(username);
-                    dates.add(date);
-                    posts.add(content);
-                    ids.add(userID);
-                    postIds.add(postID);
-                    countries.add(country);
+                    try {
+                        Gson gson = new Gson();
+                        String json = gson.toJson(dataSnapshot.getValue());
+                        JSONObject ob = new JSONObject(json);
+                        String date = ob.getString("date");
+                        String country = ob.getString("country");
+                        String content = ob.getString("information");
+                        String postID = ob.getString("postID");
+                        String userID = ob.getString("userID");
+                        String username = ob.getString("username");
+                        names.add(username);
+                        dates.add(date);
+                        posts.add(content);
+                        ids.add(userID);
+                        postIds.add(postID);
+                        countries.add(country);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 PDAdapter = new PostAdapter(names, posts, dates, ids, postIds, countries);

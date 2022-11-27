@@ -140,7 +140,7 @@ public class PersonalProfileActivity extends AppCompatActivity {
 
                         String userID = MainActivity.USER.getId();
                         firebaseDatabase = FirebaseDatabase.getInstance();
-                        databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(userID);
+                        databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(userID).child("Profile");
 
                         String firstName = firstNameInput.getText().toString();
                         String lastName = lastNameInput.getText().toString();

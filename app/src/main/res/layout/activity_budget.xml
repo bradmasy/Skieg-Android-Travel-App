@@ -1,64 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="10sp"
-    android:layout_marginRight="10sp"
+    android:background="@color/mainBlue"
     android:weightSum="100"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0sp"
+        android:layout_weight="25"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="50sp"
-        android:layout_weight="10">
+        android:background="@drawable/gradient_drawable_reverse">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Budget"
-            android:textSize="30sp"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_marginTop="50sp"
-        android:layout_weight="60">
-
-        <ScrollView
+            android:id="@+id/budgetTitle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </ScrollView>
+            android:layout_height="match_parent"
+            android:text="@string/budget"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:gravity="center" />
 
     </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_height="0sp"
+        android:layout_weight="50"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="20"
         android:orientation="vertical"
-        android:layout_marginTop="50sp"
-        android:layout_weight="10"
-        >
+        android:background="@drawable/gradient_drawable">
+
+        <EditText
+            android:id="@+id/budgetItemET"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/add_item_budget"
+            android:inputType="text"
+            android:textColorHint="#757575" />
+        <EditText
+            android:id="@+id/budgetAmountET"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/amount"
+            android:inputType="numberDecimal"
+            android:textColorHint="#757575" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="10sp"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
+        android:layout_gravity="center">
 
         <Button
+            android:id="@+id/addItemBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Item To Budget"
-            style="@style/buttons"/>
+            android:layout_weight="50"
+            android:text="@string/add"
+            android:layout_marginRight="10sp"
+            android:backgroundTint="@color/tertiaryBlue"
+            android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/clearItemBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="@string/clear"
+            android:layout_marginRight="10sp"
+            android:backgroundTint="@color/tertiaryBlue"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back_button"
+            android:layout_weight="50"
+            android:layout_marginRight="10sp"
+            android:backgroundTint="@color/tertiaryBlue"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/removeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove"
+            android:layout_weight="50"
+            android:backgroundTint="@color/tertiaryBlue"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
-
-
 
 </LinearLayout>

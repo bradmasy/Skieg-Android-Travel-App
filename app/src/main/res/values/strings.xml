@@ -71,6 +71,11 @@
     <string name="clear">Clear</string>
     <string name="save">Save</string>
 
+    <string name="budget">Budget</string>
+    <string name="item">Item</string>
+    <string name="amount">Amount</string>
+    <string name="add_item_budget">Add item to your budget</string>
+
     <string-array name="postTest">
         <item>Post one</item>
         <item>Post Two</item>
