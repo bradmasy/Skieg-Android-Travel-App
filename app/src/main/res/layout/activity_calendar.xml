@@ -53,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/back_button"
+            android:textSize="13sp"
             android:layout_weight="30"
             android:layout_marginRight="10sp"
             android:layout_marginLeft="10sp"
@@ -64,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="30"
             android:text="@string/create_event"
+            android:textSize="13sp"
             android:layout_marginRight="10sp"
             android:onClick="clickCreateButton"/>
 
@@ -72,6 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/view_calendar_event"
+            android:textSize="13sp"
             android:layout_weight="30"
             android:layout_marginRight="10sp"
             android:onClick="clickCalendarEventsButton" />
