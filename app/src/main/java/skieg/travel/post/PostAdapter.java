@@ -77,7 +77,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.name.setText(names.get(position));
+        holder.name.setText(names.get(position) + " says...");
         holder.contentView.setText(content.get(position));
         holder.date.setText(dates.get(position));
     }
@@ -120,9 +120,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             postView.setOnClickListener(this);
             currentPosition++;
         }
-
-
-
 
         @Override
         public void onClick(View view) {
