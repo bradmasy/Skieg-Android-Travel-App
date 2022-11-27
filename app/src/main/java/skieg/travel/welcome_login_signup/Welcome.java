@@ -33,7 +33,7 @@ public class Welcome extends AppCompatActivity {
         Button signupBtn = findViewById(R.id.signupBtn);
         signupBtn.setOnClickListener(this::redirectToSignup);
     }
-    
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch(event.getAction()){
