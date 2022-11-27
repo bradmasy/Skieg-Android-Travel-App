@@ -14,9 +14,14 @@ import skieg.travel.activity_splashscreen;
 
 public class Welcome extends AppCompatActivity {
 
+    // Stores x and y coordinates of the cursor
     float y1;
     float y2;
 
+    /**
+     * When Welcome page is created.
+     * @param savedInstanceState: Bundle
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +32,8 @@ public class Welcome extends AppCompatActivity {
 
         Button signupBtn = findViewById(R.id.signupBtn);
         signupBtn.setOnClickListener(this::redirectToSignup);
-
     }
+    
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch(event.getAction()){
