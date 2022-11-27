@@ -45,8 +45,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         this.postID = postIDS;
         this.itemListener = new RecyclerViewClickListener() {
             @Override
-            public void recyclerViewListClicked(View v, int position) {
-                System.out.println("POSITION: " + position);
+            public int recyclerViewListClicked(View v, int position) {
+                return position;
             }
         };
         postCount    = names.size();//this.content.length;
@@ -86,14 +86,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             content      = postView.findViewById(R.id.contentPost);
             date         = postView.findViewById(R.id.datePost);
 
+            int pos = currentPosition;
             System.out.println("ADAPTER POS: " + currentPosition);
             if(MainActivity.USER.getId().equals(userID.get(currentPosition))){
                 deleteButton.setBackground(deleteButtonImg);
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Task setValueTask = databaseReference.child("Forum").child("posts").setValue(postID.get(currentPosition));
-
+                        System.out.println("CURRENT POS: " + pos);
+                        databaseReference.child("Forum").child("posts").child(postID.get(pos)).setValue(null);
+                        System.out.println("DELETED POST");
                     }
                 });
             } else{

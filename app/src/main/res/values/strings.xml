@@ -55,6 +55,15 @@
         <item>Another festival event</item>
     </string-array>
 
+    <string-array name="countriesList">
+        <item>Choose Country</item>
+        <item>C2</item>
+        <item>C3</item>
+        <item>C4</item>
+        <item>C5</item>
+    </string-array>
+
+
 
     <string name="checklist">Checklist</string>
     <string name="add_checklist_item">Add a checklist item</string>
