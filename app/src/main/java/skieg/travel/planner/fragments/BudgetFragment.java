@@ -1,6 +1,7 @@
 package skieg.travel.planner.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +21,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -29,6 +33,7 @@ import skieg.travel.DatabaseParse;
 import skieg.travel.InputValidation;
 import skieg.travel.MainActivity;
 import skieg.travel.R;
+import skieg.travel.post.RecyclerViewClickListener;
 
 public class BudgetFragment extends PlannerFragment {
 
@@ -41,20 +46,30 @@ public class BudgetFragment extends PlannerFragment {
 
     RecyclerView recyclerView;
     RecyclerViewBudget recyclerViewBudget;
+    RecyclerViewClickListener itemListener;
 
     ArrayList<String> itemsList = new ArrayList<>();
     ArrayList<Double> amountsList = new ArrayList<>();
     ArrayList<String> idList = new ArrayList<>();
 
+    int indexSelectedItem;
+    String stringSelectedItem;
+
 
     public BudgetFragment(){
+
         super(R.layout.activity_budget);
+        this.itemListener = new RecyclerViewClickListener() {
+            @Override
+            public void recyclerViewListClicked(View v, int position) {
+                System.out.println("POSITION: " + position);
+            }
+        };
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_budget, container, false);
-
 
         budgetItem = view.findViewById(R.id.budgetItemET);
         budgetAmount = view.findViewById(R.id.budgetAmountET);
@@ -87,6 +102,12 @@ public class BudgetFragment extends PlannerFragment {
             budgetAmount.setText("");
         });
 
+        Button removeItemBtn = view.findViewById(R.id.removeBtn);
+        removeItemBtn.setOnClickListener(viewRemove -> {
+            // Query Firebase and Remove
+            removeItemFromFirebase(stringSelectedItem, indexSelectedItem);
+        });
+
 
         // Redirect back to main page
         Button backBtn = view.findViewById(R.id.backBtn);
@@ -97,7 +118,6 @@ public class BudgetFragment extends PlannerFragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
         recyclerViewBudget = new RecyclerViewBudget(itemsList, amountsList, idList);
 
         // Display all budget items from the database on the page in the recyclerview
@@ -130,6 +150,36 @@ public class BudgetFragment extends PlannerFragment {
                 toast.show();
                 budgetItem.setText("");
                 budgetAmount.setText("");
+            }
+        });
+    }
+
+    public void removeItemFromFirebase(String item, int index){
+        String userID = MainActivity.USER.getId();
+        databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(userID).child("Planner").child("Budget");
+
+        Query query = databaseReference.orderByChild("id");
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int iter = 0;
+                // Iterate to find the correct index to remove.
+                for (DataSnapshot snapshot1 : snapshot.getChildren()){
+
+                    String currentItemName = String.valueOf(snapshot1.child("item").getValue());
+//                    System.out.println(currentItemName + " BEFORE HELL " + item + " iter " + iter + " index " + index);
+                    if (iter == index && currentItemName.equals(item)){
+//                        System.out.println(currentItemName + " AFTER HELL " + item + " iter " + iter + " index " + index);
+                        Toast.makeText(getActivity(),"Removed: " + item,Toast.LENGTH_SHORT).show();
+                        snapshot1.getRef().removeValue();
+                    }
+                    iter++;
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
@@ -169,6 +219,18 @@ public class BudgetFragment extends PlannerFragment {
                 budgetTitle.setText(budgetAmountString);
 
                 recyclerViewBudget = new RecyclerViewBudget(itemsList, amountsList, idList);
+
+                recyclerView.addOnItemTouchListener(new RecyclerViewClickListen(getContext(), recyclerView, new RecyclerViewClickListen.ClickListener() {
+                    @Override
+                    public void onClick(View view, int index) {
+                        indexSelectedItem = index;
+                        stringSelectedItem = itemsList.get(indexSelectedItem);
+
+                        Toast.makeText(getActivity(), "Selected Item: " + stringSelectedItem, Toast.LENGTH_SHORT).show();
+                        view.setBackgroundResource(R.drawable.drawable_button_ripple_recyclerview);
+                    }
+                }));
+
                 initializeAdapter(recyclerViewBudget);
             }
 
