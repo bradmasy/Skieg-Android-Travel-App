@@ -144,7 +144,7 @@ public class Signup extends AppCompatActivity {
         User user = new User(databaseReference.push().getKey(), firstName, lastName, city, username, email, password);
 
         // create a task to set the value of the node as the new user
-        Task setValueTask = databaseReference.child("Users").child(user.getId()).setValue(user);
+        Task setValueTask = databaseReference.child("Users").child(user.getId()).child("Profile").setValue(user);
 
         // add a success listener to the task
         setValueTask.addOnSuccessListener(new OnSuccessListener() {
