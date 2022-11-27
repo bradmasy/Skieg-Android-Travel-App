@@ -51,11 +51,15 @@ import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import skieg.travel.CalendarEventActivity;
 import skieg.travel.DatabaseParse;
+import skieg.travel.InputValidation;
 import skieg.travel.MainActivity;
+import skieg.travel.PersonalProfileActivity;
 import skieg.travel.R;
 
 
@@ -123,17 +127,28 @@ public class PostActivity extends AppCompatActivity {
         });
 
 
+        Button profileBtn = findViewById(R.id.profileBtn);
+        profileBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, PersonalProfileActivity.class);
+            startActivity(intent);
+        });
 
+        Button eventsBtn = findViewById(R.id.eventsBtn);
+        eventsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CalendarEventActivity.class);
 
+            // Set default date to today
+            LocalDate currentDate = LocalDate.now();
+            String selectedDate = currentDate.getYear() + "-" + InputValidation.makeValidDateValue(currentDate.getMonthValue()) + "-" + InputValidation.makeValidDateValue(currentDate.getDayOfMonth());
 
+            System.out.println("DATE: " + selectedDate);
 
+            Bundle bundle = new Bundle();
+            bundle.putString("selectedDate", selectedDate);
+            intent.putExtras(bundle);
 
-
-
-
-
-
-
+            startActivity(intent);
+        });
     }
 
     private void canadaFlag(){
