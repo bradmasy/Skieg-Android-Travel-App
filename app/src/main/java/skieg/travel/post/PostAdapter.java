@@ -108,9 +108,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        System.out.println("CURRENT POS: " + pos);
                         databaseReference.child("Forum").child("posts").child(postID.get(pos)).setValue(null);
-                        System.out.println("DELETED POST");
                         // update page here
                     }
                 });

@@ -87,33 +87,55 @@ public class PostActivity extends AppCompatActivity {
         fragmentTransaction.commit();
         getDataFromFirebase();
 
-        countryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
-        countrySpin = findViewById(R.id.countries);
+        db = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Forum").child("posts");
+
+        countryAdapter     = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
+        countrySpin        = findViewById(R.id.countries);
         currentCountryFlag = findViewById(R.id.flag);
         readCountryAPI();
         canadaFlag();
-        // Create a listener every time a spinner item is selected
+
+        // listener for when a new country is selected.
         countrySpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            // Override the onItemSelected method defined in AdapterView.OnItemSelectedListener
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedSpinnerItem = parent.getItemAtPosition(position).toString();
-                currentCountry = selectedSpinnerItem;
-                DownloadImageTask dtsk = new DownloadImageTask(currentCountryFlag);
+                currentCountry             = selectedSpinnerItem;
+                DownloadImageTask dtsk     = new DownloadImageTask(currentCountryFlag);
+
                 dtsk.execute(countryFlagsAPI + selectedSpinnerItem);
                 if (!selectedSpinnerItem.equals("Choose Country")) {
-
                     getDataFromFirebase(selectedSpinnerItem);
-
                     PDAdapter = new PostAdapter(names, posts, dates, ids, postIds, countries);
-
                     postFragment.initializeAdapter(PDAdapter);
                 }
             }
 
+
             // Override the onNothingSelected method defined in AdapterView.OnItemSelectedListener
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+
+
+        });
+
+        // listener for when data is deleted.
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("DATA HAS BEEN CHANGED");
+                PDAdapter = null;
+
+                countrySpin.setSelection(0);
+                getDataFromFirebase();
+                PDAdapter = new PostAdapter(names, posts, dates, ids, postIds, countries);
+                postFragment.initializeAdapter(PDAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
@@ -123,12 +145,6 @@ public class PostActivity extends AppCompatActivity {
         flagRunner.execute("canada");
     }
 
-    private void setFirstCountryFlag() throws IOException {
-        URL url = new URL(countryFlagsAPI + "canada");
-        InputStream is = (InputStream) url.getContent();
-        current = Drawable.createFromStream(is, "canada");
-        System.out.println(current);
-    }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
@@ -159,22 +175,6 @@ public class PostActivity extends AppCompatActivity {
         AsyncTaskRunner runner = new AsyncTaskRunner();
         runner.execute(countriesAPI);
     }
-
-    private class AsyncTaskRunnerFlag extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... strings) {
-
-            System.out.println(Arrays.toString(strings));
-            try {
-                setFirstCountryFlag();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-    }
-
 
     private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
         @Override
@@ -209,6 +209,7 @@ public class PostActivity extends AppCompatActivity {
         }
     }
 
+
     private void getDataFromFirebase(String countryVal) {
         // all the posts in line 1
         names = new ArrayList<>();
@@ -233,7 +234,7 @@ public class PostActivity extends AppCompatActivity {
                     String userID = DatabaseParse.parseDataValue(dataValues[4]);
                     String username = DatabaseParse.parseLastDataValue(dataValues[5]);
 
-                    if(country.equals(countryVal)){
+                    if (country.equals(countryVal)) {
                         names.add(username);
                         dates.add(date);
                         posts.add(content);
@@ -254,11 +255,12 @@ public class PostActivity extends AppCompatActivity {
         });
 
 
-
     }
 
 
     private void getDataFromFirebase() {
+        System.out.println("CALLING FIREBASE");
+        System.out.println("CALLING FIREBASE");
         // all the posts in line 1
         names = new ArrayList<>();
         posts = new ArrayList<>();
