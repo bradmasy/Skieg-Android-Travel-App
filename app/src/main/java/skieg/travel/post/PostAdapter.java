@@ -85,6 +85,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             name         = postView.findViewById(R.id.usernamePost);
             content      = postView.findViewById(R.id.contentPost);
             date         = postView.findViewById(R.id.datePost);
+
             int pos = currentPosition;
             System.out.println("ADAPTER POS: " + currentPosition);
             if(MainActivity.USER.getId().equals(userID.get(currentPosition))){

@@ -2,27 +2,56 @@ package skieg.travel.post;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.loader.content.AsyncTaskLoader;
 
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.reflect.Array;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import skieg.travel.DatabaseParse;
+import skieg.travel.MainActivity;
 import skieg.travel.R;
 
 
@@ -31,11 +60,17 @@ public class PostActivity extends AppCompatActivity {
     PostAdapter PDAdapter;
     PostFragment postFragment;
     DatabaseReference db;
-    ArrayList<String> names= new ArrayList<>();
-    ArrayList<String> posts= new ArrayList<>();
+    ArrayList<String> names = new ArrayList<>();
+    ArrayList<String> posts = new ArrayList<>();
     ArrayList<String> dates = new ArrayList<>();
     ArrayList<String> ids = new ArrayList<>();
     ArrayList<String> postIds = new ArrayList<>();
+    ImageView currentCountryFlag;
+    private final String countryFlagsAPI = "https://countryflagsapi.com/png/canada"; // the country name has to follow the final "/"
+    String endURL = ":filetype/:code";
+    Spinner countrySpin;
+    private final String countriesAPI = "https://restcountries.com/v2/all?fields=name";
+    ArrayAdapter<String> countryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,24 +79,111 @@ public class PostActivity extends AppCompatActivity {
         Button postButton = findViewById(R.id.makePost);
         LinearLayout userInfo = findViewById(R.id.userInfo);
         LinearLayout userImageContainer = findViewById(R.id.userPhoto);
-        Button filler = findViewById(R.id.filler);
-        // setting colors
 
         postButton.setBackgroundColor(Color.parseColor("#BEDEFC"));
         userInfo.setBackgroundColor(Color.parseColor("#BEDEFC"));
         userImageContainer.setBackgroundColor(Color.parseColor("#BEDEFC"));
-        filler.setBackgroundColor(Color.parseColor("#BEDEFC"));
 
         postFragment = new PostFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.recyclerPosts ,postFragment);
+        fragmentTransaction.replace(R.id.recyclerPosts, postFragment);
         fragmentTransaction.commit();
         getDataFromFirebase();
+
+        countryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
+        countrySpin = findViewById(R.id.countries);
+        currentCountryFlag = findViewById(R.id.flag);
+
+        readCountryAPI();
+
+        canadaFlag();
+
     }
+
+    private void canadaFlag(){
+        AsyncTaskRunnerFlag flagRunner = new AsyncTaskRunnerFlag();
+        flagRunner.execute(countryFlagsAPI);
+
+    }
+    private void setFirstCountryFlag() throws IOException {
+        URL url = new URL(countryFlagsAPI);
+        System.out.println("URL: " + url);
+        InputStream is = (InputStream) url.getContent();
+        Drawable flag = Drawable.createFromStream(is, "canada");
+        currentCountryFlag.setImageUR(url);
+        currentCountryFlag.setImageDrawable(flag);
+    }
+
+    private void chooseCountry(View view) {
+
+    }
+
+
+    private void readCountryAPI() {
+        AsyncTaskRunner runner = new AsyncTaskRunner();
+        runner.execute(countriesAPI);
+    }
+
+    private class AsyncTaskRunnerFlag extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            try {
+                setFirstCountryFlag();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            return null;
+        }
+    }
+
+    private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            RequestQueue queue = Volley.newRequestQueue(PostActivity.this);
+            JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, strings[0], null, new Response.Listener<JSONArray>() {
+
+                @Override
+                public void onResponse(JSONArray response) {
+                    countryAdapter.add("Choose Country");
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+                            JSONObject arr = response.getJSONObject(i);
+                            String countryName = (String) arr.get("name");
+                            countryAdapter.add(countryName);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    countrySpin.setAdapter(countryAdapter);
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    System.out.println("ERROR: " + error);
+                    Toast.makeText(PostActivity.this, "Error Getting Countries", Toast.LENGTH_SHORT).show();
+                }
+            });
+            queue.add(request);
+            return null;
+        }
+    }
+
 
     private void getDataFromFirebase() {
         // all the posts in line 1
+        names = new ArrayList<>();
+        posts = new ArrayList<>();
+        dates = new ArrayList<>();
+        ids = new ArrayList<>();
+        postIds = new ArrayList<>();
         db = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Forum").child("posts");
         db.addValueEventListener(new ValueEventListener() {
             @Override
@@ -93,7 +215,7 @@ public class PostActivity extends AppCompatActivity {
                     postIds.add(postID);
                 }
 
-                PDAdapter = new PostAdapter(names, posts, dates,ids,postIds);
+                PDAdapter = new PostAdapter(names, posts, dates, ids, postIds);
                 postFragment.initializeAdapter(PDAdapter);
             }
 
@@ -104,7 +226,7 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
-    public void makePost(View view){
+    public void makePost(View view) {
         Intent intent = new Intent(PostActivity.this, PostPage.class);
         startActivity(intent);
     }

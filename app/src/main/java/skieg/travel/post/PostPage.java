@@ -41,6 +41,9 @@ public class PostPage extends AppCompatActivity {
     }
 
 
+
+
+
     private void postToDatabase(View view, Post post){
 
          Task setValueTask = databaseReference.child("Forum").child("posts").child(post.getPostID()).setValue(post);

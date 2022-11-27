@@ -78,6 +78,7 @@
             android:background="@color/white">
 
             <ImageView
+                android:id="@+id/flag"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
@@ -142,10 +143,22 @@
             android:onClick="makePost"
             android:layout_marginRight="10dp"/>
 
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/filler"/>
+            android:layout_height="wrap_content"
+            >
+            <Spinner
+                android:id="@+id/countries"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/mainBlue"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:entries="@array/countriesList"
+                />
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <ScrollView
