@@ -15,13 +15,12 @@ import skieg.travel.planner.fragments.ChecklistFragment;
 public class ChecklistActivity extends AppCompatActivity {
 
     EditText checklistEditText;
-
     ChecklistFragment checklistFragment;
 
     /**
      * On Create method.
      *
-     * @param savedInstanceState
+     * @param savedInstanceState a bundle representing the previously saved instance data.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
