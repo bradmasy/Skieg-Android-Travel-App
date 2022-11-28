@@ -230,5 +230,8 @@ public class ChecklistFragment extends PlannerFragment {
             Checklist checklist = new Checklist(tempItemsList.get(index), currID, tempCheckedList.get(index));
             databaseReference.child(currID).setValue(checklist);
         }
+
+        Toast toast = Toast.makeText(getActivity(), "Checklist items updated!", Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

@@ -3,6 +3,7 @@ package skieg.travel;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -68,7 +69,7 @@ public class PersonalProfileActivity extends AppCompatActivity {
         });
 
         Button logoutBtn = findViewById(R.id.LogoutButton);
-        logoutBtn.setOnClickListener(view ->{
+        logoutBtn.setOnClickListener(view -> {
             logoutBtnClicked();
         });
     }
@@ -77,9 +78,10 @@ public class PersonalProfileActivity extends AppCompatActivity {
      * Logs the user out of the application.
      */
     public void logoutBtnClicked(){
+        System.out.println("LOGOUT");
         Toast.makeText(this,"Logging out: " + MainActivity.USER.getUsername(), Toast.LENGTH_SHORT).show();
         // Clear User so technically not 'logged in' when we get to splashscreen
-        Intent intent = new Intent(this, activity_splashscreen.class);
+        Intent intent = new Intent(PersonalProfileActivity.this, activity_splashscreen.class);
         MainActivity.USER.setFirstName(null);
         MainActivity.USER.setLastName(null);
         MainActivity.USER.setCity(null);
