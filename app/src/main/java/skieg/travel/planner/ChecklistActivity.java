@@ -9,12 +9,20 @@ import androidx.fragment.app.FragmentTransaction;
 import skieg.travel.R;
 import skieg.travel.planner.fragments.ChecklistFragment;
 
+/**
+ * A checklist activity.
+ */
 public class ChecklistActivity extends AppCompatActivity {
 
     EditText checklistEditText;
 
     ChecklistFragment checklistFragment;
 
+    /**
+     * On Create method.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
