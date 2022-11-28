@@ -1,6 +1,10 @@
 package skieg.travel;
 
+/**
+ * Represents a single CalendarEvent object in the database.
+ */
 public class CalendarEvent {
+    // Attributes of a CalendarEvent object.
     String eventID;
     String title;
     String description;
@@ -8,6 +12,15 @@ public class CalendarEvent {
     String date;
     String userID;
 
+    /**
+     * 6 parameter constructor for a CalendarEvent object.
+     * @param eventID: String, unique ID to identify the calendar event
+     * @param title: String, title of the event
+     * @param description: String, description of the event
+     * @param location: String, a city where the event is happening
+     * @param date: String, date of the event
+     * @param userID: String, user who created the event
+     */
     CalendarEvent(String eventID, String title, String description, String location, String date, String userID) {
         this.eventID = eventID;
         this.title = title;
@@ -17,6 +30,9 @@ public class CalendarEvent {
         this.userID = userID;
     }
 
+    /**
+     * Getters and setters for all instance variables.
+     */
     public String getTitle() {
         return title;
     }

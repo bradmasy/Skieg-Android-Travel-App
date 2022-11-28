@@ -34,6 +34,11 @@ public class Welcome extends AppCompatActivity {
         signupBtn.setOnClickListener(this::redirectToSignup);
     }
 
+    /**
+     * Redirects to the appropriate page when the user swipes in a certain direction (up or down).
+     * @param event: MotionEvent
+     * @return boolean: whether or not a valid switch case was chosen.
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch(event.getAction()){
@@ -56,13 +61,21 @@ public class Welcome extends AppCompatActivity {
     }
 
 
+    /**
+     * Redirects to the login page.
+     * @param view: View
+     */
     public void redirectToLogin(View view) {
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
         overridePendingTransition(R.anim.animation_slidein,R.anim.animation_slideout);
     }
 
-        public void redirectToSignup(View view) {
+    /**
+     * Redirects to the signup page.
+     * @param view: View
+     */
+    public void redirectToSignup(View view) {
         Intent intent = new Intent(this, Signup.class);
         startActivity(intent);
         overridePendingTransition(R.anim.animation_slidein,R.anim.animation_slideout);

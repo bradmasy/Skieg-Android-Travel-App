@@ -1,22 +1,22 @@
 package skieg.travel;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Toast;
-
 import skieg.travel.welcome_login_signup.Welcome;
 
 public class activity_splashscreen extends AppCompatActivity {
 
+    // Stores x and y coordinates of the cursor
     float y1;
     float y2;
 
 
+    /**
+     * When splash screen page is created.
+     * @param savedInstanceState: Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +24,11 @@ public class activity_splashscreen extends AppCompatActivity {
 
     }
 
+    /**
+     * Redirects to the appropriate page when the user swipes in a certain direction (up or down).
+     * @param event: MotionEvent
+     * @return boolean: whether or not a valid switch case was chosen.
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch(event.getAction()){
@@ -45,6 +50,9 @@ public class activity_splashscreen extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * When the back button is clicked.
+     */
     @Override
     public void onBackPressed() {
         // Override the default behaviour to disable going back from this page.

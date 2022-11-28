@@ -187,6 +187,7 @@ public class Signup extends AppCompatActivity {
      * @param password: string
      */
     public void addUserToDatabase(String firstName, String lastName, String city, String username, String email, String password) {
+        // Create a user with the parameters values
         User user = new User(databaseReference.push().getKey(), firstName, lastName, city, username, email, password);
 
         // create a task to set the value of the node as the new user

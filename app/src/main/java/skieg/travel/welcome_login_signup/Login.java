@@ -104,14 +104,11 @@ public class Login extends AppCompatActivity {
                     // Get each user's information from their profile collection
                     DataSnapshot profile = snapshot.child("Profile");
                     String profileString = String.valueOf(profile.getValue());
-                    System.out.println("CHILD: " + profileString);
 
                     try {
                         JSONObject object = new JSONObject(profileString);
                         String currentUsername = String.valueOf(object.get("username"));
                         String currentPassword = String.valueOf(object.get("password"));
-
-                        Log.d("trying to log in: ", username.getText().toString());
 
                         // Check if username and password match the user's input
                         if (username.getText().toString().equals(currentUsername) && password.getText().toString().equals(currentPassword)) {
