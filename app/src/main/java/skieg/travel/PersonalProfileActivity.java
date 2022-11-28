@@ -21,6 +21,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import skieg.travel.user.User;
 
+/**
+ * Personal Profile Activity.
+ */
 public class PersonalProfileActivity extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
@@ -33,6 +36,11 @@ public class PersonalProfileActivity extends AppCompatActivity {
     EditText passwordInput;
     EditText cityInput;
 
+    /**
+     * On create method.
+     *
+     * @param savedInstanceState a bundle of saved instance data from the previous activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +71,9 @@ public class PersonalProfileActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Logs the user out of the application.
+     */
     public void logoutBtnClicked(){
         Toast.makeText(this,"Logging out: " + MainActivity.USER.getUsername(), Toast.LENGTH_SHORT).show();
         // Clear User so technically not 'logged in' when we get to splashscreen
@@ -76,6 +87,9 @@ public class PersonalProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Fills the users info from the text fields.
+     */
     private void fillUserInfo() {
         User currentUser = MainActivity.USER;
         firstNameInput.setText(currentUser.getFirstName());
@@ -87,6 +101,9 @@ public class PersonalProfileActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Saves the users data to the database.
+     */
     public void saveProfile() {
         String firstName = firstNameInput.getText().toString();
         String lastName = lastNameInput.getText().toString();
@@ -110,6 +127,16 @@ public class PersonalProfileActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Saves the users information.
+     *
+     * @param firstName the users first name.
+     * @param lastName the users last name.
+     * @param city the name of the city they are in.
+     * @param username the users username.
+     * @param email the email address of the user.
+     * @param password the password of the user.
+     */
     private void saveUserInfo(String firstName, String lastName, String city, String username, String email, String password) {
         MainActivity.USER.setFirstName(firstName);
         MainActivity.USER.setLastName(lastName);
@@ -119,25 +146,40 @@ public class PersonalProfileActivity extends AppCompatActivity {
         MainActivity.USER.setPassword(password);
     }
 
-
+    /**
+     * initiates going back to the main activity on click of the back button.
+     */
     public void backBtnClicked() {
         Intent mainIntent = new Intent(PersonalProfileActivity.this, MainActivity.class);
         startActivity(mainIntent);
     }
 
-
+    /**
+     * Async Task Runner Class.
+     */
     class AsyncTaskRunner extends AsyncTask<String, Void, String> {
 
+        /**
+         * Performs task in the background.
+         *
+         * @param strings a call to the database.
+         * @return null.
+         */
         @Override
         protected String doInBackground(String... strings) {
             RequestQueue queue = Volley.newRequestQueue(PersonalProfileActivity.this);
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, strings[0], null, new Response.Listener<JSONObject>() {
+
+                /**
+                 * on response to the request.
+                 *
+                 * @param response a json response.
+                 */
                 @Override
                 public void onResponse(JSONObject response) {
 
                     try {
                         response.getJSONObject("main");
-
                         String userID = MainActivity.USER.getId();
                         firebaseDatabase = FirebaseDatabase.getInstance();
                         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(userID).child("Profile");
@@ -153,16 +195,20 @@ public class PersonalProfileActivity extends AppCompatActivity {
                         databaseReference.setValue(updatedUser);
 
                         Toast.makeText(PersonalProfileActivity.this, "Profile updated!", Toast.LENGTH_SHORT).show();
-
                         saveUserInfo(firstName, lastName, city, username, email, password);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(PersonalProfileActivity.this, "Invalid city entered.", Toast.LENGTH_SHORT).show();
                     }
-
                 }
             }, new Response.ErrorListener() {
+
+                /**
+                 * A response to an error.
+                 *
+                 * @param error an error.
+                 */
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(PersonalProfileActivity.this, "Invalid city entered.", Toast.LENGTH_SHORT).show();
