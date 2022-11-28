@@ -14,7 +14,7 @@
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/drawable/ic_baseline_double_arrow_24.xml" value="0.28" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.142" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/drawable/ic_launcher_background_reverse.xml" value="0.3115" />
-        <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_budget.xml" value="0.30344202898550726" />
+        <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_budget.xml" value="0.33" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_calendar.xml" value="0.30344202898550726" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_calendar_events.xml" value="0.30344202898550726" />
         <entry key="..\:/BCIT/BCIT-Level-3/COMP-3717/Term-Project/android-term-project/app/src/main/res/layout/activity_checklist.xml" value="0.30344202898550726" />
@@ -104,7 +104,10 @@
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/checklist_item.xml" value="0.25" />
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/create_calendar_event.xml" value="0.2" />
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/fragment_events_layout.xml" value="0.25" />
+<<<<<<< HEAD
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/fragment_forum.xml" value="0.14990942028985507" />
+=======
+>>>>>>> 48f493b78b99d6c2111f4b25fa119c884cdf646a
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/login_signup.xml" value="0.25" />
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/planner_view_pager.xml" value="0.25" />
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/post_item.xml" value="0.14990942028985507" />
