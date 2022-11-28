@@ -35,6 +35,9 @@ import skieg.travel.MainActivity;
 import skieg.travel.R;
 import skieg.travel.post.RecyclerViewClickListener;
 
+/**
+ * Budget Fragment Class.
+ */
 public class BudgetFragment extends PlannerFragment {
 
     FirebaseDatabase firebaseDatabase;
@@ -55,13 +58,21 @@ public class BudgetFragment extends PlannerFragment {
     int indexSelectedItem;
     String stringSelectedItem;
 
-
+    /**
+     * Budget Fragment Constructor.
+     */
     public BudgetFragment(){
-
         super(R.layout.activity_budget);
-
     }
 
+    /**
+     * On Create View.
+     *
+     * @param inflater an inflater.
+     * @param container a container.
+     * @param savedInstanceState a bundle of previously saved instance data.
+     * @return an inflater view.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_budget, container, false);
@@ -128,6 +139,12 @@ public class BudgetFragment extends PlannerFragment {
     }
 
 
+    /**
+     * adds an item to firebase database.
+     *
+     * @param item an item we are adding
+     * @param amount the amount of the item.
+     */
     public void addItemToFirebase(String item, double amount) {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference();
@@ -139,6 +156,11 @@ public class BudgetFragment extends PlannerFragment {
 
         Task setValueTask = databaseReference.child("Users").child(userID).child("Planner").child("Budget").child(itemID).setValue(budget);
         setValueTask.addOnSuccessListener(new OnSuccessListener() {
+
+            /**
+             * On success of the database write.
+             * @param o an object.
+             */
             @Override
             public void onSuccess(Object o) {
                 Toast toast = Toast.makeText(getActivity().getBaseContext(), "Budget item added!", Toast.LENGTH_SHORT);
@@ -149,13 +171,23 @@ public class BudgetFragment extends PlannerFragment {
         });
     }
 
+    /**
+     * removes an item from the database.
+     *
+     * @param item an item from the database.
+     * @param index the index of the item.
+     */
     public void removeItemFromFirebase(String item, int index){
         String userID = MainActivity.USER.getId();
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(userID).child("Planner").child("Budget");
-
         Query query = databaseReference.orderByChild("id");
-
         query.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            /**
+             * Executes on a change in the database.
+             *
+             * @param snapshot the database snapshot.
+             */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int iter = 0;
@@ -163,28 +195,41 @@ public class BudgetFragment extends PlannerFragment {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()){
 
                     String currentItemName = String.valueOf(snapshot1.child("item").getValue());
-//                    System.out.println(currentItemName + " BEFORE HELL " + item + " iter " + iter + " index " + index);
                     if (iter == index && currentItemName.equals(item)){
-//                        System.out.println(currentItemName + " AFTER HELL " + item + " iter " + iter + " index " + index);
                         Toast.makeText(getActivity(),"Removed: " + item,Toast.LENGTH_SHORT).show();
                         snapshot1.getRef().removeValue();
                     }
                     iter++;
                 }
             }
+
+            /**
+             * executes on cancelling a database error.
+             *
+             * @param error the database error.
+             */
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.d("ERROR:",error.toString());
             }
         });
     }
 
 
+    /**
+     * Gets the data from firebase.
+     */
     public void getDataFromFirebase() {
         String id = MainActivity.USER.getId();
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(id).child("Planner").child("Budget");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
+
+            /**
+             * Executes on a change to the data in firebase.
+             *
+             * @param snapshot a database snapshot.
+             */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 itemsList = new ArrayList<>();
@@ -197,7 +242,6 @@ public class BudgetFragment extends PlannerFragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String currSnapshot = String.valueOf(dataSnapshot.getValue());
 
-                    System.out.println("SNAP: " + currSnapshot);
                     String[] dataValues = currSnapshot.split(",");
                     String amount = DatabaseParse.parseDataValue(dataValues[0]);
                     String item = DatabaseParse.parseDataValue(dataValues[1]);
@@ -214,8 +258,14 @@ public class BudgetFragment extends PlannerFragment {
                 budgetTitle.setText(budgetAmountString);
 
                 recyclerViewBudget = new RecyclerViewBudget(itemsList, amountsList, idList);
-
                 recyclerView.addOnItemTouchListener(new RecyclerViewClickListen(getContext(), recyclerView, new RecyclerViewClickListen.ClickListener() {
+
+                    /**
+                     * on Click for data change.
+                     *
+                     * @param view the view.
+                     * @param index the index.
+                     */
                     @Override
                     public void onClick(View view, int index) {
                         indexSelectedItem = index;
@@ -229,6 +279,11 @@ public class BudgetFragment extends PlannerFragment {
                 initializeAdapter(recyclerViewBudget);
             }
 
+            /**
+             * For a cancelled write to the database.
+             *
+             * @param error the database error.
+             */
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d("LOG", "DB ERROR");
@@ -237,9 +292,11 @@ public class BudgetFragment extends PlannerFragment {
     }
 
 
+    /**
+     * Initiates the main activity upon clicked.
+     */
     public void backBtnClicked() {
         Intent mainIntent = new Intent(getActivity(), MainActivity.class);
         startActivity(mainIntent);
     }
-
 }
