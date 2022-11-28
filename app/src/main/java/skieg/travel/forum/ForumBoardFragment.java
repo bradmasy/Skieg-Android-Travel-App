@@ -11,11 +11,21 @@ import androidx.fragment.app.ListFragment;
 
 import skieg.travel.R;
 
+/**
+ * Forum board fragment class.
+ */
 public class ForumBoardFragment extends ListFragment {
 
     String[] posts;
 
-
+    /**
+     * On Create View.
+     *
+     * @param inflater a layout inflater.
+     * @param container a container.
+     * @param savedInstanceState a bundle of saved instance data from the previous activity.
+     * @return an inflated view.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_events_layout, container, false);
@@ -23,6 +33,4 @@ public class ForumBoardFragment extends ListFragment {
         setListAdapter(adapter);
         return view;
     }
-
-
 }
