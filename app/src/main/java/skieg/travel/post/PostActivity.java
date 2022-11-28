@@ -49,6 +49,9 @@ import skieg.travel.InputValidation;
 import skieg.travel.PersonalProfileActivity;
 import skieg.travel.R;
 
+/**
+ * Post activity class.
+ */
 public class PostActivity extends AppCompatActivity {
 
     PostAdapter PDAdapter;
@@ -65,6 +68,8 @@ public class PostActivity extends AppCompatActivity {
     private final String countryFlagsAPI = "https://countryflagsapi.com/png/"; // the country name has to follow the final "/"
     Spinner countrySpin;
     private final String countriesAPI = "https://restcountries.com/v2/all?fields=name";
+    private final String countriesCoordinate = "https://restcountries.com/v2/all?fields=name,latlng";
+
     ArrayAdapter<String> countryAdapter;
 
     /**
@@ -90,8 +95,6 @@ public class PostActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.recyclerPosts, postFragment);
         fragmentTransaction.commit();
         getDataFromFirebase();
-
-        DatabaseReference db2 = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Forum").child("posts");
 
         countryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
         countrySpin = findViewById(R.id.countries);
@@ -131,11 +134,11 @@ public class PostActivity extends AppCompatActivity {
              */
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
         db.addValueEventListener(new ValueEventListener() {
+
             /**
              * listener for when data changes in the our database.
              *
@@ -200,30 +203,43 @@ public class PostActivity extends AppCompatActivity {
             // Set default date to today
             LocalDate currentDate = LocalDate.now();
             String selectedDate = currentDate.getYear() + "-" + InputValidation.makeValidDateValue(currentDate.getMonthValue()) + "-" + InputValidation.makeValidDateValue(currentDate.getDayOfMonth());
-
-            System.out.println("DATE: " + selectedDate);
-
             Bundle bundle = new Bundle();
             bundle.putString("selectedDate", selectedDate);
             intent.putExtras(bundle);
-
             startActivity(intent);
         });
     }
 
+    /**
+     * Grabs the canadian flag as a default country image from the API.
+     */
     private void canadaFlag() {
         DownloadImageTask flagRunner = new DownloadImageTask(currentCountryFlag);
         flagRunner.execute("canada");
     }
 
 
+    /**
+     * Download Image Task class.
+     */
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
+        /**
+         * Constructor for Download Image Task.
+         *
+         * @param bmImage an image view of where we are to render the image.
+         */
         public DownloadImageTask(ImageView bmImage) {
             this.bmImage = bmImage;
         }
 
+        /**
+         * Runs this task asynchronously in the background.
+         *
+         * @param urls a string of urls.
+         * @return a Bitmap of the image.
+         */
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
@@ -237,22 +253,45 @@ public class PostActivity extends AppCompatActivity {
             return mIcon11;
         }
 
+        /**
+         * Sets the image on execution.
+         *
+         * @param result the bitmap image result.
+         */
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
         }
     }
 
+    /**
+     * Executes an Async Task Runner on the country api.
+     */
     private void readCountryAPI() {
         AsyncTaskRunner runner = new AsyncTaskRunner();
         runner.execute(countriesAPI);
     }
 
+    /**
+     * AsyncTaskRunner Class.
+     */
     private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
+
+        /**
+         * Runs the async task in the background.
+         *
+         * @param strings the api url.
+         * @return null.
+         */
         @Override
         protected String doInBackground(String... strings) {
             RequestQueue queue = Volley.newRequestQueue(PostActivity.this);
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, strings[0], null, new Response.Listener<JSONArray>() {
 
+                /**
+                 * Executes accordingly to the response passed.
+                 *
+                 * @param response a response from a request.
+                 */
                 @Override
                 public void onResponse(JSONArray response) {
                     countryAdapter.add("Choose Country");
@@ -269,6 +308,12 @@ public class PostActivity extends AppCompatActivity {
                     countrySpin.setAdapter(countryAdapter);
                 }
             }, new Response.ErrorListener() {
+
+                /**
+                 * In response to the error created.
+                 *
+                 * @param error an error.
+                 */
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     System.out.println("ERROR: " + error);
@@ -280,9 +325,12 @@ public class PostActivity extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * Gets our post data from firebase to render to the recycler view and pass to the adapter based on the country name provided.
+     *
+     * @param countryVal the country we are sorting.
+     */
     private void getDataFromFirebase(String countryVal) {
-        // all the posts in line 1
         names = new ArrayList<>();
         posts = new ArrayList<>();
         dates = new ArrayList<>();
@@ -292,6 +340,12 @@ public class PostActivity extends AppCompatActivity {
 
         db = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Forum").child("posts");
         db.addValueEventListener(new ValueEventListener() {
+
+            /**
+             * Executes on a change of data within the firebase database.
+             *
+             * @param snapshot a database snapshot of the selected data.
+             */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -317,28 +371,28 @@ public class PostActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-
                 }
 
                 PDAdapter = new PostAdapter(names, posts, dates, ids, postIds, countries);
                 postFragment.initializeAdapter(PDAdapter);
             }
 
+            /**
+             * Executes on error from reading snapshot.
+             *
+             * @param error a database error.
+             */
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d("LOG", "DB ERROR");
             }
         });
-
-
     }
 
-
+    /**
+     * Gets all the data from firebase for the post adapter and sets it.
+     */
     private void getDataFromFirebase() {
-        System.out.println("CALLING FIREBASE");
-        System.out.println("CALLING FIREBASE");
-        // all the posts in line 1
         names = new ArrayList<>();
         posts = new ArrayList<>();
         dates = new ArrayList<>();
@@ -377,6 +431,11 @@ public class PostActivity extends AppCompatActivity {
                 postFragment.initializeAdapter(PDAdapter);
             }
 
+            /**
+             * Executes on error from reading snapshot.
+             *
+             * @param error a database error.
+             */
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d("LOG", "DB ERROR");
@@ -384,19 +443,18 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initiates the post creation activity.
+     *
+     * @param view a view.
+     */
     public void makePost(View view) {
-        System.out.println("CURRENT CITY: " + currentCountry);
-        if (currentCountry == "Choose Country") {
+        if (currentCountry.equals("Choose Country")) {
             Toast.makeText(PostActivity.this, "Please choose a country to post to.", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(PostActivity.this, PostPage.class);
             intent.putExtra("country", currentCountry);
             startActivity(intent);
         }
-    }
-
-
-    public void getPostsByCountry() {
-
     }
 }
