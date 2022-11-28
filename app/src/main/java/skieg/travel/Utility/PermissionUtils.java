@@ -1,7 +1,6 @@
 package skieg.travel.Utility;
 
 
-
 // Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,12 +27,13 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
+
 import android.widget.Toast;
 
 /**
  * Utility class for access to runtime permissions.
  */
-public abstract class PermissionUtils  {
+public abstract class PermissionUtils {
 
     /**
      * Requests the fine and coarse location permissions. If a rationale with an additional
@@ -93,26 +93,6 @@ public abstract class PermissionUtils  {
             dialog.setArguments(arguments);
             return dialog;
         }
-
-//        @Override
-//        public Dialog onCreateDialog(Bundle savedInstanceState) {
-//            finishActivity = getArguments().getBoolean(ARGUMENT_FINISH_ACTIVITY);
-//
-//            return new AlertDialog.Builder(getActivity())
-//                    .setMessage(R.string.location_permission_denied)
-//                    .setPositiveButton(android.R.string.ok, null)
-//                    .create();
-//        }
-
-//        @Override
-//        public void onDismiss(DialogInterface dialog) {
-//            super.onDismiss(dialog);
-//            if (finishActivity) {
-//                Toast.makeText(getActivity(), R.string.permission_required_toast,
-//                        Toast.LENGTH_SHORT).show();
-//                getActivity().finish();
-//            }
-//        }
     }
 
     /**
@@ -136,10 +116,10 @@ public abstract class PermissionUtils  {
          * <p>
          * The permission is requested after clicking 'ok'.
          *
-         * @param requestCode Id of the request that is used to request the permission. It is
-         * returned to the {@link androidx.core.app.ActivityCompat.OnRequestPermissionsResultCallback}.
+         * @param requestCode    Id of the request that is used to request the permission. It is
+         *                       returned to the {@link androidx.core.app.ActivityCompat.OnRequestPermissionsResultCallback}.
          * @param finishActivity Whether the calling Activity should be finished if the dialog is
-         * cancelled.
+         *                       cancelled.
          */
         public static RationaleDialog newInstance(int requestCode, boolean finishActivity) {
             Bundle arguments = new Bundle();
@@ -150,39 +130,5 @@ public abstract class PermissionUtils  {
             return dialog;
         }
 
-//        @Override
-//        public Dialog onCreateDialog(Bundle savedInstanceState) {
-//            Bundle arguments = getArguments();
-//            final int requestCode = arguments.getInt(ARGUMENT_PERMISSION_REQUEST_CODE);
-//            finishActivity = arguments.getBoolean(ARGUMENT_FINISH_ACTIVITY);
-//
-//            return new AlertDialog.Builder(getActivity())
-//                    .setMessage(R.string.permission_rationale_location)
-//                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            // After click on Ok, request the permission.
-//                            ActivityCompat.requestPermissions(getActivity(),
-//                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-//                                    requestCode);
-//                            // Do not finish the Activity while requesting permission.
-//                            finishActivity = false;
-//                        }
-//                    })
-//                    .setNegativeButton(android.R.string.cancel, null)
-//                    .create();
-//        }
-//
-//        @Override
-//        public void onDismiss(DialogInterface dialog) {
-//            super.onDismiss(dialog);
-//            if (finishActivity) {
-//                Toast.makeText(getActivity(),
-//                                R.string.permission_required_toast,
-//                                Toast.LENGTH_SHORT)
-//                        .show();
-//                getActivity().finish();
-//            }
-//        }
     }
 }
