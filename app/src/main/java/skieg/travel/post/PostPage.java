@@ -19,6 +19,9 @@ import skieg.travel.R;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
+/**
+ * Post page activity.
+ */
 public class PostPage extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
@@ -27,6 +30,11 @@ public class PostPage extends AppCompatActivity {
     private Button postButton;
     private String currentCountry;
 
+    /**
+     * On create method.
+     *
+     * @param savedInstanceState a bundle of saved instance data from the previous activity.
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +44,13 @@ public class PostPage extends AppCompatActivity {
         postButton = findViewById(R.id.post);
         Intent intent = getIntent();
         currentCountry = intent.getStringExtra("country");
-        System.out.println("CURRENT COUNTRY: " + currentCountry);
         postButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * On click method set for post button.
+             *
+             * @param view a view.
+             */
             @Override
             public void onClick(View view) {
                 post(view);
@@ -46,44 +59,62 @@ public class PostPage extends AppCompatActivity {
     }
 
 
+    /**
+     * To go back to the main activity.
+     *
+     * @param view a view.
+     */
     public void back(View view){
         Intent intent = new Intent(PostPage.this,MainActivity.class);
         startActivity(intent);
     }
 
 
+    /**
+     * Posts the data to the database.
+     *
+     * @param view a view.
+     * @param post a post object we are writing to the database.
+     */
     private void postToDatabase(View view, Post post){
 
          Task setValueTask = databaseReference.child("Forum").child("posts").child(post.getPostID()).setValue(post);
 
          setValueTask.addOnSuccessListener(new OnSuccessListener(){
 
+             /**
+              * On a successful write.
+              *
+              * @param o an object.
+              */
              @Override
              public void onSuccess(Object o) {
-
-                System.out.println("Succeeded");
-                 infoBlock.setText("");
+                 infoBlock.setText(""); // clear the text.
              }
          });
     }
 
+    /**
+     * Creates a post and posts it to the database.
+     *
+     * @param view a view.
+     */
     public void post(View view){
         String postID = databaseReference.push().getKey();
         infoBlock  = findViewById(R.id.postContent);
         String info = infoBlock.getText().toString();
         String date = CurrentDateTime.date();
-        System.out.println("DATE: " + date);
-        System.out.println("CURRENT: " + currentCountry);
         Post post = new Post(MainActivity.USER, date, info,postID, currentCountry);
         postToDatabase(view,post);
     }
 
-
+    /**
+     * Gets the current date and time.
+     */
     private static class CurrentDateTime{
         public static String date() {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
             return dtf.format(LocalDateTime.now());
         }
     }
-
 }
