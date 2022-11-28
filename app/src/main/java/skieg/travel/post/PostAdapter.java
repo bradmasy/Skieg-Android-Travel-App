@@ -65,6 +65,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     }
 
 
+    /**
+     * On Create View Holder.
+     *
+     * @param parent a parent view group.
+     * @param viewType an int view type.
+     *
+     * @return a view holder.
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -74,6 +82,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         return viewHolder;
     }
 
+    /**
+     * Binds the view holder.
+     *
+     * @param holder a view holder.
+     * @param position the position.
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
@@ -82,17 +96,28 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.date.setText(dates.get(position));
     }
 
+    /**
+     * Gets the item count.
+     *
+     * @return the item amount.
+     */
     @Override
     public int getItemCount() {
         return names.size();
     }
 
-
-
-
+    /**
+     * View Holder Class.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView name, date, contentView;
+
+        /**
+         * View Holder Constructor.
+         *
+         * @param postView a view.
+         */
         public ViewHolder(@NonNull View postView){
             super(postView);
             Drawable deleteButtonImg = postView.getResources().getDrawable(R.drawable.delete);
@@ -102,18 +127,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             date         = postView.findViewById(R.id.datePost);
 
             int pos = currentPosition;
-            System.out.println("ADAPTER POS: " + currentPosition);
             if(MainActivity.USER.getId().equals(userID.get(currentPosition))){
                 deleteButton.setBackground(deleteButtonImg);
                 deleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         databaseReference.child("Forum").child("posts").child(postID.get(pos)).setValue(null);
-                        // update page here
-                        System.out.println("DELETED POST");
                     }
-
-
                 });
             } else{
                 deleteButton.setVisibility(View.GONE);
@@ -123,6 +143,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             currentPosition++;
         }
 
+        /**
+         * On Click for recycler view.
+         *
+         * @param view a view.
+         */
         @Override
         public void onClick(View view) {
             itemListener.recyclerViewListClicked(view,this.getAdapterPosition());

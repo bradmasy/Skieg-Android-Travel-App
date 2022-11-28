@@ -182,6 +182,11 @@ public class PostActivity extends AppCompatActivity {
                 postFragment.initializeAdapter(PDAdapter);
             }
 
+            /**
+             * on cancelled data write.
+             *
+             * @param error a database error.
+             */
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
