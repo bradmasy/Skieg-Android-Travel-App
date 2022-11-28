@@ -29,29 +29,39 @@ import skieg.travel.Utility.InputValidation;
 import skieg.travel.MainActivity;
 import skieg.travel.R;
 
+/**
+ * Checklist Fragment.
+ */
 public class ChecklistFragment extends PlannerFragment {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-
     EditText checklistEditText;
-
     RecyclerView recyclerView;
     RecyclerViewChecklist recyclerViewChecklist;
-
     ArrayList<String> itemsList = new ArrayList<>();
     ArrayList<Boolean> checkedList = new ArrayList<>();
     ArrayList<String> idList = new ArrayList<>();
 
 
+    /**
+     * Checklist fragment constructor.
+     */
     public ChecklistFragment(){
         super(R.layout.activity_checklist);
     }
 
+    /**
+     * On Create View.
+     *
+     * @param inflater a layout inflater.
+     * @param container a container.
+     * @param savedInstanceState a bundle of saved instance data from the previous activity.
+     * @return an inflated view.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_checklist, container, false);
-
 
         checklistEditText = view.findViewById(R.id.checklistEditText);
 
@@ -114,6 +124,11 @@ public class ChecklistFragment extends PlannerFragment {
     }
 
 
+    /**
+     * adds an item to firebase.
+     *
+     * @param checklistItem a string representing a checklist item.
+     */
     public void addItemToFirebase(String checklistItem) {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference();
@@ -125,6 +140,12 @@ public class ChecklistFragment extends PlannerFragment {
 
         Task setValueTask = databaseReference.child("Users").child(userID).child("Planner").child("Checklist").child(itemID).setValue(checklist);
         setValueTask.addOnSuccessListener(new OnSuccessListener() {
+
+            /**
+             * On a successful write.
+             *
+             * @param o an object.
+             */
             @Override
             public void onSuccess(Object o) {
                 Toast toast = Toast.makeText(getActivity().getBaseContext(), "Checklist item added!", Toast.LENGTH_SHORT);
@@ -135,11 +156,20 @@ public class ChecklistFragment extends PlannerFragment {
     }
 
 
+    /**
+     * Gets the data from the database.
+     */
     public void getDataFromFirebase() {
         String id = MainActivity.USER.getId();
         databaseReference = FirebaseDatabase.getInstance("https://skieg-364814-default-rtdb.firebaseio.com/").getReference().child("Users").child(id).child("Planner").child("Checklist");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
+
+            /**
+             * On data change in the database.
+             *
+             * @param snapshot a database snapshot.
+             */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 itemsList = new ArrayList<>();
@@ -148,8 +178,6 @@ public class ChecklistFragment extends PlannerFragment {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String currSnapshot = String.valueOf(dataSnapshot.getValue());
-
-                    // FORMAT: {item=item1, checked=false, id=-NGeksyGKISPKaSYAnuO}
                     String[] dataValues = currSnapshot.split(",");
                     String item = DatabaseParse.parseDataValue(dataValues[0]);
                     String checked = DatabaseParse.parseDataValue(dataValues[1]);
@@ -165,6 +193,11 @@ public class ChecklistFragment extends PlannerFragment {
                 initializeAdapter(recyclerViewChecklist);
             }
 
+            /**
+             * On cancelled write.
+             *
+             * @param error a database error.
+             */
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d("LOG", "DB ERROR");
@@ -172,13 +205,21 @@ public class ChecklistFragment extends PlannerFragment {
         });
     }
 
-
+    /**
+     * Initiates going back to the main activity.
+     */
     public void backBtnClicked() {
         Intent mainIntent = new Intent(getActivity(), MainActivity.class);
         startActivity(mainIntent);
     }
 
-
+    /**
+     * Saves the checklist item to firebase.
+     *
+     * @param tempItemsList a list of the temp items.
+     * @param tempCheckedList a list of the temp checked.
+     * @param tempIdList a list of the temp ids.
+     */
     public void saveChecklistToFirebase(ArrayList<String> tempItemsList, ArrayList<Boolean> tempCheckedList, ArrayList<String> tempIdList) {
         String id = MainActivity.USER.getId();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -189,6 +230,5 @@ public class ChecklistFragment extends PlannerFragment {
             Checklist checklist = new Checklist(tempItemsList.get(index), currID, tempCheckedList.get(index));
             databaseReference.child(currID).setValue(checklist);
         }
-
     }
 }
