@@ -12,12 +12,19 @@ import skieg.travel.R;
 import skieg.travel.planner.Utility.SlideAdapter;
 import skieg.travel.planner.transformers.ZoomOutTransformer;
 
-
+/**
+ * Main planner activity.
+ */
 public class MainPlanner extends FragmentActivity {
     private ViewPager2 pager;
     private FragmentStateAdapter FSA;
     final public static int amountOfFragments = 2;
 
+    /**
+     * On create method.
+     *
+     * @param savedInstanceState a bundle of saved instance data from the previous activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -29,13 +36,26 @@ public class MainPlanner extends FragmentActivity {
         pager.setPageTransformer(new ZoomOutTransformer());
     }
 
+    /**
+     * Slider Class.
+     */
     private class Slider extends FragmentStateAdapter{
 
+        /**
+         * Constructor for a slider.
+         *
+         * @param thisActivity the main planner activity.
+         */
         public Slider(MainPlanner thisActivity){
             super(thisActivity);
-            Log.d("SLIDER", "CREATER ");
         }
 
+        /**
+         * Creates fragments based on the users position in the view pager.
+         *
+         * @param position the position of the user in the view pager.
+         * @return the fragment.
+         */
         @NonNull
         @Override
         public PlannerFragment createFragment(int position) {
@@ -49,10 +69,14 @@ public class MainPlanner extends FragmentActivity {
             }
         }
 
+        /**
+         * Gets the amount of fragments.
+         *
+         * @return the amount of fragments.
+         */
         @Override
         public int getItemCount() {
             return amountOfFragments;
         }
     }
-
 }
