@@ -25,7 +25,7 @@
             android:background="@color/teal_200">
 
             <TextView
-
+                android:id="@+id/topUserInfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

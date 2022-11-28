@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,6 +44,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import skieg.travel.CalendarEventActivity;
+import skieg.travel.MainActivity;
 import skieg.travel.Utility.InputValidation;
 import skieg.travel.PersonalProfileActivity;
 import skieg.travel.R;
@@ -82,6 +84,11 @@ public class PostActivity extends AppCompatActivity {
         Button postButton = findViewById(R.id.makePost);
         LinearLayout userInfo = findViewById(R.id.userInfo);
         LinearLayout userImageContainer = findViewById(R.id.userPhoto);
+
+        TextView topUserInfo = findViewById(R.id.topUserInfo);
+        String topInfoText = "Username: " + MainActivity.USER.getUsername() + "\n"
+                + "Current City: " + MainActivity.USER.getCity();
+        topUserInfo.setText(topInfoText);
 
         postButton.setBackgroundColor(Color.parseColor("#BEDEFC"));
         userInfo.setBackgroundColor(Color.parseColor("#BEDEFC"));
