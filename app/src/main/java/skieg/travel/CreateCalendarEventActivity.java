@@ -1,6 +1,7 @@
 package skieg.travel;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,12 +10,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import skieg.travel.Utility.InputValidation;
+import skieg.travel.welcome_login_signup.Signup;
 
 public class CreateCalendarEventActivity extends AppCompatActivity {
 
@@ -67,8 +78,14 @@ public class CreateCalendarEventActivity extends AppCompatActivity {
                 toast.show();
 
             } else {
-                // All data is valid so the new calendar event can be added to the firebase
-                writeEventToFirebase(title, description, location, date);
+                // Check that the city entered is valid for the weather API
+                String url = "https://api.openweathermap.org/data/2.5/weather";
+                String appid = "fa211ad253385ab5e5f303af6dfebb44";
+                String tempUrl = url + "?q=" + location + "&appid=" + appid;
+
+                // Run an async task to validate the city input using the weather API
+                CreateCalendarEventActivity.AsyncTaskRunner runner = new CreateCalendarEventActivity.AsyncTaskRunner();
+                runner.execute(tempUrl);
             }
         });
     }
@@ -102,6 +119,50 @@ public class CreateCalendarEventActivity extends AppCompatActivity {
                 dateInput.setText("");
             }
         });
+    }
+
+
+
+    /**
+     * Private Async Task class that is used when validating a user's city input.
+     */
+    class AsyncTaskRunner extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            RequestQueue queue = Volley.newRequestQueue(CreateCalendarEventActivity.this);
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, strings[0], null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+
+                    try {
+                        // If there is a response with no error, the city passed to the URL is valid
+                        response.getJSONObject("main");
+
+                        // Get the values for all the text fields
+                        String title = titleInput.getText().toString();
+                        String description = descriptionInput.getText().toString();
+                        String location = locationInput.getText().toString();
+                        String date = dateInput.getText().toString();
+
+                        // All data is valid so the new calendar event can be added to the firebase
+                        writeEventToFirebase(title, description, location, date);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(CreateCalendarEventActivity.this, "Invalid city entered.", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(CreateCalendarEventActivity.this, "Invalid city entered.", Toast.LENGTH_SHORT).show();
+                }
+            });
+            queue.add(request);
+            return null;
+        }
     }
 
 

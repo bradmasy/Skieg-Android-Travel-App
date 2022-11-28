@@ -83,7 +83,7 @@
         <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/android-term-project-dev/app/src/main/res/layout/activity_maps2.xml" value="0.3625" />
         <entry key="..\:/Users/bradl/Desktop/android-term-project-dev/android-term-project-dev/app/src/main/res/layout/activity_planner.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.1" />
-        <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/activity_budget.xml" value="0.1" />
+        <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/activity_budget.xml" value="0.264" />
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/activity_calendar.xml" value="0.264" />
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/activity_calendar_events.xml" value="0.2359375" />
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/activity_checklist.xml" value="0.2" />
@@ -107,6 +107,7 @@
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/fragment_forum.xml" value="0.14990942028985507" />
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/login_signup.xml" value="0.25" />
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/planner_view_pager.xml" value="0.25" />
+        <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/post_item.xml" value="0.14990942028985507" />
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/post_page_activity.xml" value="0.25" />
         <entry key="..\:/Users/m/AndroidStudioProjects/android-term-project-working/app/src/main/res/layout/recyclerview_layout.xml" value="0.1" />
       </map>

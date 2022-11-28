@@ -67,13 +67,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Get the user's city and format it in the weather API URL
+        TextView temperature = findViewById(R.id.temperature);
+
+        if (temperature.getText().equals("temp")) {
+            // Reload city weather
+            getUsersCityWeather();
+        }
+    }
+
+
+    /**
+     * Uses an async task runner to get the user's city information for the current weather.
+     */
+    private void getUsersCityWeather() {
+        // Get the user's city and format it in the weather API URL
         String cityName = USER.getCity();
         String tempUrl = url + "?q=" + cityName + "&appid=" + appid;
 
         // Use async task runner to fetch the weather information for the user's city
         AsyncTaskRunner runner = new AsyncTaskRunner();
         runner.execute(tempUrl);
-
     }
 
     /**
