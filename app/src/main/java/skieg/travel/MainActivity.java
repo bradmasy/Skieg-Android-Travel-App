@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,42 +28,57 @@ import skieg.travel.user.User;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Stores the current user logged in
     public static User USER;
 
+    // Store URL references for the weather API
     private final String url = "https://api.openweathermap.org/data/2.5/weather";
     private final String appid = "fa211ad253385ab5e5f303af6dfebb44";
+
+    // Decimal formatter for double numbers (weather section)
     DecimalFormat df = new DecimalFormat("#.##");
 
+    /**
+     * When main page is loaded.
+     * Store the logged in user if there is no current user saved.
+     * @param savedInstanceState: bundle, if directed to the page from login or signup,
+     *                          bundle contains the logged in user's information
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Check if the bundle holds values from a previous page
         Bundle bundle = getIntent().getExtras();
         // Only set the current user when directed to main page from the login/signup pages
         if (bundle != null) {
+            // Get all user's attributes
             String id = bundle.getString("id");
             String username = bundle.getString("username");
             String password = bundle.getString("password");
-
             String firstName = bundle.getString("firstName");
             String lastName = bundle.getString("lastName");
             String city = bundle.getString("city");
             String email = bundle.getString("email");
 
+            // Store all the values into the static user object so it can be accessed in other pages
             USER = new User(id, firstName, lastName, city, username, email, password);
-            Log.d("MAIN", USER.toString());
         }
 
+        // Get the user's city and format it in the weather API URL
         String cityName = USER.getCity();
-        System.out.println(cityName);
         String tempUrl = url + "?q=" + cityName + "&appid=" + appid;
 
+        // Use async task runner to fetch the weather information for the user's city
         AsyncTaskRunner runner = new AsyncTaskRunner();
         runner.execute(tempUrl);
 
     }
 
+    /**
+     * Private async task runner class to fetch information from the weather API.
+     */
     private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
 
         @Override
@@ -74,14 +88,19 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
+                        // Use the JSON response to get the values for weather in the user's city
                         JSONObject jsonObjectMain = response.getJSONObject("main");
+
+                        // Get temperature values
                         double temp = jsonObjectMain.getDouble("temp") - 273.15;
                         double feelslike = jsonObjectMain.getDouble("feels_like") - 273.15;
 
+                        // Get weather description values
                         JSONArray weather = response.getJSONArray("weather");
                         JSONObject jsonObjectWeather = weather.getJSONObject(0);
                         String description = jsonObjectWeather.getString("description");
 
+                        // Get location values (city, country)
                         JSONObject jsonObjectSys = response.getJSONObject("sys");
                         String currentCountry = jsonObjectSys.getString("country");
                         String currentCity = response.getString("name");
@@ -90,11 +109,13 @@ public class MainActivity extends AppCompatActivity {
                         String currentIcon = jsonObjectWeather.getString("icon");
                         ImageView imageView = findViewById(R.id.weatherIcon);
 
+                        // Get text view objects from the XML layout
                         TextView city = findViewById(R.id.city);
                         TextView temperature = findViewById(R.id.temperature);
                         TextView feels = findViewById(R.id.feelslike);
                         TextView weatherDescription = findViewById(R.id.description);
 
+                        // Set text view values to the JSON response values with units (ex. degrees)
                         String cityAndCountry = currentCity + ", " + currentCountry;
                         String temperatureValue = df.format(temp) + " \u2103";
                         String feelsLikeValue = df.format(feelslike) + " \u2103";
@@ -102,8 +123,6 @@ public class MainActivity extends AppCompatActivity {
                         temperature.setText(temperatureValue);
                         feels.append(feelsLikeValue);
                         weatherDescription.setText(description);
-
-//                        Toast.makeText(MainActivity.this, currentIcon, Toast.LENGTH_SHORT).show();
 
                         // Determine which Icon to use
                         if (currentIcon.equalsIgnoreCase("01d") || currentIcon.equalsIgnoreCase("01n")){
@@ -142,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    // If city's weather cannot be found
                     Toast.makeText(MainActivity.this, "Error getting the weather", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -150,6 +170,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Redirects to event activity page when button is clicked.
+     * @param view: View
+     */
     public void clickMainEventsButton(View view) {
        Intent intent = new Intent(this, EventsActivity.class);
 
@@ -162,6 +186,10 @@ public class MainActivity extends AppCompatActivity {
        startActivity(intent);
     }
 
+    /**
+     * Redirects to planner activity page when button is clicked.
+     * @param view: View
+     */
     public void clickMainPlannerButton(View view) {
         Intent intent = new Intent(this, MainPlanner.class);
 
@@ -174,6 +202,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Redirects to calendar event activity page when button is clicked.
+     * @param view: View
+     */
     public void clickMainCalendarButton(View view) {
         Intent intent = new Intent(this, CalendarActivity.class);
 
@@ -186,6 +218,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Redirects to profile activity page when button is clicked.
+     * @param view: View
+     */
     public void clickMainPersonalProfileButton(View view) {
         Intent intent = new Intent(this, PersonalProfileActivity.class);
 
@@ -198,6 +234,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Redirects to post activity page when button is clicked.
+     * @param view: View
+     */
     public void clickMainPostButton(View view) {
         Intent intent = new Intent(this, PostActivity.class);
 
@@ -210,6 +250,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Redirects to maps activity page when button is clicked.
+     * @param view: View
+     */
     public void clickMapsButton(View view){
         Intent intent = new Intent(this, MapsActivity.class);
 
@@ -222,6 +266,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * When back button is clicked, disable going back.
+     */
     @Override
     public void onBackPressed() {
         // Override the default behaviour to disable going back from this page.
