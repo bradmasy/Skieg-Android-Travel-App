@@ -1,4 +1,4 @@
-package skieg.travel.planner.Utility;
+package skieg.travel.planner.PlannerUtility;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

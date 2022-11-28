@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import skieg.travel.InputValidation;
+import skieg.travel.Utility.InputValidation;
 import skieg.travel.MainActivity;
 import skieg.travel.R;
 import skieg.travel.user.User;

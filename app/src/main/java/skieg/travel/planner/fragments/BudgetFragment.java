@@ -1,7 +1,6 @@
 package skieg.travel.planner.fragments;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,13 +23,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONObject;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import skieg.travel.DatabaseParse;
-import skieg.travel.InputValidation;
+import skieg.travel.Utility.DatabaseParse;
+import skieg.travel.Utility.InputValidation;
 import skieg.travel.MainActivity;
 import skieg.travel.R;
 import skieg.travel.post.RecyclerViewClickListener;

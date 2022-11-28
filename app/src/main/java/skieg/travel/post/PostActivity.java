@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,8 +43,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import skieg.travel.CalendarEventActivity;
-import skieg.travel.DatabaseParse;
-import skieg.travel.InputValidation;
+import skieg.travel.Utility.InputValidation;
 import skieg.travel.PersonalProfileActivity;
 import skieg.travel.R;
 

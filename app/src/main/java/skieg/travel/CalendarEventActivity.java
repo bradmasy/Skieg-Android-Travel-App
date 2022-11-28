@@ -2,7 +2,6 @@ package skieg.travel;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,6 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import skieg.travel.Utility.DatabaseParse;
 
 public class CalendarEventActivity extends AppCompatActivity {
     // Store reference to a CalendarFragment

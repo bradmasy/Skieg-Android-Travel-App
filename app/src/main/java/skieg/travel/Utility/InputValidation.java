@@ -1,4 +1,4 @@
-package skieg.travel;
+package skieg.travel.Utility;
 
 import java.time.LocalDate;
 

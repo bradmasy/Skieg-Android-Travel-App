@@ -1,4 +1,4 @@
-package skieg.travel;
+package skieg.travel.Utility;
 
 public class DatabaseParse {
 

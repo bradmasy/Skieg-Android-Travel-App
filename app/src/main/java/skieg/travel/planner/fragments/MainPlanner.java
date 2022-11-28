@@ -1,7 +1,6 @@
 package skieg.travel.planner.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -9,7 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import skieg.travel.R;
-import skieg.travel.planner.Utility.SlideAdapter;
+import skieg.travel.planner.PlannerUtility.SlideAdapter;
 import skieg.travel.planner.transformers.ZoomOutTransformer;
 
 /**

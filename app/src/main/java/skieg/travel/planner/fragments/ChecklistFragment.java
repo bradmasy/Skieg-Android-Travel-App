@@ -24,8 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import skieg.travel.DatabaseParse;
-import skieg.travel.InputValidation;
+import skieg.travel.Utility.DatabaseParse;
+import skieg.travel.Utility.InputValidation;
 import skieg.travel.MainActivity;
 import skieg.travel.R;
 
