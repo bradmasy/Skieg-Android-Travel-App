@@ -213,6 +213,15 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        readCountryAPI();
+
+
+    }
+
     /**
      * Grabs the canadian flag as a default country image from the API.
      */
@@ -220,6 +229,7 @@ public class PostActivity extends AppCompatActivity {
         DownloadImageTask flagRunner = new DownloadImageTask(currentCountryFlag);
         flagRunner.execute("canada");
     }
+
 
 
     /**
