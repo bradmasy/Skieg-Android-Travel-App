@@ -225,13 +225,24 @@ public class PostActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         readCountryAPI();
+    }
 
+    @Override
+    public void onResume() {
 
+        super.onResume();
+        readCountryAPI();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        readCountryAPI();
     }
 
     /**
-     * Grabs the canadian flag as a default country image from the API.
-     */
+         * Grabs the canadian flag as a default country image from the API.
+         */
     private void canadaFlag() {
         DownloadImageTask flagRunner = new DownloadImageTask(currentCountryFlag);
         flagRunner.execute("canada");
