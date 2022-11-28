@@ -8,12 +8,26 @@ import skieg.travel.planner.fragments.BudgetFragment;
 import skieg.travel.planner.fragments.ChecklistFragment;
 import skieg.travel.planner.fragments.MainPlanner;
 
+/**
+ * Slide adapter class.
+ */
 public class SlideAdapter extends FragmentStateAdapter {
 
+    /**
+     * Slide adapter constructor.
+     *
+     * @param thisActivity the activity we are applying the adapter to.
+     */
     public SlideAdapter(MainPlanner thisActivity){
         super(thisActivity);
     }
 
+    /**
+     * Creates a fragment.
+     *
+     * @param position the position of the fragment.
+     * @return a fragment.
+     */
     @NonNull
     @Override
     public Fragment createFragment(int position) {
@@ -33,6 +47,11 @@ public class SlideAdapter extends FragmentStateAdapter {
         return plannerFragment;
     }
 
+    /**
+     * Gets the item count.
+     *
+     * @return the amount of fragments.
+     */
     @Override
     public int getItemCount() {
         return MainPlanner.amountOfFragments;
